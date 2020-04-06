@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5d7daed-ec7d-420d-947a-cd3c6bf48f53" name="Default Changelist" comment="" />
+    <list default="true" id="c5d7daed-ec7d-420d-947a-cd3c6bf48f53" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +32,36 @@
       <recent name="C:\Users\hoeck\IntelliJProjects\refactoring-project-team2-2-2" />
     </key>
   </component>
+  <component name="RunManager" selected="Application.drive">
+    <configuration name="EndGameReport" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="EndGameReport" />
+      <module name="refactoring-project-team2-2-2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PinSetterView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="PinSetterView" />
+      <module name="refactoring-project-team2-2-2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="drive" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="drive" />
+      <module name="refactoring-project-team2-2-2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.drive" />
+        <item itemvalue="Application.PinSetterView" />
+        <item itemvalue="Application.EndGameReport" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -40,17 +72,57 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586187093943</updated>
-      <workItem from="1586187099760" duration="83000" />
+      <workItem from="1586187099760" duration="623000" />
     </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1586187242318</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586187242318</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="351" y="146" key="#Project_Structure" timestamp="1586187182228">
       <screen x="0" y="0" width="1504" height="963" />
     </state>
     <state x="351" y="146" key="#Project_Structure/0.0.1504.963@0.0.1504.963" timestamp="1586187182228" />
+    <state x="279" y="84" key="CommitChangelistDialog2" timestamp="1586187241328">
+      <screen x="0" y="0" width="1504" height="963" />
+    </state>
+    <state x="279" y="84" key="CommitChangelistDialog2/0.0.1504.963@0.0.1504.963" timestamp="1586187241328" />
+    <state x="619" y="401" key="Github.Dialog.Accounts.Choose" timestamp="1586187270423">
+      <screen x="0" y="0" width="1504" height="963" />
+    </state>
+    <state x="619" y="401" key="Github.Dialog.Accounts.Choose/0.0.1504.963@0.0.1504.963" timestamp="1586187270423" />
+    <state width="1446" height="254" key="GridCell.Tab.0.bottom" timestamp="1586187760683">
+      <screen x="0" y="0" width="1504" height="963" />
+    </state>
+    <state width="1446" height="254" key="GridCell.Tab.0.bottom/0.0.1504.963@0.0.1504.963" timestamp="1586187760683" />
+    <state width="1446" height="254" key="GridCell.Tab.0.center" timestamp="1586187760682">
+      <screen x="0" y="0" width="1504" height="963" />
+    </state>
+    <state width="1446" height="254" key="GridCell.Tab.0.center/0.0.1504.963@0.0.1504.963" timestamp="1586187760682" />
+    <state width="1446" height="254" key="GridCell.Tab.0.left" timestamp="1586187760682">
+      <screen x="0" y="0" width="1504" height="963" />
+    </state>
+    <state width="1446" height="254" key="GridCell.Tab.0.left/0.0.1504.963@0.0.1504.963" timestamp="1586187760682" />
+    <state width="1446" height="254" key="GridCell.Tab.0.right" timestamp="1586187760683">
+      <screen x="0" y="0" width="1504" height="963" />
+    </state>
+    <state width="1446" height="254" key="GridCell.Tab.0.right/0.0.1504.963@0.0.1504.963" timestamp="1586187760683" />
+    <state x="351" y="221" key="Vcs.Push.Dialog.v2" timestamp="1586187847004">
+      <screen x="0" y="0" width="1504" height="963" />
+    </state>
+    <state x="351" y="221" key="Vcs.Push.Dialog.v2/0.0.1504.963@0.0.1504.963" timestamp="1586187847004" />
   </component>
 </project>
