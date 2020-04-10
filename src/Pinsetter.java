@@ -78,34 +78,36 @@ public class Pinsetter {
 	private Random rnd;
 	private Vector subscribers;
 
-	private boolean[] pins; 
-			/* 0-9 of state of pine, true for standing, 
-			false for knocked down
+	private boolean[] pins;
+	/* 0-9 of state of pine, true for standing, 
+	false for knocked down
 
-			6   7   8   9
-			  3   4   5
-			    2   1
-			      0
+	6   7   8   9
+	  3   4   5
+		2   1
+		  0
 
-			*/
+	*/
 	private boolean foul;
 	private int throwNumber;
 
-	/** sendEvent()
+	/**
+	 * sendEvent()
 	 * 
 	 * Sends pinsetter events to all subscribers
 	 * 
 	 * @pre none
 	 * @post all subscribers have recieved pinsetter event with updated state
-	 * */
-	private void sendEvent(int jdpins) {	// send events when our state is changd
-		for (int i=0; i < subscribers.size(); i++) {
-			((PinsetterObserver)subscribers.get(i)).receivePinsetterEvent(
-				new PinsetterEvent(pins, foul, throwNumber, jdpins));
+	 */
+	private void sendEvent(int jdpins) { // send events when our state is changd
+		for (int i = 0; i < subscribers.size(); i++) {
+			((PinsetterObserver) subscribers.get(i))
+					.receivePinsetterEvent(new PinsetterEvent(pins, foul, throwNumber, jdpins));
 		}
 	}
 
-	/** Pinsetter()
+	/**
+	 * Pinsetter()
 	 * 
 	 * Constructs a new pinsetter
 	 * 
@@ -121,42 +123,46 @@ public class Pinsetter {
 		reset();
 	}
 
-	/** ballThrown()
+	/**
+	 * ballThrown()
 	 * 
 	 * Called to simulate a ball thrown comming in contact with the pinsetter
 	 * 
 	 * @pre none
-	 * @post pins may have been knocked down and the thrownumber has been incremented
+	 * @post pins may have been knocked down and the thrownumber has been
+	 *       incremented
 	 */
-	public void ballThrown() {	// simulated event of ball hits sensor
+	public void ballThrown() { // simulated event of ball hits sensor
 		int count = 0;
 		foul = false;
 		double skill = rnd.nextDouble();
-		for (int i=0; i <= 9; i++) {
+		for (int i = 0; i <= 9; i++) {
 			if (pins[i]) {
 				double pinluck = rnd.nextDouble();
-				if (pinluck <= .04){ 
+				if (pinluck <= .04) {
 					foul = true;
 				}
-				if ( ((skill + pinluck)/2.0 * 1.2) > .5 ){
+				if (((skill + pinluck) / 2.0 * 1.2) > .5) {
 					pins[i] = false;
-				} 
-				if (!pins[i]) {		// this pin just knocked down
+				}
+				if (!pins[i]) { // this pin just knocked down
 					count++;
 				}
 			}
 		}
 
 		try {
-			Thread.sleep(500);				// pinsetter is where delay will be in a real game
-		} catch (Exception e) {}
+			Thread.sleep(500); // pinsetter is where delay will be in a real game
+		} catch (Exception e) {
+		}
 
 		sendEvent(count);
 
 		throwNumber++;
 	}
 
-	/** reset()
+	/**
+	 * reset()
 	 * 
 	 * Reset the pinsetter to its complete state
 	 * 
@@ -167,15 +173,17 @@ public class Pinsetter {
 		foul = false;
 		throwNumber = 1;
 		resetPins();
-		
+
 		try {
 			Thread.sleep(1000);
-		} catch (Exception e) {}
-		
+		} catch (Exception e) {
+		}
+
 		sendEvent(-1);
 	}
 
-	/** resetPins()
+	/**
+	 * resetPins()
 	 * 
 	 * Reset the pins on the pinsetter
 	 * 
@@ -183,12 +191,13 @@ public class Pinsetter {
 	 * @post pins array is reset to all pins up
 	 */
 	public void resetPins() {
-		for (int i=0; i <= 9; i++) {
+		for (int i = 0; i <= 9; i++) {
 			pins[i] = true;
 		}
-	}		
+	}
 
-	/** subscribe()
+	/**
+	 * subscribe()
 	 * 
 	 * subscribe objects to send events to
 	 * 
@@ -199,5 +208,4 @@ public class Pinsetter {
 		subscribers.add(subscriber);
 	}
 
-};
-
+}

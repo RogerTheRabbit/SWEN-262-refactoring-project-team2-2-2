@@ -1,3 +1,4 @@
+
 /**
  *
  * To change this generated comment edit the template variable "typecomment":
@@ -24,25 +25,25 @@ public class EndGamePrompt implements ActionListener {
 
 	private String selectedNick, selectedMember;
 
-	public EndGamePrompt( String partyName ) {
+	public EndGamePrompt(String partyName) {
 
-		result =0;
-		
-		win = new JFrame("Another Game for " + partyName + "?" );
+		result = 0;
+
+		win = new JFrame("Another Game for " + partyName + "?");
 		win.getContentPane().setLayout(new BorderLayout());
 		((JPanel) win.getContentPane()).setOpaque(false);
 
 		JPanel colPanel = new JPanel();
-		colPanel.setLayout(new GridLayout( 2, 1 ));
+		colPanel.setLayout(new GridLayout(2, 1));
 
 		// Label Panel
 		JPanel labelPanel = new JPanel();
 		labelPanel.setLayout(new FlowLayout());
-		
-		JLabel message = new JLabel( "Party " + partyName 
-			+ " has finished bowling.\nWould they like to bowl another game?" );
 
-		labelPanel.add( message );
+		JLabel message = new JLabel(
+				"Party " + partyName + " has finished bowling.\nWould they like to bowl another game?");
+
+		labelPanel.add(message);
 
 		// Button Panel
 		JPanel buttonPanel = new JPanel();
@@ -75,37 +76,34 @@ public class EndGamePrompt implements ActionListener {
 
 		// Center Window on Screen
 		Dimension screenSize = (Toolkit.getDefaultToolkit()).getScreenSize();
-		win.setLocation(
-			((screenSize.width) / 2) - ((win.getSize().width) / 2),
-			((screenSize.height) / 2) - ((win.getSize().height) / 2));
+		win.setLocation(((screenSize.width) / 2) - ((win.getSize().width) / 2),
+				((screenSize.height) / 2) - ((win.getSize().height) / 2));
 		win.show();
 
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(yesButton)) {		
-			result=1;
+		if (e.getSource().equals(yesButton)) {
+			result = 1;
 		}
-		if (e.getSource().equals(noButton)) {		
-			result=2;
+		if (e.getSource().equals(noButton)) {
+			result = 2;
 		}
 
 	}
 
 	public int getResult() {
-		while ( result == 0 ) {
+		while (result == 0) {
 			try {
 				Thread.sleep(10);
-			} catch ( InterruptedException e ) {
-				System.err.println( "Interrupted" );
+			} catch (InterruptedException e) {
+				System.err.println("Interrupted");
 			}
 		}
-		return result;	
+		return result;
 	}
-	
+
 	public void distroy() {
 		win.hide();
 	}
-	
 }
-
