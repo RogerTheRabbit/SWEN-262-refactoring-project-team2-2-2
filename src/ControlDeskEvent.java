@@ -2,18 +2,17 @@
  *
  *  Version:
  *  		$Id$
- * 
+ *
  *  Revisions:
  * 		$Log$
- * 
+ *
  */
 
 /**
  * Class that represents control desk event
- *
  */
 
-import java.util.*;
+import java.util.Vector;
 
 public class ControlDeskEvent {
 
@@ -34,7 +33,7 @@ public class ControlDeskEvent {
 
     /**
      * Accessor for partyQueue
-     * 
+     *
      * @param key the key of the vertex being looked for.
      *
      * @return a Vector of Strings representing the names of the parties in the wait
