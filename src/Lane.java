@@ -198,7 +198,7 @@ public class Lane extends Thread implements PinsetterObserver {
                 while (gameIsHalted) {
                     try {
                         sleep(10);
-                    } catch (Exception e) {
+                    } catch (Exception ignored) {
                     }
                 }
 
@@ -220,7 +220,7 @@ public class Lane extends Thread implements PinsetterObserver {
                             String dateString = "" + date.getHours() + ":" + date.getMinutes() + " " + date.getMonth()
                                     + "/" + date.getDay() + "/" + (date.getYear() + 1900);
                             ScoreHistoryFile.addScore(currentThrower.getNick(), dateString,
-                                    new Integer(cumulScores[bowlIndex][9]).toString());
+                                    Integer.toString(cumulScores[bowlIndex][9]));
                         } catch (Exception e) {
                             System.err.println("Exception in addScore. " + e);
                         }
@@ -268,9 +268,8 @@ public class Lane extends Thread implements PinsetterObserver {
                         Bowler thisBowler = (Bowler) scoreIt.next();
                         ScoreReport sr = new ScoreReport(thisBowler, finalScores[myIndex++], gameNumber);
                         sr.sendEmail(thisBowler.getEmail());
-                        Iterator printIt = printVector.iterator();
-                        while (printIt.hasNext()) {
-                            if (thisBowler.getNick() == (String) printIt.next()) {
+                        for (Object o : printVector) {
+                            if (thisBowler.getNick().equals((String) o)) {
                                 System.out.println("Printing " + thisBowler.getNick());
                                 sr.sendPrintout();
                             }
@@ -282,7 +281,7 @@ public class Lane extends Thread implements PinsetterObserver {
 
             try {
                 sleep(10);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
     }
@@ -311,7 +310,7 @@ public class Lane extends Thread implements PinsetterObserver {
                     }
                 }
 
-                if ((pe.totalPinsDown() != 10) && (pe.getThrowNumber() == 2 && tenthFrameStrike == false)) {
+                if ((pe.totalPinsDown() != 10) && (pe.getThrowNumber() == 2 && !tenthFrameStrike)) {
                     canThrowAgain = false;
                     // publish( lanePublish() );
                 }
@@ -356,14 +355,13 @@ public class Lane extends Thread implements PinsetterObserver {
      * @post scoring system is initialized
      */
     private void resetScores() {
-        Iterator bowlIt = (party.getMembers()).iterator();
 
-        while (bowlIt.hasNext()) {
+        for (Object o : party.getMembers()) {
             int[] toPut = new int[25];
             for (int i = 0; i != 25; i++) {
                 toPut[i] = -1;
             }
-            scores.put(bowlIt.next(), toPut);
+            scores.put(o, toPut);
         }
 
         gameFinished = false;
@@ -422,9 +420,8 @@ public class Lane extends Thread implements PinsetterObserver {
      * @return The new lane event
      */
     private LaneEvent lanePublish() {
-        LaneEvent laneEvent = new LaneEvent(party, bowlIndex, currentThrower, cumulScores, scores, frameNumber + 1,
+        return new LaneEvent(party, bowlIndex, currentThrower, cumulScores, scores, frameNumber + 1,
                 curScores, ball, gameIsHalted);
-        return laneEvent;
     }
 
     /**
@@ -596,10 +593,9 @@ public class Lane extends Thread implements PinsetterObserver {
 
     public void publish(LaneEvent event) {
         if (subscribers.size() > 0) {
-            Iterator eventIterator = subscribers.iterator();
 
-            while (eventIterator.hasNext()) {
-                ((LaneObserver) eventIterator.next()).receiveLaneEvent(event);
+            for (Object subscriber : subscribers) {
+                ((LaneObserver) subscriber).receiveLaneEvent(event);
             }
         }
     }
