@@ -63,7 +63,6 @@ class ControlDesk extends Thread {
      * @param numlanes	the numbler of lanes to be represented
      *
      */
-
 	public ControlDesk(int numLanes) {
 		this.numLanes = numLanes;
 		lanes = new HashSet(numLanes);
