@@ -31,6 +31,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -43,10 +44,9 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
     private int maxSize;
 
     private JFrame win;
-    private JButton addPatron, newPatron, remPatron, finished;
-    private JList partyList, allBowlers;
-    private Vector party, bowlerdb;
-    private Integer lock;
+    private JButton addPatron, newPatron, removePatron, finished;
+    private JList<String> partyList, allBowlers;
+    private ArrayList<String> party, bowlerdb;
 
     private ControlDeskView controlDesk;
 
@@ -69,11 +69,13 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
         partyPanel.setLayout(new FlowLayout());
         partyPanel.setBorder(new TitledBorder("Your Party"));
 
-        party = new Vector();
-        Vector empty = new Vector();
+        party = new ArrayList<>();
+        ArrayList<String> empty = new ArrayList<>();
         empty.add("(Empty)");
 
-        partyList = new JList(empty);
+        String[] emptyArray = new String[empty.size()];
+        emptyArray = empty.toArray(emptyArray);
+        partyList = new JList<>(emptyArray);
         partyList.setFixedCellWidth(120);
         partyList.setVisibleRowCount(5);
         partyList.addListSelectionListener(this);
@@ -87,12 +89,14 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
         bowlerPanel.setBorder(new TitledBorder("Bowler Database"));
 
         try {
-            bowlerdb = new Vector(BowlerFile.getBowlers());
+            bowlerdb = new ArrayList<>(BowlerFile.getBowlers());
         } catch (Exception e) {
             System.err.println("File Error");
-            bowlerdb = new Vector();
+            bowlerdb = new ArrayList<>();
         }
-        allBowlers = new JList(bowlerdb);
+        String[] bowlerArray = new String[bowlerdb.size()];
+        bowlerArray = bowlerdb.toArray(bowlerArray);
+        allBowlers = new JList<>(bowlerArray);
         allBowlers.setVisibleRowCount(8);
         allBowlers.setFixedCellWidth(120);
         JScrollPane bowlerPane = new JScrollPane(allBowlers);
@@ -112,11 +116,11 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
         addPatron.addActionListener(this);
         addPatronPanel.add(addPatron);
 
-        remPatron = new JButton("Remove Member");
+        removePatron = new JButton("Remove Member");
         JPanel remPatronPanel = new JPanel();
         remPatronPanel.setLayout(new FlowLayout());
-        remPatron.addActionListener(this);
-        remPatronPanel.add(remPatron);
+        removePatron.addActionListener(this);
+        remPatronPanel.add(removePatron);
 
         newPatron = new JButton("New Patron");
         JPanel newPatronPanel = new JPanel();
@@ -159,14 +163,18 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
                     System.err.println("Member already in Party");
                 } else {
                     party.add(selectedNick);
-                    partyList.setListData(party);
+                    String[] partyArray = new String[party.size()];
+                    partyArray = party.toArray(partyArray);
+                    partyList.setListData(partyArray);
                 }
             }
         }
-        if (e.getSource().equals(remPatron)) {
+        if (e.getSource().equals(removePatron)) {
             if (selectedMember != null) {
-                party.removeElement(selectedMember);
-                partyList.setListData(party);
+                party.remove(selectedMember);
+                String[] partyArray = new String[party.size()];
+                partyArray = party.toArray(partyArray);
+                partyList.setListData(partyArray);
             }
         }
         if (e.getSource().equals(newPatron)) {
@@ -200,7 +208,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
      * Accessor for Party
      */
 
-    public Vector getNames() {
+    public ArrayList<String> getNames() {
         return party;
     }
 
@@ -215,10 +223,14 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
             Bowler checkBowler = BowlerFile.getBowlerInfo(newPatron.getNick());
             if (checkBowler == null) {
                 BowlerFile.putBowlerInfo(newPatron.getNick(), newPatron.getFull(), newPatron.getEmail());
-                bowlerdb = new Vector(BowlerFile.getBowlers());
-                allBowlers.setListData(bowlerdb);
+                bowlerdb = new ArrayList<>(BowlerFile.getBowlers());
+                String[] bowlerArray = new String[bowlerdb.size()];
+                bowlerArray = bowlerdb.toArray(bowlerArray);
+                allBowlers.setListData(bowlerArray);
                 party.add(newPatron.getNick());
-                partyList.setListData(party);
+                String[] partyArray = new String[party.size()];
+                partyArray = party.toArray(partyArray);
+                partyList.setListData(partyArray);
             } else {
                 System.err.println("A Bowler with that name already exists.");
             }
@@ -231,7 +243,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
      * Accessor for Party
      */
 
-    public Vector getParty() {
+    public ArrayList<String> getParty() {
         return party;
     }
 

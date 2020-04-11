@@ -19,6 +19,7 @@
  */
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Vector;
 
 class BowlerFile {
@@ -79,9 +80,9 @@ class BowlerFile {
      *
      */
 
-    public static Vector getBowlers() throws IOException, FileNotFoundException {
+    public static ArrayList<String> getBowlers() throws IOException, FileNotFoundException {
 
-        Vector allBowlers = new Vector();
+        ArrayList<String> allBowlers = new ArrayList<>();
 
         BufferedReader in = new BufferedReader(new FileReader(BOWLER_DAT));
         String data;
