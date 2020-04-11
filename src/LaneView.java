@@ -16,7 +16,7 @@ public class LaneView implements LaneObserver, ActionListener {
     private boolean initDone = true;
 
     JFrame frame;
-    Container cpanel;
+    Container cPanel;
     ArrayList<Bowler> bowlers;
 
     JPanel[][] balls;
@@ -34,8 +34,8 @@ public class LaneView implements LaneObserver, ActionListener {
         this.lane = lane;
 
         frame = new JFrame("Lane " + laneNum + ":");
-        cpanel = frame.getContentPane();
-        cpanel.setLayout(new BorderLayout());
+        cPanel = frame.getContentPane();
+        cPanel.setLayout(new BorderLayout());
 
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -43,7 +43,7 @@ public class LaneView implements LaneObserver, ActionListener {
             }
         });
 
-        cpanel.add(new JPanel());
+        cPanel.add(new JPanel());
 
     }
 
@@ -117,9 +117,9 @@ public class LaneView implements LaneObserver, ActionListener {
         return panel;
     }
 
-    public void receiveLaneEvent(LaneEvent le) {
+    public void receiveLaneEvent(LaneEvent laneEvent) {
         if (lane.isPartyAssigned()) {
-            int numBowlers = le.getParty().getMembers().size();
+            int numBowlers = laneEvent.getParty().getMembers().size();
             while (!initDone) {
                 // System.out.println("chillin' here.");
                 try {
@@ -128,16 +128,14 @@ public class LaneView implements LaneObserver, ActionListener {
                 }
             }
 
-            if (le.getFrameNum() == 1 && le.getBall() == 0 && le.getIndex() == 0) {
+            if (laneEvent.getFrameNum() == 1 && laneEvent.getBall() == 0 && laneEvent.getIndex() == 0) {
                 System.out.println("Making the frame.");
-                cpanel.removeAll();
-                cpanel.add(makeFrame(le.getParty()), "Center");
+                cPanel.removeAll();
+                cPanel.add(makeFrame(laneEvent.getParty()), "Center");
 
                 // Button Panel
                 JPanel buttonPanel = new JPanel();
                 buttonPanel.setLayout(new FlowLayout());
-
-                Insets buttonMargin = new Insets(4, 4, 4, 4);
 
                 maintenance = new JButton("Maintenance Call");
                 JPanel maintenancePanel = new JPanel();
@@ -147,34 +145,33 @@ public class LaneView implements LaneObserver, ActionListener {
 
                 buttonPanel.add(maintenancePanel);
 
-                cpanel.add(buttonPanel, "South");
+                cPanel.add(buttonPanel, "South");
 
                 frame.pack();
 
             }
 
-            int[][] lescores = le.getCumulScore();
+            // TODO The frame state/mediator will be used here
+            int[][] laneEventScores = laneEvent.getCumuliScore();
             for (int k = 0; k < numBowlers; k++) {
-                for (int i = 0; i <= le.getFrameNum() - 1; i++) {
-                    if (lescores[k][i] != 0)
-                        scoreLabel[k][i].setText((Integer.valueOf(lescores[k][i])).toString());
+                for (int i = 0; i <= laneEvent.getFrameNum() - 1; i++) {
+                    if (laneEventScores[k][i] != 0) {
+                        scoreLabel[k][i].setText((Integer.valueOf(laneEventScores[k][i])).toString());
+                    }
                 }
                 for (int i = 0; i < 21; i++) {
-                    if (((int[]) le.getScore().get(bowlers.get(k)))[i] != -1)
-                        if (((int[]) le.getScore().get(bowlers.get(k)))[i] == 10 && (i % 2 == 0 || i == 19))
+                    int[] currentRow = (int[]) laneEvent.getScore().get(bowlers.get(k));
+                    if (currentRow[i] != -1) {
+                        if (currentRow[i] == 10 && (i % 2 == 0 || i == 19)) {
                             ballLabel[k][i].setText("X");
-                        else if (i > 0
-                                && ((int[]) le.getScore().get(bowlers.get(k)))[i]
-                                + ((int[]) le.getScore().get(bowlers.get(k)))[i - 1] == 10
-                                && i % 2 == 1)
+                        } else if (i > 0 && currentRow[i] + currentRow[i - 1] == 10 && i % 2 == 1) {
                             ballLabel[k][i].setText("/");
-                        else if (((int[]) le.getScore().get(bowlers.get(k)))[i] == -2) {
-
+                        } else if (currentRow[i] == -2) {
                             ballLabel[k][i].setText("F");
-                        } else
-                            ballLabel[k][i]
-                                    .setText((Integer.valueOf(((int[]) le.getScore().get(bowlers.get(k)))[i]))
-                                            .toString());
+                        } else {
+                            ballLabel[k][i].setText((Integer.valueOf(currentRow[i])).toString());
+                        }
+                    }
                 }
             }
 

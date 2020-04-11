@@ -27,23 +27,23 @@ import java.util.HashMap;
 
 public class LaneEvent {
 
-    private Party p;
+    private final Party p;
     int frame;
     int ball;
     Bowler bowler;
-    int[][] cumulScore;
+    int[][] cumuliScore;
     HashMap score;
     int index;
     int frameNum;
     int[] curScores;
     boolean mechProb;
 
-    public LaneEvent(Party pty, int theIndex, Bowler theBowler, int[][] theCumulScore, HashMap theScore,
+    public LaneEvent(Party pty, int theIndex, Bowler theBowler, int[][] theCumuliScore, HashMap theScore,
                      int theFrameNum, int[] theCurScores, int theBall, boolean mechProblem) {
         p = pty;
         index = theIndex;
         bowler = theBowler;
-        cumulScore = theCumulScore;
+        cumuliScore = theCumuliScore;
         score = theScore;
         curScores = theCurScores;
         frameNum = theFrameNum;
@@ -79,8 +79,8 @@ public class LaneEvent {
         return ball;
     }
 
-    public int[][] getCumulScore() {
-        return cumulScore;
+    public int[][] getCumuliScore() {
+        return cumuliScore;
     }
 
     public Party getParty() {
