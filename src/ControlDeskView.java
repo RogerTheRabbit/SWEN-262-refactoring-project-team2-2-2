@@ -8,9 +8,6 @@
  *
  */
 
-/**
- * Class for representation of the control desk
- */
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -23,20 +20,24 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Vector;
 
+/**
+ * Class for representation of the control desk
+ */
 public class ControlDeskView implements ActionListener, ControlDeskObserver {
 
     private JButton addParty, finished, assign;
     private JFrame win;
     private JList partyList;
 
-    /** The maximum number of members in a party */
+    /**
+     * The maximum number of members in a party
+     */
     private int maxMembers;
 
     private ControlDesk controlDesk;
 
     /**
      * Displays a GUI representation of the ControlDesk
-     *
      */
     public ControlDeskView(ControlDesk controlDesk, int maxMembers) {
 
@@ -139,7 +140,6 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
      * Handler for actionEvents
      *
      * @param e the ActionEvent that triggered the handler
-     *
      */
 
     public void actionPerformed(ActionEvent e) {
@@ -159,7 +159,6 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
      * Receive a new party from andPartyView.
      *
      * @param addPartyView the AddPartyView that is providing a new party
-     *
      */
 
     public void updateAddParty(AddPartyView addPartyView) {
@@ -170,12 +169,11 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
      * Receive a broadcast from a ControlDesk
      *
      * @param ce the ControlDeskEvent that triggered the handler
-     *
      */
 
     public void receiveControlDeskEvent(ControlDeskEvent ce) {
         Vector party = new Vector();
         party.addAll(ce.getPartyQueue());
-        partyList.setListData( party);
+        partyList.setListData(party);
     }
 }

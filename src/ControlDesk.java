@@ -42,27 +42,33 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
-import java.util.Queue;
 
 class ControlDesk extends Thread {
 
-    /** The collection of Lanes */
-    private HashSet<Lane> lanes;
+    /**
+     * The collection of Lanes
+     */
+    private final HashSet<Lane> lanes;
 
-    /** The party wait queue */
-    private LinkedList<Party> partyQueue;
+    /**
+     * The party wait queue
+     */
+    private final LinkedList<Party> partyQueue;
 
-    /** The number of lanes represented */
-    private int numLanes;
+    /**
+     * The number of lanes represented
+     */
+    private final int numLanes;
 
-    /** The collection of subscribers */
-    private ArrayList<ControlDeskObserver> subscribers;
+    /**
+     * The collection of subscribers
+     */
+    private final ArrayList<ControlDeskObserver> subscribers;
 
     /**
      * Constructor for the ControlDesk class
      *
      * @param numLanes the number of lanes to be represented
-     *
      */
 
     public ControlDesk(int numLanes) {
@@ -82,11 +88,9 @@ class ControlDesk extends Thread {
 
     /**
      * Main loop for ControlDesk's thread
-     *
      */
     public void run() {
-        boolean running = true;
-        while (running) {
+        while (true) {
 
             assignLane();
 
@@ -102,9 +106,7 @@ class ControlDesk extends Thread {
      * Retrieves a matching Bowler from the bowler database.
      *
      * @param nickName The NickName of the Bowler
-     *
      * @return a Bowler object.
-     *
      */
 
     private Bowler registerPatron(String nickName) {
@@ -127,7 +129,6 @@ class ControlDesk extends Thread {
     /**
      * Iterate through the available lanes and assign the paties in the wait queue
      * if lanes are available.
-     *
      */
 
     public void assignLane() {
@@ -138,13 +139,14 @@ class ControlDesk extends Thread {
 
             if (!curLane.isPartyAssigned()) {
                 System.out.println("ok... assigning this party");
-                curLane.assignParty( partyQueue.remove());
+                curLane.assignParty(partyQueue.remove());
             }
         }
         publish(new ControlDeskEvent(getPartyQueue()));
     }
 
     /**
+     *
      */
 
     public void viewScores(Lane ln) {
@@ -155,7 +157,6 @@ class ControlDesk extends Thread {
      * Creates a party from a Vector of nickNAmes and adds them to the wait queue.
      *
      * @param partyNicks A Vector of NickNames
-     *
      */
 
     public void addPartyQueue(ArrayList<String> partyNicks) {
@@ -174,15 +175,13 @@ class ControlDesk extends Thread {
      * the wait queue.
      *
      * @return a Vecotr of Strings
-     *
      */
 
     public Queue<String> getPartyQueue() {
         Queue<String> displayPartyQueue = new LinkedList<>();
-        for (int i = 0; i < partyQueue.size(); i++) {
-            Party party = partyQueue.get(i);
+        for (Party party : partyQueue) {
             ArrayList<Bowler> bowlers = party.getMembers();
-            String nextParty =  bowlers.get(0).getNickName() + "'s Party";
+            String nextParty = bowlers.get(0).getNickName() + "'s Party";
             displayPartyQueue.add(nextParty);
         }
         return displayPartyQueue;
@@ -192,7 +191,6 @@ class ControlDesk extends Thread {
      * Accessor for the number of lanes represented by the ControlDesk
      *
      * @return an int containing the number of lanes represented
-     *
      */
 
     public int getNumLanes() {
@@ -203,7 +201,6 @@ class ControlDesk extends Thread {
      * Allows objects to subscribe as observers
      *
      * @param adding the ControlDeskObserver that will be subscribed
-     *
      */
 
     public void subscribe(ControlDeskObserver adding) {
@@ -214,7 +211,6 @@ class ControlDesk extends Thread {
      * Broadcast an event to subscribing objects.
      *
      * @param event the ControlDeskEvent to broadcast
-     *
      */
 
     public void publish(ControlDeskEvent event) {
@@ -227,7 +223,6 @@ class ControlDesk extends Thread {
      * Accessor method for lanes
      *
      * @return a HashSet of Lanes
-     *
      */
 
     public HashSet<Lane> getLanes() {

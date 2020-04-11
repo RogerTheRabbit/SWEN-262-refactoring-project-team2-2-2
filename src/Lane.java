@@ -165,9 +165,6 @@ public class Lane extends Thread implements PinsetterObserver {
      * Lane()
      * <p>
      * Constructs a new lane and starts its thread
-     *
-     * @pre none
-     * @post a new lane has been created and its thered is executing
      */
     public Lane() {
         setter = new Pinsetter();

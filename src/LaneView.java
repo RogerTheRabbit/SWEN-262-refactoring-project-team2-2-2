@@ -39,14 +39,13 @@ public class LaneView implements LaneObserver, ActionListener {
 
         this.lane = lane;
 
-        initDone = true;
         frame = new JFrame("Lane " + laneNum + ":");
         cpanel = frame.getContentPane();
         cpanel.setLayout(new BorderLayout());
 
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                frame.hide();
+                frame.dispose();
             }
         });
 
@@ -55,11 +54,11 @@ public class LaneView implements LaneObserver, ActionListener {
     }
 
     public void show() {
-        frame.show();
+        frame.setVisible(true);
     }
 
     public void hide() {
-        frame.hide();
+        frame.dispose();
     }
 
     private JPanel makeFrame(Party party) {
