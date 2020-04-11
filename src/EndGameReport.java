@@ -13,6 +13,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -129,7 +130,7 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
     }
 
     public static void main(String args[]) {
-        Vector bowlers = new Vector();
+        ArrayList<Bowler> bowlers = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             bowlers.add(new Bowler("aaaaa", "aaaaa", "aaaaa"));
         }

@@ -21,12 +21,13 @@
  * Container that holds bowlers
  */
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Party {
 
     /** Vector of bowlers in this party */
-    private Vector myBowlers;
+    private ArrayList<Bowler> myBowlers;
 
     /**
      * Constructor for a Party
@@ -34,8 +35,8 @@ public class Party {
      * @param bowlers Vector of bowlers that are in this party
      */
 
-    public Party(Vector bowlers) {
-        myBowlers = new Vector(bowlers);
+    public Party(ArrayList<Bowler> bowlers) {
+        myBowlers = new ArrayList<>(bowlers);
     }
 
     /**
@@ -44,7 +45,7 @@ public class Party {
      * @return A vector of the bowlers in this party
      */
 
-    public Vector getMembers() {
+    public ArrayList<Bowler> getMembers() {
         return myBowlers;
     }
 }

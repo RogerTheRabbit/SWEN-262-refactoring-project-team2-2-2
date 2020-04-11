@@ -174,6 +174,6 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
      */
 
     public void receiveControlDeskEvent(ControlDeskEvent ce) {
-        partyList.setListData(((Vector) ce.getPartyQueue()));
+        partyList.setListData( ce.getPartyQueue().toArray());
     }
 }

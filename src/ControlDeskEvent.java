@@ -12,12 +12,14 @@
  * Class that represents control desk event
  */
 
+import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Vector;
 
 public class ControlDeskEvent {
 
     /** A representation of the wait queue, containing party names */
-    private Vector partyQueue;
+    private Queue<String> partyQueue;
 
     /**
      * Contstructor for the ControlDeskEvent
@@ -27,7 +29,7 @@ public class ControlDeskEvent {
      *
      */
 
-    public ControlDeskEvent(Vector partyQueue) {
+    public ControlDeskEvent(Queue<String> partyQueue) {
         this.partyQueue = partyQueue;
     }
 
@@ -41,7 +43,7 @@ public class ControlDeskEvent {
      *
      */
 
-    public Vector getPartyQueue() {
+    public Queue<String> getPartyQueue() {
         return partyQueue;
     }
 }

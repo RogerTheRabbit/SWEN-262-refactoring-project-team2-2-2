@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
@@ -20,7 +21,7 @@ public class LaneView implements LaneObserver, ActionListener {
 
     JFrame frame;
     Container cpanel;
-    Vector bowlers;
+    ArrayList<Bowler> bowlers;
     int cur;
     Iterator bowlIt;
 
