@@ -50,7 +50,7 @@ class ControlDesk extends Thread {
     private HashSet<Lane> lanes;
 
     /** The party wait queue */
-    private Queue<Party> partyQueue;
+    private LinkedList<Party> partyQueue;
 
     /** The number of lanes represented */
     private int numLanes;
@@ -180,7 +180,7 @@ class ControlDesk extends Thread {
     public Queue<String> getPartyQueue() {
         Queue<String> displayPartyQueue = new LinkedList<>();
         for (int i = 0; i < partyQueue.size(); i++) {
-            Party party = partyQueue.remove();
+            Party party = partyQueue.get(i);
             ArrayList<Bowler> bowlers = party.getMembers();
             String nextParty =  bowlers.get(0).getNickName() + "'s Party";
             displayPartyQueue.add(nextParty);
