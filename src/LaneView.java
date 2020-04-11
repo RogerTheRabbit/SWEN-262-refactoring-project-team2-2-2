@@ -10,20 +10,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Vector;
 
 public class LaneView implements LaneObserver, ActionListener {
 
-    private int roll;
     private boolean initDone = true;
 
     JFrame frame;
     Container cpanel;
     ArrayList<Bowler> bowlers;
-    int cur;
-    Iterator bowlIt;
 
     JPanel[][] balls;
     JLabel[][] ballLabel;
@@ -105,7 +99,7 @@ public class LaneView implements LaneObserver, ActionListener {
 
         for (int i = 0; i != numBowlers; i++) {
             pins[i] = new JPanel();
-            pins[i].setBorder(BorderFactory.createTitledBorder(((Bowler) bowlers.get(i)).getNick()));
+            pins[i].setBorder(BorderFactory.createTitledBorder(bowlers.get(i).getNick()));
             pins[i].setLayout(new GridLayout(0, 10));
             for (int k = 0; k != 10; k++) {
                 scores[i][k] = new JPanel();
@@ -130,7 +124,7 @@ public class LaneView implements LaneObserver, ActionListener {
                 // System.out.println("chillin' here.");
                 try {
                     Thread.sleep(1);
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
 
@@ -163,23 +157,23 @@ public class LaneView implements LaneObserver, ActionListener {
             for (int k = 0; k < numBowlers; k++) {
                 for (int i = 0; i <= le.getFrameNum() - 1; i++) {
                     if (lescores[k][i] != 0)
-                        scoreLabel[k][i].setText((new Integer(lescores[k][i])).toString());
+                        scoreLabel[k][i].setText((Integer.valueOf(lescores[k][i])).toString());
                 }
                 for (int i = 0; i < 21; i++) {
-                    if (((int[]) ((HashMap) le.getScore()).get(bowlers.get(k)))[i] != -1)
-                        if (((int[]) ((HashMap) le.getScore()).get(bowlers.get(k)))[i] == 10 && (i % 2 == 0 || i == 19))
+                    if (((int[]) le.getScore().get(bowlers.get(k)))[i] != -1)
+                        if (((int[]) le.getScore().get(bowlers.get(k)))[i] == 10 && (i % 2 == 0 || i == 19))
                             ballLabel[k][i].setText("X");
                         else if (i > 0
-                                && ((int[]) ((HashMap) le.getScore()).get(bowlers.get(k)))[i]
-                                + ((int[]) ((HashMap) le.getScore()).get(bowlers.get(k)))[i - 1] == 10
+                                && ((int[]) le.getScore().get(bowlers.get(k)))[i]
+                                + ((int[]) le.getScore().get(bowlers.get(k)))[i - 1] == 10
                                 && i % 2 == 1)
                             ballLabel[k][i].setText("/");
-                        else if (((int[]) ((HashMap) le.getScore()).get(bowlers.get(k)))[i] == -2) {
+                        else if (((int[]) le.getScore().get(bowlers.get(k)))[i] == -2) {
 
                             ballLabel[k][i].setText("F");
                         } else
                             ballLabel[k][i]
-                                    .setText((new Integer(((int[]) ((HashMap) le.getScore()).get(bowlers.get(k)))[i]))
+                                    .setText((Integer.valueOf(((int[]) le.getScore().get(bowlers.get(k)))[i]))
                                             .toString());
                 }
             }
