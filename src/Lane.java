@@ -209,17 +209,14 @@ public class Lane extends Thread implements PinsetterObserver {
 
                         if (frameNumber == 9) {
                             finalScores[bowlIndex][gameNumber] = cumulScores[bowlIndex][9];
-                            try {
-                                Date date = new Date();
-                                String dateString = "" + date.getHours() + ":" + date.getMinutes() + " " + date.getMonth()
-                                        + "/" + date.getDay() + "/" + (date.getYear() + 1900);
-                                Score score = new Score(currentThrower.getNick(), dateString,
-                                        Integer.toString(cumulScores[bowlIndex][9]));
-                                score.addScoreToFile();
 
-                            } catch (Exception e) {
-                                System.err.println("Exception in addScore. " + e);
-                            }
+                            Date date = new Date();
+                            String dateString = "" + date.getHours() + ":" + date.getMinutes() + " " + date.getMonth()
+                                    + "/" + date.getDay() + "/" + (date.getYear() + 1900);
+                            Score score = new Score(currentThrower.getNick(), dateString,
+                                    Integer.toString(cumulScores[bowlIndex][9]));
+                            score.addScoreToFile();
+
                         }
 
                         setter.reset();

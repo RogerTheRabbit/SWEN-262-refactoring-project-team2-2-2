@@ -22,6 +22,9 @@ public class Score {
         this.score = score;
     }
 
+    /**
+     * Adds itself to the score file.
+     */
     public void addScoreToFile(){
         try {
             ScoreHistoryFile.addScore(this);
