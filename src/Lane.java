@@ -138,9 +138,9 @@ import java.util.Vector;
 
 public class Lane extends Thread implements PinsetterObserver {
     private Party party;
-    private Pinsetter setter;
-    private HashMap scores;
-    private Vector subscribers;
+    private final Pinsetter setter;
+    private final HashMap scores;
+    private final Vector subscribers;
 
     private boolean gameIsHalted;
 
@@ -235,8 +235,8 @@ public class Lane extends Thread implements PinsetterObserver {
                         gameNumber++;
                     }
                 }
-            } else if (partyAssigned && gameFinished) {
-                EndGamePrompt egp = new EndGamePrompt(((Bowler) party.getMembers().get(0)).getNickName() + "'s Party");
+            } else if (partyAssigned) {
+                EndGamePrompt egp = new EndGamePrompt(party.getMembers().get(0).getNickName() + "'s Party");
                 int result = egp.getResult();
                 egp.distroy();
                 egp = null;
@@ -248,10 +248,10 @@ public class Lane extends Thread implements PinsetterObserver {
                     resetScores();
                     resetBowlerIterator();
 
-                } else if (result == 2) {// no, dont want to play another game
+                } else if (result == 2) {// no, don't want to play another game
                     Vector printVector;
                     EndGameReport egr = new EndGameReport(
-                            ((Bowler) party.getMembers().get(0)).getNickName() + "'s Party", party);
+                            party.getMembers().get(0).getNickName() + "'s Party", party);
                     printVector = egr.getResult();
                     partyAssigned = false;
                     Iterator scoreIt = party.getMembers().iterator();
@@ -266,7 +266,7 @@ public class Lane extends Thread implements PinsetterObserver {
                         ScoreReport sr = new ScoreReport(thisBowler, finalScores[myIndex++], gameNumber);
                         sr.sendEmail(thisBowler.getEmail());
                         for (Object o : printVector) {
-                            if (thisBowler.getNick().equals((String) o)) {
+                            if (thisBowler.getNick().equals(o)) {
                                 System.out.println("Printing " + thisBowler.getNick());
                                 sr.sendPrintout();
                             }
@@ -290,7 +290,7 @@ public class Lane extends Thread implements PinsetterObserver {
      *
      * @param pe The pinsetter event that has been received.
      * @pre none
-     * @post the event has been acted upon if desiered
+     * @post the event has been acted upon if desired
      */
     public void receivePinsetterEvent(PinsetterEvent pe) {
 
@@ -432,7 +432,7 @@ public class Lane extends Thread implements PinsetterObserver {
      */
     private int getScore(Bowler Cur, int frame) {
         int[] curScore;
-        int strikeballs = 0;
+        int strikeballs;
         int totalScore = 0;
         curScore = (int[]) scores.get(Cur);
         for (int i = 0; i != 10; i++) {
@@ -561,7 +561,7 @@ public class Lane extends Thread implements PinsetterObserver {
      * <p>
      * Method that will add a subscriber
      *
-     * @param subscribe Observer that is to be added
+     * @param adding Observer that is to be added
      */
 
     public void subscribe(LaneObserver adding) {
