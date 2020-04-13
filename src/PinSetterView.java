@@ -138,21 +138,21 @@ public class PinSetterView implements PinsetterObserver {
      * @param pe The state of the pinsetter is sent in this event.
      */
 
-    public void receivePinsetterEvent(PinsetterEvent pe) {
-        if (!(pe.isFoulCommitted())) {
+    public void receivePinsetterEvent(PinsetterEvent event) {
+        if (!(event.isFoulCommitted())) {
             JLabel tempPin;
-            for (int c = 0; c < 10; c++) {
-                boolean pin = pe.pinKnockedDown(c);
-                tempPin = labelList.get(c);
+            for (int i = 0; i < 10; i++) {
+                boolean pin = event.pinKnockedDown(i);
+                tempPin = labelList.get(i);
                 if (pin) {
                     tempPin.setForeground(Color.lightGray);
                 }
             }
         }
-        if (pe.getThrowNumber() == 1) {
+        if (event.getThrowNumber() == 1) {
             secondRoll.setBackground(Color.yellow);
         }
-        if (pe.pinsDownOnThisThrow() == -1) {
+        if (event.pinsDownOnThisThrow() == -1) {
             for (int i = 0; i != 10; i++) {
                 (labelList.get(i)).setForeground(Color.black);
             }
