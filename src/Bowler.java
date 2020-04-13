@@ -54,6 +54,6 @@ public class Bowler {
     public boolean equals(Bowler b) {
         return ((nickName.equals(b.getNickName())) &&
         (fullName.equals(b.getFullName())) &&
-        (email.equals(b.getEmail())))
+        (email.equals(b.getEmail())));
     }
 }
