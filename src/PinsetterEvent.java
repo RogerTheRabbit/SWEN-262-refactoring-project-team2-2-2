@@ -14,27 +14,25 @@
 
 public class PinsetterEvent {
 
-    private boolean[] pinsStillStanding;
-    private boolean foulCommited;
-    private int throwNumber;
-    private int pinsDownThisThrow;
+    private final boolean[] pinsStillStanding;
+    private final boolean foulCommitted;
+    private final int throwNumber;
+    private final int pinsDownThisThrow;
 
     /**
      * PinsetterEvent()
      * <p>
      * creates a new pinsetter event
      *
-     * @pre none
-     * @post the object has been initialized
+     * pre: none
+     * post: the object has been initialized
      */
     public PinsetterEvent(boolean[] ps, boolean foul, int tn, int pinsDownThisThrow) {
         pinsStillStanding = new boolean[10];
 
-        for (int i = 0; i <= 9; i++) {
-            pinsStillStanding[i] = ps[i];
-        }
+        System.arraycopy(ps, 0, pinsStillStanding, 0, 10);
 
-        foulCommited = foul;
+        foulCommitted = foul;
         throwNumber = tn;
         this.pinsDownThisThrow = pinsDownThisThrow;
     }
@@ -77,12 +75,12 @@ public class PinsetterEvent {
     }
 
     /**
-     * isFoulCommited()
+     * isFoulCommitted()
      *
-     * @return true if a foul was commited on the lane, false otherwise
+     * @return true if a foul was committed on the lane, false otherwise
      */
-    public boolean isFoulCommited() {
-        return foulCommited;
+    public boolean isFoulCommitted() {
+        return foulCommitted;
     }
 
     /**
