@@ -1,30 +1,27 @@
-
-/**
- * To change this generated comment edit the template variable "typecomment":
- * Window>Preferences>Java>Templates.
- * To enable and disable the creation of type comments go to
- * Window>Preferences>Java>Code Generation.
- */
-
 import java.io.*;
-import java.util.Vector;
-
+import java.util.ArrayList;
+/**
+ * This reads and writes the score history file "SCOREHISTORY.DAT".
+ */
 public class ScoreHistoryFile {
 
     private static String SCOREHISTORY_DAT = "SCOREHISTORY.DAT";
 
-    public static void addScore(String nick, String date, String score) throws IOException, FileNotFoundException {
-
-        String data = nick + "\t" + date + "\t" + score + "\n";
+    /**
+     * Adds a score to the Score History File
+     * @param data: The score to be added
+     * @throws IOException If something goes wrong with the file reading or writing.
+     */
+    public static void addScore(Score data) throws IOException{
 
         RandomAccessFile out = new RandomAccessFile(SCOREHISTORY_DAT, "rw");
         out.skipBytes((int) out.length());
-        out.writeBytes(data);
+        out.writeBytes(data.toString() + "\n");
         out.close();
     }
 
-    public static Vector getScores(String nick) throws IOException, FileNotFoundException {
-        Vector scores = new Vector();
+    public static ArrayList<Score> getScores(String nick) throws IOException {
+        ArrayList<Score> scores = new ArrayList<>();
 
         BufferedReader in = new BufferedReader(new FileReader(SCOREHISTORY_DAT));
         String data;
