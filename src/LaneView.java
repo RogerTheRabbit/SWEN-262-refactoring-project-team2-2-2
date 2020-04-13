@@ -174,7 +174,6 @@ public class LaneView implements LaneObserver, ActionListener {
                     }
                 }
             }
-
         }
     }
 
