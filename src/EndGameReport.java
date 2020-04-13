@@ -1,10 +1,5 @@
 
-/**
- * To change this generated comment edit the template variable "typecomment":
- * Window>Preferences>Java>Templates.
- * To enable and disable the creation of type comments go to
- * Window>Preferences>Java>Code Generation.
- */
+
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -17,13 +12,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 
+/**
+ * To change this generated comment edit the template variable "typecomment":
+ * Window>Preferences>Java>Templates.
+ * To enable and disable the creation of type comments go to
+ * Window>Preferences>Java>Code Generation.
+ */
 public class EndGameReport implements ActionListener, ListSelectionListener {
 
     private JFrame win;
     private JButton printButton, finished;
     private JList memberList;
-    private Vector myVector;
-    private Vector retVal;
+    private ArrayList<String> retVal;
 
     private int result;
 
@@ -32,7 +32,7 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
     public EndGameReport(String partyName, Party party) {
 
         result = 0;
-        retVal = new Vector();
+        retVal = new ArrayList<>();
         win = new JFrame("End Game Report for " + partyName + "?");
         win.getContentPane().setLayout(new BorderLayout());
         ((JPanel) win.getContentPane()).setOpaque(false);
@@ -45,12 +45,12 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
         partyPanel.setLayout(new FlowLayout());
         partyPanel.setBorder(new TitledBorder("Party Members"));
 
-        Vector myVector = new Vector();
-        Iterator iter = (party.getMembers()).iterator();
-        while (iter.hasNext()) {
-            myVector.add(((Bowler) iter.next()).getNick());
+        ArrayList<String> bowlerNames = new ArrayList<>();
+        for (Bowler bowler : party.getMembers()) {
+            bowlerNames.add(bowler.getNick());
         }
-        memberList = new JList(myVector);
+
+        memberList = new JList(bowlerNames.toArray());
         memberList.setFixedCellWidth(120);
         memberList.setVisibleRowCount(5);
         memberList.addListSelectionListener(this);
@@ -114,7 +114,7 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
         selectedMember = ((String) ((JList) e.getSource()).getSelectedValue());
     }
 
-    public Vector getResult() {
+    public ArrayList<String> getResult() {
         while (result == 0) {
             try {
                 Thread.sleep(10);
@@ -125,11 +125,7 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
         return retVal;
     }
 
-    public void destroy() {
-        win.hide();
-    }
-
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         ArrayList<Bowler> bowlers = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             bowlers.add(new Bowler("aaaaa", "aaaaa", "aaaaa"));

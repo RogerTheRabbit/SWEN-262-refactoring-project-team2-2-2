@@ -246,7 +246,7 @@ public class Lane extends Thread implements PinsetterObserver {
                         resetBowlerIterator();
 
                     } else if (result == 2) {// no, dont want to play another game
-                        Vector printVector;
+                        ArrayList<String> printVector;
                         Bowler bowler = party.getMembers().get(0);
                         EndGameReport egr = new EndGameReport(bowler.getNickName() + "'s Party", party);
                         printVector = egr.getResult();
@@ -262,8 +262,8 @@ public class Lane extends Thread implements PinsetterObserver {
                             Bowler thisBowler = scoreIt.next();
                             ScoreReport sr = new ScoreReport(thisBowler, finalScores[myIndex++], gameNumber);
                             sr.sendEmail(thisBowler.getEmail());
-                            for (Object o : printVector) {
-                                if (thisBowler.getNick().equals((String) o)) {
+                            for (String nickNames : printVector) {
+                                if (thisBowler.getNick().equals(nickNames)) {
                                     System.out.println("Printing " + thisBowler.getNick());
                                     sr.sendPrintout();
                                 }
