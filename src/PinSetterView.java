@@ -9,17 +9,16 @@
  */
 
 /**
- * constructs a prototype PinSetter GUI
+ * This class creates a GUI to represent the Pins.
  */
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class PinSetterView implements PinsetterObserver {
 
-    private Vector pinVect = new Vector();
-    private JPanel firstRoll;
+    private ArrayList<JLabel> labelList = new ArrayList<>();
     private JPanel secondRoll;
 
     /**
@@ -50,7 +49,7 @@ public class PinSetterView implements PinsetterObserver {
 
         JPanel top = new JPanel();
 
-        firstRoll = new JPanel();
+        JPanel firstRoll = new JPanel();
         firstRoll.setBackground(Color.yellow);
 
         secondRoll = new JPanel();
@@ -64,78 +63,45 @@ public class PinSetterView implements PinsetterObserver {
 
         // **********************Grid of the pins**************************
 
-        JPanel one = new JPanel();
-        JLabel oneL = new JLabel("1");
-        one.add(oneL);
-        JPanel two = new JPanel();
-        JLabel twoL = new JLabel("2");
-        two.add(twoL);
-        JPanel three = new JPanel();
-        JLabel threeL = new JLabel("3");
-        three.add(threeL);
-        JPanel four = new JPanel();
-        JLabel fourL = new JLabel("4");
-        four.add(fourL);
-        JPanel five = new JPanel();
-        JLabel fiveL = new JLabel("5");
-        five.add(fiveL);
-        JPanel six = new JPanel();
-        JLabel sixL = new JLabel("6");
-        six.add(sixL);
-        JPanel seven = new JPanel();
-        JLabel sevenL = new JLabel("7");
-        seven.add(sevenL);
-        JPanel eight = new JPanel();
-        JLabel eightL = new JLabel("8");
-        eight.add(eightL);
-        JPanel nine = new JPanel();
-        JLabel nineL = new JLabel("9");
-        nine.add(nineL);
-        JPanel ten = new JPanel();
-        JLabel tenL = new JLabel("10");
-        ten.add(tenL);
+        ArrayList<JPanel> panelList = new ArrayList<>();
 
-        // This Vector will keep references to the pin labels to show
-        // which ones have fallen.
-
-        pinVect.add(oneL);
-        pinVect.add(twoL);
-        pinVect.add(threeL);
-        pinVect.add(fourL);
-        pinVect.add(fiveL);
-        pinVect.add(sixL);
-        pinVect.add(sevenL);
-        pinVect.add(eightL);
-        pinVect.add(nineL);
-        pinVect.add(tenL);
+        // Creates all the panels and labels for the individual pins
+        for(int i = 0; i < 10; i++){
+            String number = Integer.toString(i + 1);
+            JPanel panel = new JPanel();
+            JLabel label = new JLabel(number);
+            panel.add(label);
+            labelList.add(label);
+            panelList.add(panel);
+        }
 
         // ******************************Fourth Row**************
 
-        pins.add(seven);
+        pins.add(panelList.get(6));
         pins.add(new JPanel());
-        pins.add(eight);
+        pins.add(panelList.get(7));
         pins.add(new JPanel());
-        pins.add(nine);
+        pins.add(panelList.get(8));
         pins.add(new JPanel());
-        pins.add(ten);
+        pins.add(panelList.get(9));
 
         // *****************************Third Row***********
 
         pins.add(new JPanel());
-        pins.add(four);
+        pins.add(panelList.get(3));
         pins.add(new JPanel());
-        pins.add(five);
+        pins.add(panelList.get(4));
         pins.add(new JPanel());
-        pins.add(six);
+        pins.add(panelList.get(5));
 
         // *****************************Second Row**************
 
         pins.add(new JPanel());
         pins.add(new JPanel());
         pins.add(new JPanel());
-        pins.add(two);
+        pins.add(panelList.get(1));
         pins.add(new JPanel());
-        pins.add(three);
+        pins.add(panelList.get(2));
         pins.add(new JPanel());
         pins.add(new JPanel());
 
@@ -144,7 +110,7 @@ public class PinSetterView implements PinsetterObserver {
         pins.add(new JPanel());
         pins.add(new JPanel());
         pins.add(new JPanel());
-        pins.add(one);
+        pins.add(panelList.get(0));
         pins.add(new JPanel());
         pins.add(new JPanel());
         pins.add(new JPanel());
@@ -161,7 +127,6 @@ public class PinSetterView implements PinsetterObserver {
 
         frame.pack();
 
-        // frame.show();
     }
 
     /**
@@ -170,15 +135,15 @@ public class PinSetterView implements PinsetterObserver {
      * "knocked down" the corresponding label is grayed out. When it is the second
      * roll, it is indicated by the appearance of a second yellow box at the top.
      *
-     * @param e The state of the pinsetter is sent in this event.
+     * @param pe The state of the pinsetter is sent in this event.
      */
 
     public void receivePinsetterEvent(PinsetterEvent pe) {
         if (!(pe.isFoulCommited())) {
-            JLabel tempPin = new JLabel();
+            JLabel tempPin;
             for (int c = 0; c < 10; c++) {
                 boolean pin = pe.pinKnockedDown(c);
-                tempPin = (JLabel) pinVect.get(c);
+                tempPin = labelList.get(c);
                 if (pin) {
                     tempPin.setForeground(Color.lightGray);
                 }
@@ -189,21 +154,24 @@ public class PinSetterView implements PinsetterObserver {
         }
         if (pe.pinsDownOnThisThrow() == -1) {
             for (int i = 0; i != 10; i++) {
-                ((JLabel) pinVect.get(i)).setForeground(Color.black);
+                (labelList.get(i)).setForeground(Color.black);
             }
             secondRoll.setBackground(Color.black);
         }
     }
 
+    /**
+     * This function is called to show the frame that houses the pins
+     */
     public void show() {
         frame.show();
     }
 
+    /**
+     * This hides the frame that houses the pins
+     */
     public void hide() {
         frame.hide();
     }
 
-    public static void main(String args[]) {
-        PinSetterView pg = new PinSetterView(1);
-    }
 }

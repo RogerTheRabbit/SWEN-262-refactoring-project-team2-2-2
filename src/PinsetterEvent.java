@@ -42,7 +42,7 @@ public class PinsetterEvent {
     /**
      * pinKnockedDown()
      * <p>
-     * check if a pin has been knocked down
+     * checks if a specific pin has been knocked down
      *
      * @return true if pin [i] has been knocked down
      */
