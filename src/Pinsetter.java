@@ -98,10 +98,10 @@ public class Pinsetter {
      * post: a new pinsetter is created
      */
     public Pinsetter() {
-        pins = new boolean[10];
-        rnd = new Random();
-        subscribers = new ArrayList<>();
-        foul = false;
+        this.pins = new boolean[10];
+        this.rnd = new Random();
+        this.subscribers = new ArrayList<>();
+        this.foul = false;
         reset();
     }
 
@@ -131,13 +131,13 @@ public class Pinsetter {
      */
     public void ballThrown() { // simulated event of ball hits sensor
         int count = 0;
-        foul = false;
+        this.foul = false;
         double skill = rnd.nextDouble();
         for (int i = 0; i <= 9; i++) {
             if (pins[i]) {
                 double pinluck = rnd.nextDouble();
                 if (pinluck <= .04) {
-                    foul = true;
+                    this.foul = true;
                 }
                 if (((skill + pinluck) / 2.0 * 1.2) > .5) {
                     pins[i] = false;
