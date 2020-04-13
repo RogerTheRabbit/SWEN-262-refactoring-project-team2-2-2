@@ -65,71 +65,69 @@
  *
  */
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * Class to represent the pinsetter
  */
-
-import java.util.Random;
-import java.util.Vector;
-
 public class Pinsetter {
 
-    private Random rnd;
-    private Vector subscribers;
+    private final Random rnd;
+    private final ArrayList<PinsetterObserver> subscribers;
 
-    private boolean[] pins;
+    private final boolean[] pins;
     /* 0-9 of state of pine, true for standing,
     false for knocked down
 
     6   7   8   9
       3   4   5
-      2   1
-        0
+        2   1
+          0
 
     */
     private boolean foul;
     private int throwNumber;
 
     /**
-     * sendEvent()
-     *
-     * Sends pinsetter events to all subscribers
-     *
-     * @pre none
-     * @post all subscribers have recieved pinsetter event with updated state
-     */
-    private void sendEvent(int jdpins) { // send events when our state is changd
-        for (int i = 0; i < subscribers.size(); i++) {
-            ((PinsetterObserver) subscribers.get(i))
-                    .receivePinsetterEvent(new PinsetterEvent(pins, foul, throwNumber, jdpins));
-        }
-    }
-
-    /**
      * Pinsetter()
-     *
+     * <p>
      * Constructs a new pinsetter
-     *
-     * @pre none
-     * @post a new pinsetter is created
-     * @return Pinsetter object
+     * <p>
+     * pre: none
+     * post: a new pinsetter is created
      */
     public Pinsetter() {
         pins = new boolean[10];
         rnd = new Random();
-        subscribers = new Vector();
+        subscribers = new ArrayList<>();
         foul = false;
         reset();
     }
 
     /**
+     * sendEvent()
+     * <p>
+     * Sends pinsetter events to all subscribers
+     * <p>
+     * pre: none
+     * post: all subscribers have received pinsetter event with updated state
+     */
+    private void sendEvent(int jdpins) { // send events when our state is changd
+        for (PinsetterObserver subscriber : subscribers) {
+            subscriber.receivePinsetterEvent(new PinsetterEvent(pins, foul, throwNumber, jdpins));
+        }
+    }
+
+
+    /**
      * ballThrown()
-     *
-     * Called to simulate a ball thrown comming in contact with the pinsetter
-     *
-     * @pre none
-     * @post pins may have been knocked down and the thrownumber has been
-     *       incremented
+     * <p>
+     * Called to simulate a ball thrown coming in contact with the pinsetter
+     * <p>
+     * pre: none
+     * post: pins may have been knocked down and the throwNumber has been
+     * incremented
      */
     public void ballThrown() { // simulated event of ball hits sensor
         int count = 0;
@@ -152,7 +150,7 @@ public class Pinsetter {
 
         try {
             Thread.sleep(500); // pinsetter is where delay will be in a real game
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
 
         sendEvent(count);
@@ -162,11 +160,11 @@ public class Pinsetter {
 
     /**
      * reset()
-     *
+     * <p>
      * Reset the pinsetter to its complete state
-     *
-     * @pre none
-     * @post pinsetters state is reset
+     * <p>
+     * pre: none
+     * post: pinsetters state is reset
      */
     public void reset() {
         foul = false;
@@ -175,7 +173,7 @@ public class Pinsetter {
 
         try {
             Thread.sleep(1000);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
 
         sendEvent(-1);
@@ -183,11 +181,11 @@ public class Pinsetter {
 
     /**
      * resetPins()
-     *
+     * <p>
      * Reset the pins on the pinsetter
-     *
-     * @pre none
-     * @post pins array is reset to all pins up
+     * <p>
+     * pre: none
+     * post: pins array is reset to all pins up
      */
     public void resetPins() {
         for (int i = 0; i <= 9; i++) {
@@ -197,11 +195,11 @@ public class Pinsetter {
 
     /**
      * subscribe()
-     *
+     * <p>
      * subscribe objects to send events to
-     *
-     * @pre none
-     * @post the subscriber object will recieve events when their generated
+     * <p>
+     * pre: none
+     * post: the subscriber object will recieve events when their generated
      */
     public void subscribe(PinsetterObserver subscriber) {
         subscribers.add(subscriber);

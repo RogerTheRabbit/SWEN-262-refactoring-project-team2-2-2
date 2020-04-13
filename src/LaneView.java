@@ -72,7 +72,7 @@ public class LaneView implements LaneObserver, ActionListener {
         ballGrid = new JPanel[numBowlers][10];
         pins = new JPanel[numBowlers];
 
-        for (int i = 0; i != numBowlers; i++) {
+        for (int i = 0; i < numBowlers; i++) {
             for (int j = 0; j != 23; j++) {
                 ballLabel[i][j] = new JLabel(" ");
                 balls[i][j] = new JPanel();
@@ -81,7 +81,7 @@ public class LaneView implements LaneObserver, ActionListener {
             }
         }
 
-        for (int i = 0; i != numBowlers; i++) {
+        for (int i = 0; i < numBowlers; i++) {
             for (int j = 0; j != 9; j++) {
                 ballGrid[i][j] = new JPanel();
                 ballGrid[i][j].setLayout(new GridLayout(0, 3));

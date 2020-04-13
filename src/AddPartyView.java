@@ -45,7 +45,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
     private JFrame win;
     private JButton addPatron, newPatron, removePatron, finished;
-    private JList<String> partyList, allBowlers;
+    private JList partyList, allBowlers;
     private ArrayList<String> party, bowlerdb;
 
     private ControlDeskView controlDesk;
@@ -75,7 +75,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
         String[] emptyArray = new String[empty.size()];
         emptyArray = empty.toArray(emptyArray);
-        partyList = new JList<>(emptyArray);
+        partyList = new JList(emptyArray);
         partyList.setFixedCellWidth(120);
         partyList.setVisibleRowCount(5);
         partyList.addListSelectionListener(this);
@@ -96,7 +96,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
         }
         String[] bowlerArray = new String[bowlerdb.size()];
         bowlerArray = bowlerdb.toArray(bowlerArray);
-        allBowlers = new JList<>(bowlerArray);
+        allBowlers = new JList(bowlerArray);
         allBowlers.setVisibleRowCount(8);
         allBowlers.setFixedCellWidth(120);
         JScrollPane bowlerPane = new JScrollPane(allBowlers);
