@@ -27,13 +27,13 @@ public class PinsetterEvent {
      * pre: none
      * post: the object has been initialized
      */
-    public PinsetterEvent(boolean[] ps, boolean foul, int tn, int pinsDownThisThrow) {
+    public PinsetterEvent(boolean[] pins, boolean foul, int throwNumber, int pinsDownThisThrow) {
         pinsStillStanding = new boolean[10];
 
-        System.arraycopy(ps, 0, pinsStillStanding, 0, 10);
+        System.arraycopy(pins, 0, pinsStillStanding, 0, 10);
 
         foulCommitted = foul;
-        throwNumber = tn;
+        this.throwNumber = throwNumber;
         this.pinsDownThisThrow = pinsDownThisThrow;
     }
 
