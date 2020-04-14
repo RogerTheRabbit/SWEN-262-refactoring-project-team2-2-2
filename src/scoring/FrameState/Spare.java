@@ -1,10 +1,21 @@
 package scoring.FrameState;
 
+/**
+ * This class represents a spare who's total points is unknown (because the
+ * final ball hasn't been thrown). Gets switched to from Unfinished
+ * @author Trey Pachucki ttp2542@g.rit.edu
+ */
 public class Spare implements FrameStatus {
 
     private final Frame frame;
     private int[] scores;
 
+    /**
+     * Constructor for a spare state.
+     * @param frame The frame who's state is updated
+     * @param ball1 The first ball thrown
+     * @param ball2 The second ball thrown
+     */
     public Spare(Frame frame, int ball1, int ball2){
         this.frame = frame;
         this.scores = new int[3];

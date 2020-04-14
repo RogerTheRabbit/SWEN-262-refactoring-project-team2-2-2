@@ -1,14 +1,26 @@
 package scoring.FrameState;
 
+/**
+ * This class represents a strike who's total points is unknown (because the
+ * final balls haven't been thrown). Gets switched to from Unfinished
+ * @author Trey Pachucki ttp2542@g.rit.edu
+ */
+
 public class Strike implements FrameStatus {
 
     private int[] scores;
     private final Frame frame;
 
+    /**
+     * Constructor for a Strike
+     * @param frame The frame who's state gets updated.
+     */
     public Strike(Frame frame){
         this.frame = frame;
         scores = new int[3];
+        //First throw had to be 10
         scores[0] = 10;
+        //default values
         scores[1] = -1;
         scores[2] = -1;
     }
