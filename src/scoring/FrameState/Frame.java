@@ -5,7 +5,7 @@ public class Frame {
     private int score;
 
     public Frame(){
-        this.status = new Unfinished();
+        this.status = new Unfinished(this);
         this.score = 0;
     }
 
@@ -17,7 +17,7 @@ public class Frame {
         status.addBall(ball);
     }
 
-    public void setStatus(FrameStatus status){
+    void setStatus(FrameStatus status){
         this.status = status;
     }
 }

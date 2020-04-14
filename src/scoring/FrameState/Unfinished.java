@@ -3,9 +3,13 @@ package scoring.FrameState;
 public class Unfinished implements FrameStatus {
 
     private int[] scores;
+    private final Frame frame;
 
-    public Unfinished(){
-        this.scores = new int[4];
+    public Unfinished(Frame frame){
+        this.scores = new int[2];
+        this.scores[0] = -1;
+        this.scores[1] = -1;
+        this.frame = frame;
     }
 
     /**
@@ -16,8 +20,10 @@ public class Unfinished implements FrameStatus {
     @Override
     public int getScore() {
         int totalScore = 0;
-        for(int i = 0; i < 3; i++){
-            totalScore += scores[i];
+        for(int i = 0; i < 2; i++){
+            if(scores[i] != -1) {
+                totalScore += scores[i];
+            }
         }
 
         return totalScore;
@@ -31,6 +37,18 @@ public class Unfinished implements FrameStatus {
      */
     @Override
     public void addBall(int ball) {
-
+        if(scores[0] == -1){
+            scores[0] = ball;
+            if(ball == 10){
+                frame.setStatus(new Strike(frame));
+            }
+        }else{
+            scores[1] = ball;
+            if(this.getScore() == 10){
+                frame.setStatus(new Spare(frame, scores[0], scores[1]));
+            }else{
+                frame.setStatus(new PointsFinished(frame, scores));
+            }
+        }
     }
 }

@@ -4,9 +4,11 @@ public class PointsFinished implements FrameStatus {
 
     private final int[] scores;
     private final int totalScore;
+    private final Frame frame;
 
-    public PointsFinished(int[] scores){
+    public PointsFinished(Frame frame, int[] scores){
         this.scores = scores;
+        this.frame = frame;
         int finalScore = 0;
         for(int i = 0; i < scores.length; i++){
             if(i > 1){

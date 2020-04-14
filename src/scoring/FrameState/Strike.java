@@ -41,7 +41,7 @@ public class Strike implements FrameStatus {
             scores[1] = ball;
         }else if(scores[2] == -1){
             scores[2] = ball;
-            frame.setStatus(new PointsFinished(scores));
+            frame.setStatus(new PointsFinished(frame, scores));
         }
     }
 }
