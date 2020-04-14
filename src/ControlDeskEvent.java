@@ -12,9 +12,7 @@
  * Class that represents control desk event
  */
 
-import java.util.ArrayList;
 import java.util.Queue;
-import java.util.Vector;
 
 public class ControlDeskEvent {
 
@@ -22,7 +20,7 @@ public class ControlDeskEvent {
     private Queue<String> partyQueue;
 
     /**
-     * Contstructor for the ControlDeskEvent
+     * Constructor for the ControlDeskEvent
      *
      * @param partyQueue a Vector of Strings containing the names of the parties in
      *                   the wait queue
@@ -35,8 +33,6 @@ public class ControlDeskEvent {
 
     /**
      * Accessor for partyQueue
-     *
-     * @param key the key of the vertex being looked for.
      *
      * @return a Vector of Strings representing the names of the parties in the wait
      *         queue

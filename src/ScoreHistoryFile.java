@@ -20,6 +20,12 @@ public class ScoreHistoryFile {
         out.close();
     }
 
+    /**
+     * Gets all the scores from the file by a specific person
+     * @param nick: The person's score to get
+     * @return The arrayList of score
+     * @throws IOException
+     */
     public static ArrayList<Score> getScores(String nick) throws IOException {
         ArrayList<Score> scores = new ArrayList<>();
 

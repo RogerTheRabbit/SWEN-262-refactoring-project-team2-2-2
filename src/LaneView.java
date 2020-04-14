@@ -128,7 +128,7 @@ public class LaneView implements LaneObserver, ActionListener {
                 }
             }
 
-            if (laneEvent.getFrameNum() == 1 && laneEvent.getBall() == 0 && laneEvent.getIndex() == 0) {
+            if (laneEvent.getFrameNum() == 1 && laneEvent.getBallNum() == 0 && laneEvent.getIndex() == 0) {
                 System.out.println("Making the frame.");
                 cPanel.removeAll();
                 cPanel.add(makeFrame(laneEvent.getParty()), "Center");

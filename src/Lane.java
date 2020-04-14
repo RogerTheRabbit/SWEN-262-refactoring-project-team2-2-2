@@ -416,7 +416,7 @@ public class Lane extends Thread implements PinsetterObserver {
      */
     private LaneEvent lanePublish() {
         return new LaneEvent(party, bowlIndex, currentThrower, cumulScores, scores, frameNumber + 1,
-                curScores, ball, gameIsHalted);
+                ball, gameIsHalted);
     }
 
     /**
@@ -424,15 +424,15 @@ public class Lane extends Thread implements PinsetterObserver {
      * <p>
      * Method that calculates a bowlers score
      *
-     * @param Cur   The bowler that is currently up
+     * @param currentBowler   The bowler that is currently up
      * @param frame The frame the current bowler is on
      * @return The bowlers total score
      */
-    private int getScore(Bowler Cur, int frame) {
+    private int getScore(Bowler currentBowler, int frame) {
         int[] curScore;
         int strikeballs;
         int totalScore = 0;
-        curScore = scores.get(Cur);
+        curScore = scores.get(currentBowler);
         for (int i = 0; i != 10; i++) {
             cumulScores[bowlIndex][i] = 0;
         }
