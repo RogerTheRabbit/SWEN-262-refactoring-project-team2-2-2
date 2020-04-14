@@ -12,7 +12,6 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Vector;
 
 public class ScoreReport {
 
@@ -28,7 +27,7 @@ public class ScoreReport {
             System.err.println("Error: " + e);
         }
 
-        Iterator scoreIt = v.iterator();
+        Iterator<Score> scoreIt = v.iterator();
 
         content = "";
         content += "--Lucky Strike Bowling Alley Score Report--\n";
@@ -40,9 +39,7 @@ public class ScoreReport {
         for (int i = 1; i < games; i++) {
             content += ", " + scores[i];
         }
-        content += ".\n";
-        content += "\n";
-        content += "\n";
+        content += ".\n\n\n";
         content += "Previous scores by date: \n";
         while (scoreIt.hasNext()) {
             Score score = (Score) scoreIt.next();
@@ -59,8 +56,6 @@ public class ScoreReport {
             Socket s = new Socket("osfmail.rit.edu", 25);
             BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream(), "8859_1"));
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(s.getOutputStream(), "8859_1"));
-
-            String boundary = "DataSeparatorString";
 
             // here you are supposed to send your username
             sendln(in, out, "HELO world");
@@ -103,9 +98,7 @@ public class ScoreReport {
         try {
             out.write(s + "\r\n");
             out.flush();
-            // System.out.println(s);
             s = in.readLine();
-            // System.out.println(s);
         } catch (Exception e) {
             e.printStackTrace();
         }
