@@ -1,9 +1,6 @@
 package LaneState;
 
-import temp.LaneEvent;
-import temp.LaneObserver;
-import temp.Party;
-import temp.Pinsetter;
+import temp.*;
 
 public class Empty implements LaneStatus {
     private Lane lane;
@@ -18,7 +15,7 @@ public class Empty implements LaneStatus {
     }
 
     @Override
-    public void receivePinsetterEvent() {
+    public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
 
     }
 
@@ -61,7 +58,7 @@ public class Empty implements LaneStatus {
      * post: the iterator points to the first bowler in the party
      */
     private void resetBowlerIterator() {
-        bowlerIterator = party.getMembers().iterator();
+        lane.bowlerIterator = lane.party.getMembers().iterator();
     }
 
     /**
@@ -73,16 +70,6 @@ public class Empty implements LaneStatus {
      * post: scoring system is initialized
      */
     private void resetScores() {
-
-        for (Bowler o : party.getMembers()) {
-            int[] toPut = new int[25];
-            for (int i = 0; i != 25; i++) {
-                toPut[i] = -1;
-            }
-            scores.put(o, toPut);
-        }
-
-        gameFinished = false;
-        frameNumber = 0;
+        lane.resetScores();
     }
 }

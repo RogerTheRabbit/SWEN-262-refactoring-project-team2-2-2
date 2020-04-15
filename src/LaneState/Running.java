@@ -43,7 +43,7 @@ public class Running implements LaneStatus {
 
         } else {
             lane.frameNumber++;
-            resetBowlerIterator();
+            lane.resetBowlerIterator();
             lane.bowlIndex = 0;
             if (lane.frameNumber > 9) {
                 lane.gameFinished = true;
@@ -133,7 +133,7 @@ public class Running implements LaneStatus {
     private void markScore(Bowler currentBowler, int frame, int ball, int score) {
         lane.scores.addThrow(currentBowler, score);
         getScore(currentBowler, frame);
-        publish(lanePublish());
+        lane.publish(lane.lanePublish());
     }
 
     /**

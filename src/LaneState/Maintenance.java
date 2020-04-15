@@ -1,9 +1,6 @@
 package LaneState;
 
-import temp.LaneEvent;
-import temp.LaneObserver;
-import temp.Party;
-import temp.Pinsetter;
+import temp.*;
 
 import static java.lang.Thread.sleep;
 
@@ -19,7 +16,7 @@ public class Maintenance implements LaneStatus {
     }
 
     @Override
-    public void receivePinsetterEvent() {
+    public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
 
     }
 
@@ -35,11 +32,6 @@ public class Maintenance implements LaneStatus {
 
     @Override
     public void subscribe(LaneObserver adding) {
-
-    }
-
-    @Override
-    public void publish(LaneEvent event) {
 
     }
 

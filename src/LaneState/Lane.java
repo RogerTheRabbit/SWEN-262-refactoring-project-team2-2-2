@@ -206,15 +206,6 @@ public class Lane extends Thread implements PinsetterObserver {
                 if (party != null && !gameFinished) { // we have a party on this lane,
                     // so next bower can take a throw
 
-                    // Moved to Maintenance.run()
-                    // while (gameIsHalted) {
-                    //     try {
-                    //         sleep(10);
-                    //     } catch (Exception ignored) {
-                    //     }
-                    // }
-
-
                     // Moved to Running.run()
                     // if (bowlerIterator.hasNext()) {
                     //     currentThrower = bowlerIterator.next();
@@ -353,41 +344,31 @@ public class Lane extends Thread implements PinsetterObserver {
         // }
     }
 
-    // Moved to Empty
-    // /**
-    //  * resetBowlerIterator()
-    //  * <p>
-    //  * sets the current bower iterator back to the first bowler
-    //  * <p>
-    //  * pre: the party as been assigned
-    //  * post: the iterator points to the first bowler in the party
-    //  */
-    // private void resetBowlerIterator() {
-    //     bowlerIterator = party.getMembers().iterator();
-    // }
+     /**
+      * resetBowlerIterator()
+      * <p>
+      * sets the current bower iterator back to the first bowler
+      * <p>
+      * pre: the party as been assigned
+      * post: the iterator points to the first bowler in the party
+      */
+     protected void resetBowlerIterator() {
+         bowlerIterator = party.getMembers().iterator();
+     }
 
-    // Moved to Empty
-    // /**
-    //  * resetScores()
-    //  * <p>
-    //  * resets the scoring mechanism, must be called before scoring starts
-    //  * <p>
-    //  * pre: the party has been assigned
-    //  * post: scoring system is initialized
-    //  */
-    // private void resetScores() {
-
-    //     for (Bowler o : party.getMembers()) {
-    //         int[] toPut = new int[25];
-    //         for (int i = 0; i != 25; i++) {
-    //             toPut[i] = -1;
-    //         }
-    //         scores.put(o, toPut);
-    //     }
-
-    //     gameFinished = false;
-    //     frameNumber = 0;
-    // }
+     /**
+      * resetScores()
+      * <p>
+      * resets the scoring mechanism, must be called before scoring starts
+      * <p>
+      * pre: the party has been assigned
+      * post: scoring system is initialized
+      */
+     protected void resetScores() {
+         scores.resetGame();
+         gameFinished = false;
+         frameNumber = 0;
+     }
 
 
     /**
@@ -431,20 +412,10 @@ public class Lane extends Thread implements PinsetterObserver {
      *
      * @return The new lane event
      */
-    private LaneEvent lanePublish() {
+    protected LaneEvent lanePublish() {
         return new LaneEvent(party, bowlIndex, currentThrower, cumuliScores, scores, frameNumber + 1,
                 ball, gameIsHalted);
     }
-
-     /**
-      * Method that calculates a bowlers score
-      *
-      * @param currentBowler The bowler that is currently up
-      * @param frame         The frame the current bowler is on
-      */
-     private void getScore(Bowler currentBowler, int frame) {
-         cumuliScores[bowlIndex] = scores.getFramePoints(currentBowler);
-     }
 
     /**
      * isPartyAssigned()

@@ -2,6 +2,9 @@ package LaneState;
 
 import temp.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Finished implements LaneStatus {
     private Lane lane;
 
@@ -11,7 +14,7 @@ public class Finished implements LaneStatus {
 
     @Override
     public void run() {
-        EndGamePrompt endGamePrompt = new EndGamePrompt((party.getMembers().get(0)).getNickName() + "'s temp.Party");
+        EndGamePrompt endGamePrompt = new EndGamePrompt((lane.party.getMembers().get(0)).getNickName() + "'s temp.Party");
         int result = endGamePrompt.getResult();
         endGamePrompt.distroy();
 
@@ -19,23 +22,23 @@ public class Finished implements LaneStatus {
 
         // TODO: send record of scores to control desk
         if (result == 1) { // yes, want to play again
-            resetScores();
-            resetBowlerIterator();
+            lane.resetScores();
+            lane.resetBowlerIterator();
 
         } else if (result == 2) {// no, don't want to play another game
             ArrayList<String> printVector;
-            Bowler bowler = party.getMembers().get(0);
-            EndGameReport endGameReport = new EndGameReport(bowler.getNickName() + "'s temp.Party", party);
+            Bowler bowler = lane.party.getMembers().get(0);
+            EndGameReport endGameReport = new EndGameReport(bowler.getNickName() + "'s temp.Party", lane.party);
             printVector = endGameReport.getResult();
-            Iterator<Bowler> scoreIt = party.getMembers().iterator();
-            party = null;
+            Iterator<Bowler> scoreIt = lane.party.getMembers().iterator();
+            lane.party = null;
 
-            publish(lanePublish());
+            lane.publish(lane.lanePublish());
 
             int myIndex = 0;
             while (scoreIt.hasNext()) {
                 Bowler thisBowler = scoreIt.next();
-                ScoreReport scoreReport = new ScoreReport(thisBowler, finalScores[myIndex++], gameNumber);
+                ScoreReport scoreReport = new ScoreReport(thisBowler, lane.finalScores[myIndex++], lane.gameNumber);
                 scoreReport.sendEmail(thisBowler.getEmail());
                 for (String nickNames : printVector) {
                     if (thisBowler.getNickName().equals(nickNames)) {
