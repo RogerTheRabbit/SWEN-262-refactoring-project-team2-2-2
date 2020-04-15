@@ -202,89 +202,10 @@ public class Lane extends Thread implements PinsetterObserver {
                     gameIsHalted = false;
                 }
 
-                if (party != null && !gameFinished) { // we have a party on this lane,
-                    // so next bower can take a throw
-
-                    // Moved to Running.run()
-                    // if (bowlerIterator.hasNext()) {
-                    //     currentThrower = bowlerIterator.next();
-
-                    //     canThrowAgain = true;
-                    //     tenthFrameStrike = false;
-                    //     ball = 0;
-                    //     while (canThrowAgain) {
-                    //         setter.ballThrown(); // simulate the thrower's ball hitting
-                    //         ball++;
-                    //     }
-
-                    //     if (frameNumber == 9) {
-                    //         finalScores[bowlIndex][gameNumber] = cumuliScores[bowlIndex][9];
-
-                    //         Date date = new Date();
-                    //         String dateString = "" + date.getHours() + ":" + date.getMinutes() + " " + date.getMonth()
-                    //                 + "/" + date.getDay() + "/" + (date.getYear() + 1900);
-                    //         Score score = new Score(currentThrower.getNickName(), dateString,
-                    //                 Integer.toString(cumuliScores[bowlIndex][9]));
-                    //         score.addScoreToFile();
-
-                    //     }
-
-                    //     setter.reset();
-                    //     bowlIndex++;
-
-                    // } else {
-                    //     frameNumber++;
-                    //     resetBowlerIterator();
-                    //     bowlIndex = 0;
-                    //     if (frameNumber > 9) {
-                    //         gameFinished = true;
-                    //         gameNumber++;
-                    //     }
-                    // }
-                } else if (party != null) {
-
-                    // Moved to Finished.run()
-                    // EndGamePrompt endGamePrompt = new EndGamePrompt((party.getMembers().get(0)).getNickName() + "'s temp.Party");
-                    // int result = endGamePrompt.getResult();
-                    // endGamePrompt.distroy();
-
-                    // System.out.println("result was: " + result);
-
-                    // // TODO: send record of scores to control desk
-                    // if (result == 1) { // yes, want to play again
-                    //     resetScores();
-                    //     resetBowlerIterator();
-
-                    // } else if (result == 2) {// no, don't want to play another game
-                    //     ArrayList<String> printVector;
-                    //     Bowler bowler = party.getMembers().get(0);
-                    //     EndGameReport endGameReport = new EndGameReport(bowler.getNickName() + "'s temp.Party", party);
-                    //     printVector = endGameReport.getResult();
-                    //     Iterator<Bowler> scoreIt = party.getMembers().iterator();
-                    //     party = null;
-
-                    //     publish(lanePublish());
-
-                    //     int myIndex = 0;
-                    //     while (scoreIt.hasNext()) {
-                    //         Bowler thisBowler = scoreIt.next();
-                    //         ScoreReport scoreReport = new ScoreReport(thisBowler, finalScores[myIndex++], gameNumber);
-                    //         scoreReport.sendEmail(thisBowler.getEmail());
-                    //         for (String nickNames : printVector) {
-                    //             if (thisBowler.getNickName().equals(nickNames)) {
-                    //                 System.out.println("Printing " + thisBowler.getNickName());
-                    //                 scoreReport.sendPrintout();
-                    //             }
-                    //         }
-
-                    //     }
-                    // }
+                try { sleep(10); } catch (Exception ignored) {
+                    System.err.println(ignored.getMessage());
                 }
 
-                try {
-                    sleep(10);
-                } catch (Exception ignored) {
-                }
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -344,27 +265,6 @@ public class Lane extends Thread implements PinsetterObserver {
     public void assignParty(Party theParty) {
         laneStatus.assignParty(theParty);
     }
-
-    // Moved to Running
-    // /**
-    //  * markScore()
-    //  * <p>
-    //  * Method that marks a bowlers score on the board.
-    //  *
-    //  * @param currentBowler The current bowler
-    //  * @param frame         The frame that bowler is on
-    //  * @param ball          The ball the bowler is on
-    //  * @param score         The bowler's score
-    //  */
-    // private void markScore(Bowler currentBowler, int frame, int ball, int score) {
-    //     int[] curScore;
-    //     int index = ((frame - 1) * 2 + ball);
-    //     curScore = scores.get(currentBowler);
-    //     curScore[index - 1] = score;
-    //     scores.put(currentBowler, curScore);
-    //     getScore(currentBowler, frame);
-    //     publish(lanePublish());
-    // }
 
     /**
      * lanePublish()

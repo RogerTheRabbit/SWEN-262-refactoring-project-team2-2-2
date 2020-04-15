@@ -76,21 +76,17 @@ public class Running implements LaneStatus {
 
                 if ((pinsetterEvent.totalPinsDown() != 10) && (pinsetterEvent.getThrowNumber() == 2 && !lane.tenthFrameStrike)) {
                     canThrowAgain = false;
-                    // publish( lanePublish() );
                 }
 
                 if (pinsetterEvent.getThrowNumber() == 3) {
                     canThrowAgain = false;
-                    // publish( lanePublish() );
                 }
             } else { // its not the 10th frame
 
                 if (pinsetterEvent.pinsDownOnThisThrow() == 10) { // threw a strike
                     canThrowAgain = false;
-                    // publish( lanePublish() );
                 } else if (pinsetterEvent.getThrowNumber() == 2) {
                     canThrowAgain = false;
-                    // publish( lanePublish() );
                 } else if (pinsetterEvent.getThrowNumber() == 3)
                     System.out.println("I'm here...");
             }
