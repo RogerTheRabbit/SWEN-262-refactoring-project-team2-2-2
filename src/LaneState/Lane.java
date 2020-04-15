@@ -197,6 +197,12 @@ public class Lane extends Thread implements PinsetterObserver {
         try {
             while (true) {
                 laneStatus.run();
+
+                if(gameIsHalted){
+                    laneStatus.maintenanceCallToggle();
+                    gameIsHalted = false;
+                }
+
                 if (party != null && !gameFinished) { // we have a party on this lane,
                     // so next bower can take a throw
 
@@ -420,6 +426,6 @@ public class Lane extends Thread implements PinsetterObserver {
     }
 
     public void maintenanceCallToggle() {
-        laneStatus.maintenanceCallToggle();
+        gameIsHalted = true;
     }
 }
