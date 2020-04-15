@@ -31,9 +31,8 @@ public class Empty implements LaneStatus {
         int partySize = lane.party.getMembers().size();
         lane.cumuliScores = new int[partySize][10];
         lane.finalScores = new int[partySize][128]; // Hardcoding a max of 128 games, bite me.
-        ArrayList<Bowler> bowlers = theParty.getMembers();
-        for(int i = 0; i < bowlers.size(); i++){
-            lane.scores.addPlayer(bowlers.get(i));
+        for (Bowler bowler : theParty.getMembers()) {
+            lane.scores.addPlayer(bowler);
         }
         lane.gameNumber = 0;
 
