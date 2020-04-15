@@ -9,7 +9,6 @@ public interface LaneStatus {
     void receivePinsetterEvent(PinsetterEvent pinsetterEvent);
     void assignParty(Party theParty);
     boolean isPartyAssigned();
-    Pinsetter getPinsetter();
     void maintenanceCallToggle();
     boolean isGameFinished();
 }

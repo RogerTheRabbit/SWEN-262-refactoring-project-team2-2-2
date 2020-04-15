@@ -67,11 +67,6 @@ public class Finished implements LaneStatus {
     }
 
     @Override
-    public Pinsetter getPinsetter() {
-        return null;
-    }
-
-    @Override
     public void maintenanceCallToggle() {
 
     }

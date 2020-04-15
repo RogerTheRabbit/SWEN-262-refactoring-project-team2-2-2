@@ -35,11 +35,6 @@ public class Maintenance implements LaneStatus {
     }
 
     @Override
-    public Pinsetter getPinsetter() {
-        return null;
-    }
-
-    @Override
     public void maintenanceCallToggle() {
         lane.setStatus(new Running(lane));
     }

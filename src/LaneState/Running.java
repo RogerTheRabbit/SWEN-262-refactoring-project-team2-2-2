@@ -104,10 +104,6 @@ public class Running implements LaneStatus {
         return true; // Can only be running if party is assigned.
     }
 
-    @Override
-    public Pinsetter getPinsetter() {
-        return null;
-    }
 
     @Override
     public void maintenanceCallToggle() {
