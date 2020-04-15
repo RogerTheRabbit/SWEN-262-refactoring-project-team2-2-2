@@ -20,10 +20,10 @@ public class Running implements LaneStatus {
 
             lane.canThrowAgain = true;
             lane.tenthFrameStrike = false;
-            ball = 0;
+            lane.ball = 0;
             while (lane.canThrowAgain) {
                 lane.setter.ballThrown(); // simulate the thrower's ball hitting
-                ball++;
+                lane.ball++;
             }
 
             if (lane.frameNumber == 9) {
