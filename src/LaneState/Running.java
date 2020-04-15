@@ -110,7 +110,6 @@ public class Running implements LaneStatus {
 
     @Override
     public void maintenanceCallToggle() {
-        lane.gameIsHalted = true;
         lane.setStatus(new Maintenance(lane));
     }
 
