@@ -6,6 +6,7 @@ package temp;
  */
 
 import LaneState.Lane;
+import scoring.FrameMediator.ScoreMediator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -156,15 +157,16 @@ public class LaneView implements LaneObserver, ActionListener {
             }
             // TODO The frame state/mediator will be used here
             int[][] laneEventScores = laneEvent.getCumuliScore();
-            for (int k = 0; k < numBowlers; k++) {
+            int k = -1;
+            for (Bowler bowler: laneEvent.getParty().getMembers()) {
+                k++;
                 for (int i = 0; i <= laneEvent.getFrameNum() - 1; i++) {
                     if (laneEventScores[k][i] != 0) {
                         scoreLabel[k][i].setText((Integer.valueOf(laneEventScores[k][i])).toString());
                     }
                 }
                 for (int i = 0; i < 21; i++) {
-                    Bowler currBowler = laneEvent.getCurrentBowler();
-                    int[] currentRow = laneEvent.getScore().getAllThrows(currBowler);
+                    int[] currentRow = laneEvent.getScore().getAllThrows(bowler);
                     if (currentRow[i] != -1) {
                         if (currentRow[i] == 10 && (i % 2 == 0 || i == 19)) {
                             ballLabel[k][i].setText("X");

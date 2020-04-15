@@ -416,6 +416,11 @@ public class Lane extends Thread implements PinsetterObserver {
      */
     private void getScore(Bowler currentBowler, int frame) {
         cumuliScores[bowlIndex] = scores.getFramePoints(currentBowler);
+//        if(bowlIndex > party.getMembers().size()){
+//            bowlIndex = 0;
+//        }else{
+//            bowlIndex++;
+//        }
 //        int[] curScore;
 //        int strikeballs;
 //        curScore = new int[100];
