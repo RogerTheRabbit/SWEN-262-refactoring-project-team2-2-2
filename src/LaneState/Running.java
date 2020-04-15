@@ -4,10 +4,8 @@ import temp.*;
 
 import java.util.Date;
 
-import static java.lang.Thread.sleep;
-
 public class Running implements LaneStatus {
-    private Lane lane;
+    private final Lane lane;
 
     public Running(Lane lane) {
         this.lane = lane;
@@ -48,6 +46,9 @@ public class Running implements LaneStatus {
             if (lane.frameNumber > 9) {
                 lane.gameFinished = true;
                 lane.gameNumber++;
+
+                // This is roughly where the game finishes so state transition
+                lane.setStatus(new Finished(lane));
             }
         }
     }
@@ -97,12 +98,7 @@ public class Running implements LaneStatus {
 
     @Override
     public boolean isPartyAssigned() {
-        return true; // Can only be running if part is assigned.
-    }
-
-    @Override
-    public void subscribe(LaneObserver adding) {
-
+        return true; // Can only be running if party is assigned.
     }
 
     @Override
