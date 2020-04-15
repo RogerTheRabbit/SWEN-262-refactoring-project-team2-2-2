@@ -312,8 +312,9 @@ public class Lane extends Thread implements PinsetterObserver {
      *                       post: the event has been acted upon if desired
      */
     public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
-
-
+        laneStatus.receivePinsetterEvent(pinsetterEvent);
+        publish(lanePublish());
+        
         // TODO: SHOULD THIS BE IN ALL LANESTATUS'S SINCE THERE ARE NO PREREQUISITES?
         // Moved to Running.recievePinsetterEvent
         // if (pinsetterEvent.pinsDownOnThisThrow() >= 0) { // this is a real throw
@@ -435,17 +436,15 @@ public class Lane extends Thread implements PinsetterObserver {
                 ball, gameIsHalted);
     }
 
-    // Moved to Running
-
-    /**
-     * Method that calculates a bowlers score
-     *
-     * @param currentBowler The bowler that is currently up
-     * @param frame         The frame the current bowler is on
-     */
-    private void getScore(Bowler currentBowler, int frame) {
-        cumuliScores[bowlIndex] = scores.getFramePoints(currentBowler);
-    }
+     /**
+      * Method that calculates a bowlers score
+      *
+      * @param currentBowler The bowler that is currently up
+      * @param frame         The frame the current bowler is on
+      */
+     private void getScore(Bowler currentBowler, int frame) {
+         cumuliScores[bowlIndex] = scores.getFramePoints(currentBowler);
+     }
 
     /**
      * isPartyAssigned()

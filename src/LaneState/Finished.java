@@ -49,7 +49,7 @@ public class Finished implements LaneStatus {
     }
 
     @Override
-    public void receivePinsetterEvent() {
+    public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
 
     }
 
