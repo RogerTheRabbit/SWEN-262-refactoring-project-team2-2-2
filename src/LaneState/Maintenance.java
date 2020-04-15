@@ -28,6 +28,9 @@ public class Maintenance implements LaneStatus {
 
     @Override
     public boolean isPartyAssigned() {
+        if(lane.party != null) {
+            return true;
+        }
         return false;
     }
 
