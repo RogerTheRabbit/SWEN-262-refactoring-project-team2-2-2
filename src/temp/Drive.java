@@ -1,6 +1,6 @@
 package temp;
 
-public class drive {
+public class Drive {
 
     public static void main(String[] args) {
 

@@ -1,4 +1,6 @@
-package temp;/*
+package temp;
+
+/*
  * temp.Bowler.java
  *
  * Version:

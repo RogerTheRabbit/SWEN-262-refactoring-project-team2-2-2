@@ -1,4 +1,6 @@
-package temp;/* temp.ControlDesk.java
+package temp;
+
+/* temp.ControlDesk.java
  *
  *  Version:
  *  		$Id$
@@ -39,7 +41,7 @@ package temp;/* temp.ControlDesk.java
  * Class that represents control desk
  */
 
-import LaneState.LaneOriginal;
+import LaneState.Lane;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -50,7 +52,7 @@ class ControlDesk extends Thread {
     /**
      * The collection of Lanes
      */
-    private final HashSet<LaneOriginal> lanes;
+    private final HashSet<Lane> lanes;
 
     /**
      * The party wait queue
@@ -81,7 +83,7 @@ class ControlDesk extends Thread {
         subscribers = new ArrayList<>();
 
         for (int i = 0; i < numLanes; i++) {
-            lanes.add(new LaneOriginal());
+            lanes.add(new Lane());
         }
 
         this.start();
@@ -134,10 +136,10 @@ class ControlDesk extends Thread {
      */
 
     public void assignLane() {
-        Iterator<LaneOriginal> it = lanes.iterator();
+        Iterator<Lane> it = lanes.iterator();
 
         while (it.hasNext() && !partyQueue.isEmpty()) {
-            LaneOriginal curLane = it.next();
+            Lane curLane = it.next();
 
             if (!curLane.isPartyAssigned()) {
                 System.out.println("ok... assigning this party");
@@ -221,7 +223,7 @@ class ControlDesk extends Thread {
      * @return a HashSet of Lanes
      */
 
-    public HashSet<LaneOriginal> getLanes() {
+    public HashSet<Lane> getLanes() {
         return lanes;
     }
 }

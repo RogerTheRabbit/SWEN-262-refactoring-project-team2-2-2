@@ -1,4 +1,6 @@
-package temp;/* temp.ControlDeskEvent.java
+package temp;
+
+/* temp.ControlDeskEvent.java
  *
  *  Version:
  *  		$Id$

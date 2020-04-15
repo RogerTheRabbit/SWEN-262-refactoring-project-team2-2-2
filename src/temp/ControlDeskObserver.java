@@ -1,4 +1,6 @@
-package temp;/* temp.ControlDeskObserver.java
+package temp;
+
+/* temp.ControlDeskObserver.java
  *
  *  Version
  *  $Id$
