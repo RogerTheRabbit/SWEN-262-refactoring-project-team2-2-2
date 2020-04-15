@@ -25,6 +25,8 @@ package temp;
  *
  */
 
+import scoring.FrameMediator.ScoreMediator;
+
 import java.util.HashMap;
 
 public class LaneEvent {
@@ -33,12 +35,12 @@ public class LaneEvent {
     private int ballNum;
     private Bowler currentBowler;
     private int[][] cumuliScore;
-    private HashMap<Bowler, int[]> score;
+    private ScoreMediator score;
     private int index;
     private int frameNum;
     private boolean mechanicalProblem;
 
-    public LaneEvent(Party party, int index, Bowler currentBowler, int[][] cumuliScore, HashMap<Bowler, int[]> score,
+    public LaneEvent(Party party, int index, Bowler currentBowler, int[][] cumuliScore, ScoreMediator score,
                      int frameNum, int ballNum, boolean mechanicalProblem) {
         this.party = party;
         this.index = index;
@@ -58,7 +60,7 @@ public class LaneEvent {
         return frameNum;
     }
 
-    public HashMap<Bowler, int[]> getScore() {
+    public ScoreMediator getScore() {
         return score;
     }
 

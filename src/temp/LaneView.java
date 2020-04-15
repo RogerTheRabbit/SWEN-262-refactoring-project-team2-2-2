@@ -154,7 +154,6 @@ public class LaneView implements LaneObserver, ActionListener {
                 frame.pack();
 
             }
-
             // TODO The frame state/mediator will be used here
             int[][] laneEventScores = laneEvent.getCumuliScore();
             for (int k = 0; k < numBowlers; k++) {
@@ -164,7 +163,8 @@ public class LaneView implements LaneObserver, ActionListener {
                     }
                 }
                 for (int i = 0; i < 21; i++) {
-                    int[] currentRow = (int[]) laneEvent.getScore().get(bowlers.get(k));
+                    Bowler currBowler = laneEvent.getCurrentBowler();
+                    int[] currentRow = laneEvent.getScore().getAllThrows(currBowler);
                     if (currentRow[i] != -1) {
                         if (currentRow[i] == 10 && (i % 2 == 0 || i == 19)) {
                             ballLabel[k][i].setText("X");

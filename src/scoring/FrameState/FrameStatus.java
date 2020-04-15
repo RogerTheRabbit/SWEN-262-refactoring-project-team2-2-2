@@ -11,9 +11,11 @@ public interface FrameStatus {
     int getScore();
 
     /**
-     * This adds a ball to the current score. Changes functionality based on
+     * This adds a ballThrown to the current score. Changes functionality based on
      * the current score.
-     * @param ball The points scored by the ball thrown
+     * @param ballThrown The points scored by the ballThrown thrown
      */
-    void addBall(int ball);
+    void addThrow(int ballThrown);
+
+    int[] getThrows();
 }
