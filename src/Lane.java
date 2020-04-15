@@ -246,7 +246,7 @@ public class Lane extends Thread implements PinsetterObserver {
                         resetScores();
                         resetBowlerIterator();
 
-                    } else if (result == 2) {// no, dont want to play another game
+                    } else if (result == 2) {// no, don't want to play another game
                         ArrayList<String> printVector;
                         Bowler bowler = party.getMembers().get(0);
                         EndGameReport endGameReport = new EndGameReport(bowler.getNickName() + "'s Party", party);
@@ -285,9 +285,9 @@ public class Lane extends Thread implements PinsetterObserver {
     }
 
     /**
-     * recievePinsetterEvent()
+     * receivePinsetterEvent()
      * <p>
-     * recieves the thrown event from the pinsetter
+     * receives the thrown event from the pinsetter
      *
      * @param pinsetterEvent The pinsetter event that has been received.
      *                       pre: none
@@ -340,7 +340,7 @@ public class Lane extends Thread implements PinsetterObserver {
      * post: the iterator points to the first bowler in the party
      */
     private void resetBowlerIterator() {
-        bowlerIterator = (party.getMembers()).iterator();
+        bowlerIterator = party.getMembers().iterator();
     }
 
     /**
@@ -459,7 +459,7 @@ public class Lane extends Thread implements PinsetterObserver {
 
                 if (strikeballs == 2) {
                     // Add up the strike.
-                    // Add the next two balls to the current cumulscore.
+                    // Add the next two balls to the current cumulScore.
                     cumuliScores[bowlIndex][i / 2] += 10;
                     if (curScore[i + 1] != -1) {
                         cumuliScores[bowlIndex][i / 2] += curScore[i + 1] + cumuliScores[bowlIndex][(i / 2) - 1];
@@ -564,11 +564,8 @@ public class Lane extends Thread implements PinsetterObserver {
      */
 
     public void publish(LaneEvent event) {
-        if (subscribers.size() > 0) {
-
-            for (Object subscriber : subscribers) {
-                ((LaneObserver) subscriber).receiveLaneEvent(event);
-            }
+        for (LaneObserver subscriber : subscribers) {
+            subscriber.receiveLaneEvent(event);
         }
     }
 
