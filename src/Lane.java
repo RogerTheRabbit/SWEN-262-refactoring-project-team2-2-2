@@ -152,7 +152,6 @@ public class Lane extends Thread implements PinsetterObserver {
     private int frameNumber;
     private boolean tenthFrameStrike;
 
-    private int[] curScores;
     private int[][] cumuliScores;
     private boolean canThrowAgain;
 
@@ -380,7 +379,6 @@ public class Lane extends Thread implements PinsetterObserver {
         resetBowlerIterator();
         partyAssigned = true;
         int partySize = party.getMembers().size();
-        curScores = new int[partySize];
         cumuliScores = new int[partySize][10];
         finalScores = new int[partySize][128]; // Hardcoding a max of 128 games, bite me.
         gameNumber = 0;
