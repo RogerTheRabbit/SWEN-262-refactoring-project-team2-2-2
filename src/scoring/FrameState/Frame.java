@@ -8,13 +8,20 @@ package scoring.FrameState;
 public class Frame {
     //Keeps track of the frames status
     private FrameStatus status;
+    private boolean isFinished;
 
     /**
      * Constructor for a frame, always starts unfinished.
      */
-    public Frame(){
-        this.status = new Unfinished(this);
+    public Frame(boolean tenth){
+        if(tenth) {
+            this.status = new TenthFrame(this);
+        }else{
+            this.status = new Unfinished(this);
+        }
+        this.isFinished = false;
     }
+
 
     /**
      * Gets the score of the frame (from the status)
@@ -29,14 +36,26 @@ public class Frame {
      * @param ball How many pins the ball knocked down
      */
     public void addBall(int ball){
-        status.addBall(ball);
+        status.addThrow(ball);
     }
 
     /**
      * Setter for the status (to be used ONLY by the states).
      * @param status The state to change to (status of the frame)
      */
-    void setStatus(FrameStatus status){
+    protected void setStatus(FrameStatus status){
         this.status = status;
+    }
+
+    protected void setFinished(){
+        this.isFinished = true;
+    }
+
+    public boolean getFinished(){
+        return this.isFinished;
+    }
+
+    public int[] getThrows(){
+        return status.getThrows();
     }
 }

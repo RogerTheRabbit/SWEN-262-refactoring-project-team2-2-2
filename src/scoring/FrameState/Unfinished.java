@@ -43,24 +43,38 @@ public class Unfinished implements FrameStatus {
      * This adds a ball to the current score. Changes functionality based on
      * the current score.
      *
-     * @param ball The points scored by the ball thrown
+     * @param ballThrown The points scored by the ball thrown
      */
     @Override
-    public void addBall(int ball) {
+    public void addThrow(int ballThrown) {
         if(scores[0] == -1){
-            scores[0] = ball;
+            scores[0] = ballThrown;
             //if the ball hits 10 pins, it's a strike
-            if(ball == 10){
+            if(ballThrown == 10){
                 frame.setStatus(new Strike(frame));
+                frame.setFinished();
             }
         }else{
-            scores[1] = ball;
+            scores[1] = ballThrown;
             //checks for spare, otherwise frame is done
             if(this.getScore() == 10){
                 frame.setStatus(new Spare(frame, scores[0], scores[1]));
+                frame.setFinished();
             }else{
                 frame.setStatus(new PointsFinished(frame, scores, this.getScore()));
+                frame.setFinished();
             }
         }
+    }
+
+    @Override
+    public int[] getThrows() {
+        int[] score = new int[2];
+        for (int i = 0; i < 2; i++) {
+            //if (scores[i] != -1) {
+                score[i] = scores[i];
+           // }
+        }
+        return score;
     }
 }

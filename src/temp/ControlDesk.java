@@ -141,7 +141,7 @@ class ControlDesk extends Thread {
 
             if (!curLane.isPartyAssigned()) {
                 System.out.println("ok... assigning this party");
-                curLane.assignParty(partyQueue.remove());
+                curLane.assignParty(partyQueue.removeFirst());
             }
         }
         publish(new ControlDeskEvent(getPartyQueue()));

@@ -41,15 +41,22 @@ public class Strike implements FrameStatus {
      * This adds a ball to the current score. Changes functionality based on
      * the current score.
      *
-     * @param ball The points scored by the ball thrown
+     * @param ballThrown The points scored by the ball thrown
      */
     @Override
-    public void addBall(int ball) {
+    public void addThrow(int ballThrown) {
         if(scores[1] == -1){
-            scores[1] = ball;
+            scores[1] = ballThrown;
         }else if(scores[2] == -1){
-            scores[2] = ball;
+            scores[2] = ballThrown;
             frame.setStatus(new PointsFinished(frame, scores, this.getScore()));
         }
+    }
+
+    @Override
+    public int[] getThrows() {
+        int[] score = new int[2];
+        score[0] = 10;
+        return score;
     }
 }

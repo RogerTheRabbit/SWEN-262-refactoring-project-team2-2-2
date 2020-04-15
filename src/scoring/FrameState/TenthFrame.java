@@ -7,6 +7,7 @@ public class TenthFrame implements FrameStatus {
 
     private final Frame frame;
     private int[] scores;
+    private boolean thirdThrow;
 
     public TenthFrame(Frame frame){
         this.frame = frame;
@@ -14,6 +15,7 @@ public class TenthFrame implements FrameStatus {
         for(int i = 0; i < scores.length; i++){
             scores[i] = -1;
         }
+        this.thirdThrow = false;
     }
     /**
      * This returns the total score of the frame (as of time of calling)
@@ -22,22 +24,45 @@ public class TenthFrame implements FrameStatus {
      */
     @Override
     public int getScore() {
-        return 0;
+        int score = 0;
+        for(int i = 0; i < 3; i++){
+            if(scores[i] != -1){
+                score += scores[i];
+            }
+        }
+        return score;
     }
 
     /**
      * This adds a ball to the current score. Changes functionality based on
      * the current score.
      *
-     * @param ball The points scored by the ball thrown
+     * @param ballThrown The points scored by the ball thrown
      */
     @Override
-    public void addBall(int ball) {
-        for(int i = 0; i < scores.length; i++){
-            if(scores[i] == -1){
-                scores[i] = ball;
-
+    public void addThrow(int ballThrown) {
+        if(thirdThrow){
+            scores[2] = ballThrown;
+            frame.setFinished();
+        }
+        else if(scores[0] == -1){
+            scores[0] = ballThrown;
+        }else if(scores[1] == -1){
+            scores[1] = ballThrown;
+            if(this.getScore() == 10){
+                this.thirdThrow = true;
             }
         }
+    }
+
+    @Override
+    public int[] getThrows() {
+        int[] score = new int[3];
+        for (int i = 0; i < 3; i++) {
+            //if (scores[i] != -1) {
+                score[i] = scores[i];
+            //}
+        }
+        return score;
     }
 }

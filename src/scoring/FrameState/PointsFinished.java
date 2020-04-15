@@ -37,10 +37,18 @@ public class PointsFinished implements FrameStatus {
      * This adds a ball to the current score. Changes functionality based on
      * the current score.
      *
-     * @param ball The points scored by the ball thrown
+     * @param ballThrown The points scored by the ball thrown
      */
     @Override
-    public void addBall(int ball) {
+    public void addThrow(int ballThrown) {
         //does nothing, the scores are finalized
+    }
+
+    @Override
+    public int[] getThrows(){
+        int[] ballThrows = new int[2];
+        ballThrows[0] = scores[0];
+        ballThrows[1] = scores[1];
+        return ballThrows;
     }
 }

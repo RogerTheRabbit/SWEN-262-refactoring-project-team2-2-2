@@ -37,11 +37,22 @@ public class Spare implements FrameStatus {
      * This adds a ball to the current score. Changes functionality based on
      * the current score.
      *
-     * @param ball The points scored by the ball thrown
+     * @param ballThrown The points scored by the ball thrown
      */
     @Override
-    public void addBall(int ball) {
-        scores[2] = ball;
+    public void addThrow(int ballThrown) {
+        scores[2] = ballThrown;
         frame.setStatus(new PointsFinished(frame, scores, this.getScore()));
+    }
+
+    @Override
+    public int[] getThrows() {
+        int[] score = new int[2];
+        for (int i = 0; i < 2; i++) {
+            //if (scores[i] != -1) {
+                score[i] = scores[i];
+            //}
+        }
+        return score;
     }
 }
