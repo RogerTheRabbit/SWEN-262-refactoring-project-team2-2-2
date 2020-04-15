@@ -1,4 +1,4 @@
 package LaneState;
 
-public interface Lane {
+public abstract class Lane {
 }

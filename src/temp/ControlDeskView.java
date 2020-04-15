@@ -60,7 +60,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
         controlsPanel.setLayout(new GridLayout(3, 1));
         controlsPanel.setBorder(new TitledBorder("Controls"));
 
-        addParty = new JButton("Add temp.Party");
+        addParty = new JButton("Add Party");
         JPanel addPartyPanel = new JPanel();
         addPartyPanel.setLayout(new FlowLayout());
         addParty.addActionListener(this);
@@ -84,7 +84,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
         // LaneState.Lane Status Panel
         JPanel laneStatusPanel = new JPanel();
         laneStatusPanel.setLayout(new GridLayout(numLanes, 1));
-        laneStatusPanel.setBorder(new TitledBorder("LaneState.Lane Status"));
+        laneStatusPanel.setBorder(new TitledBorder("Lane Status"));
 
         HashSet<LaneOriginal> lanes = controlDesk.getLanes();
         int laneCount = 0;
@@ -95,14 +95,14 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
             curLane.subscribe(laneStat);
             curLane.getPinsetter().subscribe(laneStat);
             JPanel lanePanel = laneStat.showLane();
-            lanePanel.setBorder(new TitledBorder("LaneState.Lane" + ++laneCount));
+            lanePanel.setBorder(new TitledBorder("Lane" + ++laneCount));
             laneStatusPanel.add(lanePanel);
         }
 
         // temp.Party Queue Panel
         JPanel partyPanel = new JPanel();
         partyPanel.setLayout(new FlowLayout());
-        partyPanel.setBorder(new TitledBorder("temp.Party Queue"));
+        partyPanel.setBorder(new TitledBorder("Party Queue"));
 
         Vector<String> empty = new Vector<>();
         empty.add("(Empty)");
@@ -176,8 +176,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
      */
 
     public void receiveControlDeskEvent(ControlDeskEvent ce) {
-        Vector<String> party = new Vector<>();
-        party.addAll(ce.getPartyQueue());
+        Vector<String> party = new Vector<>(ce.getPartyQueue());
         partyList.setListData(party);
     }
 }

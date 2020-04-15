@@ -35,7 +35,7 @@ public class LaneView implements LaneObserver, ActionListener {
 
         this.lane = lane;
 
-        frame = new JFrame("LaneState.Lane " + laneNum + ":");
+        frame = new JFrame("Lane " + laneNum + ":");
         cPanel = frame.getContentPane();
         cPanel.setLayout(new BorderLayout());
 
