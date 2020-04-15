@@ -6,6 +6,11 @@ import temp.Party;
 import temp.Pinsetter;
 
 public class Running implements LaneStatus {
+    private Lane lane;
+
+    public Running(Lane lane) {
+        this.lane = lane;
+    }
 
     @Override
     public void run() {
