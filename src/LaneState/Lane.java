@@ -196,10 +196,6 @@ public class Lane extends Thread implements PinsetterObserver {
 
         try {
             while (true) {
-                try {
-                    sleep(10);
-                } catch (Exception ignored) {
-                }
                 laneStatus.run();
                 if (party != null && !gameFinished) { // we have a party on this lane,
                     // so next bower can take a throw
@@ -280,11 +276,10 @@ public class Lane extends Thread implements PinsetterObserver {
                     // }
                 }
 
-                // Moved to Running.run()
-                // try {
-                //     sleep(10);
-                // } catch (Exception ignored) {
-                // }
+                try {
+                    sleep(10);
+                } catch (Exception ignored) {
+                }
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
