@@ -1,4 +1,6 @@
-package temp;/* AddPartyView.java
+package temp;
+
+/* AddPartyView.java
  *
  *  Version:
  * 		 $Id$

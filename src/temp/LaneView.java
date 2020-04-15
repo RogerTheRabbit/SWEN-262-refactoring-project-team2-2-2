@@ -1,4 +1,6 @@
-package temp;/*
+package temp;
+
+/*
  *  constructs a prototype LaneState.Lane View
  *
  */

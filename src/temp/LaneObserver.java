@@ -1,4 +1,6 @@
-package temp;/* $Id$
+package temp;
+
+/* $Id$
  *
  * Revisions:
  *   $Log: temp.LaneObserver.java,v $
