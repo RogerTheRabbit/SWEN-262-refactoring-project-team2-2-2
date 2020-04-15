@@ -71,9 +71,4 @@ public class Finished implements LaneStatus {
     public void maintenanceCallToggle() {
 
     }
-
-    @Override
-    public boolean isGameFinished() {
-        return true;
-    }
 }

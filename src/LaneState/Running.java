@@ -109,11 +109,6 @@ public class Running implements LaneStatus {
         lane.setStatus(new Maintenance(lane));
     }
 
-    @Override
-    public boolean isGameFinished() {
-        return false;
-    }
-
     /**
      * markScore()
      * <p>

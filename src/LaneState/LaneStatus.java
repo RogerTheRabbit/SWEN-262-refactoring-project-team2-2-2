@@ -10,5 +10,4 @@ public interface LaneStatus {
     void assignParty(Party theParty);
     boolean isPartyAssigned();
     void maintenanceCallToggle();
-    boolean isGameFinished();
 }

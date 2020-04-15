@@ -34,9 +34,4 @@ public class Maintenance implements LaneStatus {
     public void maintenanceCallToggle() {
         lane.setStatus(new Running(lane));
     }
-
-    @Override
-    public boolean isGameFinished() {
-        return false;
-    }
 }
