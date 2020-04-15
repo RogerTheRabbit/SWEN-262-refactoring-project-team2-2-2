@@ -16,19 +16,11 @@ public class PointsFinished implements FrameStatus {
      * @param frame The frame who's status is updated
      * @param scores The finalized scores array
      */
-    public PointsFinished(Frame frame, int[] scores){
+    public PointsFinished(Frame frame, int[] scores, int totalScore){
         this.scores = scores;
         this.frame = frame;
-        int finalScore = 0;
-        for(int i = 0; i < scores.length; i++){
-            if(i > 1){
-                finalScore += scores[i] * 2;
-            }else{
-                finalScore += scores[i];
-            }
-        }
 
-        this.totalScore = finalScore;
+        this.totalScore = totalScore;
     }
 
     /**

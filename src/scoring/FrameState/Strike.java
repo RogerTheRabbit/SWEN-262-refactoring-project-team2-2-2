@@ -33,11 +33,7 @@ public class Strike implements FrameStatus {
     @Override
     public int getScore() {
         int totalScores = 10;
-        for(int i = 1; i < 3; i++){
-            if(scores[i] != -1){
-                totalScores += 2 * scores[i];
-            }
-        }
+        totalScores += scores[1] + scores[2];
         return totalScores;
     }
 
@@ -53,7 +49,7 @@ public class Strike implements FrameStatus {
             scores[1] = ball;
         }else if(scores[2] == -1){
             scores[2] = ball;
-            frame.setStatus(new PointsFinished(frame, scores));
+            frame.setStatus(new PointsFinished(frame, scores, this.getScore()));
         }
     }
 }
