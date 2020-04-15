@@ -155,6 +155,7 @@ public class Lane extends Thread implements PinsetterObserver {
     protected boolean tenthFrameStrike;
 
     protected int[][] cumuliScores;
+    protected boolean canThrowAgain;
 
     protected int[][] finalScores;
     protected int gameNumber;
@@ -180,10 +181,6 @@ public class Lane extends Thread implements PinsetterObserver {
         laneStatus = new Empty(this);
 
         this.start();
-    }
-
-    public void setStatus(LaneStatus status) {
-        laneStatus = status;
     }
 
     /**
@@ -326,5 +323,9 @@ public class Lane extends Thread implements PinsetterObserver {
 
     public void maintenanceCallToggle() {
         gameIsHalted = true;
+    }
+
+    public void setStatus(LaneStatus status) {
+        laneStatus = status;
     }
 }

@@ -8,7 +8,6 @@ import temp.Score;
 import java.util.Date;
 
 public class Running implements LaneStatus {
-    private boolean canThrowAgain;
 
     private final Lane lane;
 
@@ -22,10 +21,10 @@ public class Running implements LaneStatus {
         if (lane.bowlerIterator.hasNext()) {
             lane.currentThrower = lane.bowlerIterator.next();
 
-            canThrowAgain = true;
+            lane.canThrowAgain = true;
             lane.tenthFrameStrike = false;
             lane.ball = 0;
-            while (canThrowAgain) {
+            while (lane.canThrowAgain) {
                 lane.setter.ballThrown(); // simulate the thrower's ball hitting
                 lane.ball++;
             }
@@ -75,18 +74,18 @@ public class Running implements LaneStatus {
                 }
 
                 if ((pinsetterEvent.totalPinsDown() != 10) && (pinsetterEvent.getThrowNumber() == 2 && !lane.tenthFrameStrike)) {
-                    canThrowAgain = false;
+                    lane.canThrowAgain = false;
                 }
 
                 if (pinsetterEvent.getThrowNumber() == 3) {
-                    canThrowAgain = false;
+                    lane.canThrowAgain = false;
                 }
             } else { // its not the 10th frame
 
                 if (pinsetterEvent.pinsDownOnThisThrow() == 10) { // threw a strike
-                    canThrowAgain = false;
+                    lane.canThrowAgain = false;
                 } else if (pinsetterEvent.getThrowNumber() == 2) {
-                    canThrowAgain = false;
+                    lane.canThrowAgain = false;
                 } else if (pinsetterEvent.getThrowNumber() == 3)
                     System.out.println("I'm here...");
             }
