@@ -3,7 +3,7 @@ package temp;/*
  *
  */
 
-import LaneState.Lane;
+import LaneState.LaneOriginal;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,9 +29,9 @@ public class LaneView implements LaneObserver, ActionListener {
     JPanel[] pins;
 
     JButton maintenance;
-    Lane lane;
+    LaneOriginal lane;
 
-    public LaneView(Lane lane, int laneNum) {
+    public LaneView(LaneOriginal lane, int laneNum) {
 
         this.lane = lane;
 

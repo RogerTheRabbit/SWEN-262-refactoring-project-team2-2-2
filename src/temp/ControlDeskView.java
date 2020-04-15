@@ -9,7 +9,7 @@ package temp;/* temp.ControlDeskView.java
  */
 
 
-import LaneState.Lane;
+import LaneState.LaneOriginal;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -86,11 +86,11 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
         laneStatusPanel.setLayout(new GridLayout(numLanes, 1));
         laneStatusPanel.setBorder(new TitledBorder("LaneState.Lane Status"));
 
-        HashSet<Lane> lanes = controlDesk.getLanes();
+        HashSet<LaneOriginal> lanes = controlDesk.getLanes();
         int laneCount = 0;
 
         for (Object lane : lanes) {
-            Lane curLane = (Lane) lane;
+            LaneOriginal curLane = (LaneOriginal) lane;
             LaneStatusView laneStat = new LaneStatusView(curLane, (laneCount + 1));
             curLane.subscribe(laneStat);
             curLane.getPinsetter().subscribe(laneStat);
