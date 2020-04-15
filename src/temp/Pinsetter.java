@@ -1,11 +1,11 @@
-/*
- * Pinsetter.java
+package temp;/*
+ * temp.Pinsetter.java
  *
  * Version:
  *   $Id$
  *
  * Revisions:
- *   $Log: Pinsetter.java,v $
+ *   $Log: temp.Pinsetter.java,v $
  *   Revision 1.21  2003/02/20 20:27:45  ???
  *   Fouls disables.
  *
@@ -25,10 +25,10 @@
  *   Better random numbers.
  *
  *   Revision 1.15  2003/02/02 23:49:48  ???
- *   Pinsetter generates an event when all pins are reset
+ *   temp.Pinsetter generates an event when all pins are reset
  *
  *   Revision 1.14  2003/02/02 23:26:32  ???
- *   ControlDesk now runs its own thread and polls for free lanes to assign queue members to
+ *   temp.ControlDesk now runs its own thread and polls for free lanes to assign queue members to
  *
  *   Revision 1.13  2003/02/02 23:21:30  ???
  *   pinsetter should give better results
@@ -47,7 +47,7 @@
  *
  *   Revision 1.8  2003/01/26 22:34:44  ???
  *   Total rewrite of lane and pinsetter for R2's observer model
- *   Added Lane/Pinsetter Observer
+ *   Added LaneState.Lane/temp.Pinsetter Observer
  *   Rewrite of scoring algorythm in lane
  *
  *   Revision 1.7  2003/01/19 21:55:24  ???
@@ -90,7 +90,7 @@ public class Pinsetter {
     private int throwNumber;
 
     /**
-     * Pinsetter()
+     * temp.Pinsetter()
      * <p>
      * Constructs a new pinsetter
      * <p>

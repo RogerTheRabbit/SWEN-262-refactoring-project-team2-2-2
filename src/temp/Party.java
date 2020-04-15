@@ -1,11 +1,11 @@
-/*
- * Party.java
+package temp;/*
+ * temp.Party.java
  *
  * Version:
  *   $Id$
  *
  * Revisions:
- *   $Log: Party.java,v $
+ *   $Log: temp.Party.java,v $
  *   Revision 1.3  2003/02/09 21:21:31  ???
  *   Added lots of comments
  *
@@ -13,7 +13,7 @@
  *   *** empty log message ***
  *
  *   Revision 1.1  2003/01/12 19:09:12  ???
- *   Adding Party, Lane, Bowler, and Alley.
+ *   Adding temp.Party, LaneState.Lane, temp.Bowler, and Alley.
  *
  */
 
@@ -22,7 +22,6 @@
  */
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class Party {
 
@@ -30,7 +29,7 @@ public class Party {
     private ArrayList<Bowler> myBowlers;
 
     /**
-     * Constructor for a Party
+     * Constructor for a temp.Party
      *
      * @param bowlers Vector of bowlers that are in this party
      */

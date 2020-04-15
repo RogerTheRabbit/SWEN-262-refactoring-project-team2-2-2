@@ -1,7 +1,9 @@
-/*
- *  constructs a prototype Lane View
+package temp;/*
+ *  constructs a prototype LaneState.Lane View
  *
  */
+
+import LaneState.Lane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +35,7 @@ public class LaneView implements LaneObserver, ActionListener {
 
         this.lane = lane;
 
-        frame = new JFrame("Lane " + laneNum + ":");
+        frame = new JFrame("LaneState.Lane " + laneNum + ":");
         cPanel = frame.getContentPane();
         cPanel.setLayout(new BorderLayout());
 

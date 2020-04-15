@@ -1,4 +1,4 @@
-
+package temp;
 /**
  * To change this generated comment edit the template variable "typecomment":
  * Window>Preferences>Java>Templates.
@@ -36,7 +36,7 @@ public class EndGamePrompt implements ActionListener {
         labelPanel.setLayout(new FlowLayout());
 
         JLabel message = new JLabel(
-                "Party " + partyName + " has finished bowling.\nWould they like to bowl another game?");
+                "temp.Party " + partyName + " has finished bowling.\nWould they like to bowl another game?");
 
         labelPanel.add(message);
 

@@ -1,10 +1,12 @@
-
+package temp;
 /**
  * To change this generated comment edit the template variable "typecomment":
  * Window>Preferences>Java>Templates.
  * To enable and disable the creation of type comments go to
  * Window>Preferences>Java>Code Generation.
  */
+
+import LaneState.Lane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,13 +62,13 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 
         Insets buttonMargin = new Insets(4, 4, 4, 4);
 
-        viewLane = new JButton("View Lane");
+        viewLane = new JButton("View LaneState.Lane");
         JPanel viewLanePanel = new JPanel();
         viewLanePanel.setLayout(new FlowLayout());
         viewLane.addActionListener(this);
         viewLanePanel.add(viewLane);
 
-        viewPinSetter = new JButton("Pinsetter");
+        viewPinSetter = new JButton("temp.Pinsetter");
         JPanel viewPinSetterPanel = new JPanel();
         viewPinSetterPanel.setLayout(new FlowLayout());
         viewPinSetter.addActionListener(this);

@@ -1,8 +1,8 @@
-
+package LaneState;
 /* $Id$
  *
  * Revisions:
- *   $Log: Lane.java,v $
+ *   $Log: LaneState.Lane.java,v $
  *   Revision 1.52  2003/02/20 20:27:45  ???
  *   Fouls disables.
  *
@@ -16,7 +16,7 @@
  *   Works beautifully.
  *
  *   Revision 1.48  2003/02/20 04:10:58  ???
- *   Score reporting code should be good.
+ *   temp.Score reporting code should be good.
  *
  *   Revision 1.47  2003/02/17 00:25:28  ???
  *   Added disbale controls for View objects.
@@ -46,7 +46,7 @@
  *   added mechnanical problem flag
  *
  *   Revision 1.36  2003/02/16 21:31:04  ???
- *   Score logging.
+ *   temp.Score logging.
  *
  *   Revision 1.35  2003/02/09 21:38:00  ???
  *   Added lots of comments
@@ -64,13 +64,13 @@
  *   Still not quite working...
  *
  *   Revision 1.30  2003/02/04 13:33:04  ???
- *   Lane may very well work now.
+ *   LaneState.Lane may very well work now.
  *
  *   Revision 1.29  2003/02/02 23:57:27  ???
  *   fix on pinsetter hack
  *
  *   Revision 1.28  2003/02/02 23:49:48  ???
- *   Pinsetter generates an event when all pins are reset
+ *   temp.Pinsetter generates an event when all pins are reset
  *
  *   Revision 1.27  2003/02/02 23:26:32  ???
  *   ControlDesk now runs its own thread and polls for free lanes to assign queue members to
@@ -79,10 +79,10 @@
  *   parties can now play more than 1 game on a lane, and lanes are properly released after games
  *
  *   Revision 1.25  2003/02/02 22:52:19  ???
- *   Lane compiles
+ *   LaneState.Lane compiles
  *
  *   Revision 1.24  2003/02/02 22:50:10  ???
- *   Lane compiles
+ *   LaneState.Lane compiles
  *
  *   Revision 1.23  2003/02/02 22:47:34  ???
  *   More observering.
@@ -94,7 +94,7 @@
  *   added conditions for the party choosing to play another game
  *
  *   Revision 1.20  2003/02/02 21:51:54  ???
- *   LaneEvent may very well be observer method.
+ *   temp.LaneEvent may very well be observer method.
  *
  *   Revision 1.19  2003/02/02 20:28:59  ???
  *   fixed sleep thread bug in lane
@@ -109,7 +109,7 @@
  *   Worked on scoring.
  *
  *   Revision 1.15  2003/01/30 21:45:08  ???
- *   Fixed speling of received in Lane.
+ *   Fixed speling of received in LaneState.Lane.
  *
  *   Revision 1.14  2003/01/30 21:29:30  ???
  *   Fixed some MVC stuff
@@ -122,7 +122,7 @@
  *
  *   Revision 1.11  2003/01/26 22:34:44  ???
  *   Total rewrite of lane and pinsetter for R2's observer model
- *   Added Lane/Pinsetter Observer
+ *   Added LaneState.Lane/temp.Pinsetter Observer
  *   Rewrite of scoring algorythm in lane
  *
  *   Revision 1.10  2003/01/26 20:44:05  ???
@@ -131,9 +131,12 @@
  *
  */
 
+import temp.*;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+
 import java.util.Iterator;
 
 public class Lane extends Thread implements PinsetterObserver {
@@ -144,7 +147,6 @@ public class Lane extends Thread implements PinsetterObserver {
 
     private boolean gameIsHalted;
 
-    private boolean partyAssigned;
     private boolean gameFinished;
     private Iterator<Bowler> bowlerIterator;
     private int ball;
@@ -161,7 +163,7 @@ public class Lane extends Thread implements PinsetterObserver {
     private Bowler currentThrower; // = the thrower who just took a throw
 
     /**
-     * Lane()
+     * LaneState.Lane()
      * <p>
      * Constructs a new lane and starts its thread
      */
@@ -171,7 +173,6 @@ public class Lane extends Thread implements PinsetterObserver {
         subscribers = new ArrayList<>();
 
         gameIsHalted = false;
-        partyAssigned = false;
 
         gameNumber = 0;
 
@@ -188,7 +189,7 @@ public class Lane extends Thread implements PinsetterObserver {
     public void run() {
         try {
             while (true) {
-                if (partyAssigned && !gameFinished) { // we have a party on this lane,
+                if (party != null && !gameFinished) { // we have a party on this lane,
                     // so next bower can take a throw
 
                     while (gameIsHalted) {
@@ -233,9 +234,9 @@ public class Lane extends Thread implements PinsetterObserver {
                             gameNumber++;
                         }
                     }
-                } else if (partyAssigned) {
+                } else if (party != null) {
 
-                    EndGamePrompt endGamePrompt = new EndGamePrompt((party.getMembers().get(0)).getNickName() + "'s Party");
+                    EndGamePrompt endGamePrompt = new EndGamePrompt((party.getMembers().get(0)).getNickName() + "'s temp.Party");
                     int result = endGamePrompt.getResult();
                     endGamePrompt.distroy();
 
@@ -249,12 +250,10 @@ public class Lane extends Thread implements PinsetterObserver {
                     } else if (result == 2) {// no, dont want to play another game
                         ArrayList<String> printVector;
                         Bowler bowler = party.getMembers().get(0);
-                        EndGameReport endGameReport = new EndGameReport(bowler.getNickName() + "'s Party", party);
+                        EndGameReport endGameReport = new EndGameReport(bowler.getNickName() + "'s temp.Party", party);
                         printVector = endGameReport.getResult();
-                        partyAssigned = false;
                         Iterator<Bowler> scoreIt = party.getMembers().iterator();
                         party = null;
-                        partyAssigned = false;
 
                         publish(lanePublish());
 
@@ -370,14 +369,13 @@ public class Lane extends Thread implements PinsetterObserver {
      * <p>
      * assigns a party to this lane
      *
-     * @param theParty Party to be assigned
+     * @param theParty temp.Party to be assigned
      *                 pre: none
      *                 post: the party has been assigned to the lane
      */
     public void assignParty(Party theParty) {
         party = theParty;
         resetBowlerIterator();
-        partyAssigned = true;
         int partySize = party.getMembers().size();
         cumuliScores = new int[partySize][10];
         finalScores = new int[partySize][128]; // Hardcoding a max of 128 games, bite me.
@@ -543,7 +541,7 @@ public class Lane extends Thread implements PinsetterObserver {
      * @return true if party assigned, false otherwise
      */
     public boolean isPartyAssigned() {
-        return partyAssigned;
+        return party != null;
     }
 
     /**
@@ -576,7 +574,7 @@ public class Lane extends Thread implements PinsetterObserver {
     }
 
     /**
-     * Accessor to get this Lane's pinsetter
+     * Accessor to get this LaneState.Lane's pinsetter
      *
      * @return A reference to this lane's pinsetter
      */

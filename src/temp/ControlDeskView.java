@@ -1,4 +1,4 @@
-/* ControlDeskView.java
+package temp;/* temp.ControlDeskView.java
  *
  *  Version:
  *			$Id$
@@ -9,6 +9,8 @@
  */
 
 
+import LaneState.Lane;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -17,7 +19,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Vector;
 
 /**
@@ -39,7 +40,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
     private final ControlDesk controlDesk;
 
     /**
-     * Displays a GUI representation of the ControlDesk
+     * Displays a GUI representation of the temp.ControlDesk
      */
     public ControlDeskView(ControlDesk controlDesk, int maxMembers) {
 
@@ -59,7 +60,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
         controlsPanel.setLayout(new GridLayout(3, 1));
         controlsPanel.setBorder(new TitledBorder("Controls"));
 
-        addParty = new JButton("Add Party");
+        addParty = new JButton("Add temp.Party");
         JPanel addPartyPanel = new JPanel();
         addPartyPanel.setLayout(new FlowLayout());
         addParty.addActionListener(this);
@@ -80,10 +81,10 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
         finishedPanel.add(finished);
         controlsPanel.add(finishedPanel);
 
-        // Lane Status Panel
+        // LaneState.Lane Status Panel
         JPanel laneStatusPanel = new JPanel();
         laneStatusPanel.setLayout(new GridLayout(numLanes, 1));
-        laneStatusPanel.setBorder(new TitledBorder("Lane Status"));
+        laneStatusPanel.setBorder(new TitledBorder("LaneState.Lane Status"));
 
         HashSet lanes = controlDesk.getLanes();
         int laneCount = 0;
@@ -94,14 +95,14 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
             curLane.subscribe(laneStat);
             curLane.getPinsetter().subscribe(laneStat);
             JPanel lanePanel = laneStat.showLane();
-            lanePanel.setBorder(new TitledBorder("Lane" + ++laneCount));
+            lanePanel.setBorder(new TitledBorder("LaneState.Lane" + ++laneCount));
             laneStatusPanel.add(lanePanel);
         }
 
-        // Party Queue Panel
+        // temp.Party Queue Panel
         JPanel partyPanel = new JPanel();
         partyPanel.setLayout(new FlowLayout());
-        partyPanel.setBorder(new TitledBorder("Party Queue"));
+        partyPanel.setBorder(new TitledBorder("temp.Party Queue"));
 
         Vector empty = new Vector();
         empty.add("(Empty)");
@@ -161,7 +162,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
     /**
      * Receive a new party from andPartyView.
      *
-     * @param addPartyView the AddPartyView that is providing a new party
+     * @param addPartyView the temp.AddPartyView that is providing a new party
      */
 
     public void updateAddParty(AddPartyView addPartyView) {
@@ -169,9 +170,9 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
     }
 
     /**
-     * Receive a broadcast from a ControlDesk
+     * Receive a broadcast from a temp.ControlDesk
      *
-     * @param ce the ControlDeskEvent that triggered the handler
+     * @param ce the temp.ControlDeskEvent that triggered the handler
      */
 
     public void receiveControlDeskEvent(ControlDeskEvent ce) {

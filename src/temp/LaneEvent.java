@@ -1,7 +1,7 @@
-/*  $Id$
+package temp;/*  $Id$
  *
  *  Revisions:
- *    $Log: LaneEvent.java,v $
+ *    $Log: temp.LaneEvent.java,v $
  *    Revision 1.6  2003/02/16 22:59:34  ???
  *    added mechnanical problem flag
  *
