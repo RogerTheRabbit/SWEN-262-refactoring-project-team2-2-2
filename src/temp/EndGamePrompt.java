@@ -1,4 +1,4 @@
-
+package temp;
 /**
  * To change this generated comment edit the template variable "typecomment":
  * Window>Preferences>Java>Templates.
@@ -18,8 +18,6 @@ public class EndGamePrompt implements ActionListener {
 
     private int result;
 
-    private String selectedNick, selectedMember;
-
     public EndGamePrompt(String partyName) {
 
         result = 0;
@@ -36,15 +34,13 @@ public class EndGamePrompt implements ActionListener {
         labelPanel.setLayout(new FlowLayout());
 
         JLabel message = new JLabel(
-                "Party " + partyName + " has finished bowling.\nWould they like to bowl another game?");
+                "temp.Party " + partyName + " has finished bowling.\nWould they like to bowl another game?");
 
         labelPanel.add(message);
 
         // Button Panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 2));
-
-        Insets buttonMargin = new Insets(4, 4, 4, 4);
 
         yesButton = new JButton("Yes");
         JPanel yesButtonPanel = new JPanel();

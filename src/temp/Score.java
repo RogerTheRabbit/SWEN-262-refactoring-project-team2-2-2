@@ -1,6 +1,8 @@
+package temp;
+
 /**
  * Class meant to hold scores and write those scores to the
- * ScoreHistoryFile
+ * temp.ScoreHistoryFile
  */
 
 public class Score {
@@ -10,7 +12,7 @@ public class Score {
     private String score;
 
     /**
-     * Constructor for Score
+     * Constructor for temp.Score
      * @param nickName: The players nickname
      * @param date: The date the score occurred
      * @param score: The score achieved

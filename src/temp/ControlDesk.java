@@ -1,15 +1,15 @@
-/* ControlDesk.java
+package temp;/* temp.ControlDesk.java
  *
  *  Version:
  *  		$Id$
  *
  *  Revisions:
- * 		$Log: ControlDesk.java,v $
+ * 		$Log: temp.ControlDesk.java,v $
  * 		Revision 1.13  2003/02/02 23:26:32  ???
- * 		ControlDesk now runs its own thread and polls for free lanes to assign queue members to
+ * 		temp.ControlDesk now runs its own thread and polls for free lanes to assign queue members to
  *
  * 		Revision 1.12  2003/02/02 20:46:13  ???
- * 		Added " 's Party" to party names.
+ * 		Added " 's temp.Party" to party names.
  *
  * 		Revision 1.11  2003/02/02 20:43:25  ???
  * 		misc cleanup
@@ -24,10 +24,10 @@
  * 		Updated comments to match javadoc format.
  *
  * 		Revision 1.7  2003/02/02 16:29:52  ???
- * 		Added ControlDeskEvent and ControlDeskObserver. Updated Queue to allow access to Vector so that contents could be viewed without destroying. Implemented observer model for most of ControlDesk.
+ * 		Added temp.ControlDeskEvent and temp.ControlDeskObserver. Updated Queue to allow access to Vector so that contents could be viewed without destroying. Implemented observer model for most of temp.ControlDesk.
  *
  * 		Revision 1.6  2003/02/02 06:09:39  ???
- * 		Updated many classes to support the ControlDeskView.
+ * 		Updated many classes to support the temp.ControlDeskView.
  *
  * 		Revision 1.5  2003/01/26 23:16:10  ???
  * 		Improved thread handeling in lane/controldesk
@@ -39,6 +39,8 @@
  * Class that represents control desk
  */
 
+import LaneState.LaneOriginal;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
@@ -48,7 +50,7 @@ class ControlDesk extends Thread {
     /**
      * The collection of Lanes
      */
-    private final HashSet<Lane> lanes;
+    private final HashSet<LaneOriginal> lanes;
 
     /**
      * The party wait queue
@@ -66,7 +68,7 @@ class ControlDesk extends Thread {
     private final ArrayList<ControlDeskObserver> subscribers;
 
     /**
-     * Constructor for the ControlDesk class
+     * Constructor for the temp.ControlDesk class
      *
      * @param numLanes the number of lanes to be represented
      */
@@ -79,7 +81,7 @@ class ControlDesk extends Thread {
         subscribers = new ArrayList<>();
 
         for (int i = 0; i < numLanes; i++) {
-            lanes.add(new Lane());
+            lanes.add(new LaneOriginal());
         }
 
         this.start();
@@ -87,7 +89,7 @@ class ControlDesk extends Thread {
     }
 
     /**
-     * Main loop for ControlDesk's thread
+     * Main loop for temp.ControlDesk's thread
      */
     public void run() {
         while (true) {
@@ -103,10 +105,10 @@ class ControlDesk extends Thread {
     }
 
     /**
-     * Retrieves a matching Bowler from the bowler database.
+     * Retrieves a matching temp.Bowler from the bowler database.
      *
-     * @param nickName The NickName of the Bowler
-     * @return a Bowler object.
+     * @param nickName The NickName of the temp.Bowler
+     * @return a temp.Bowler object.
      */
 
     private Bowler registerPatron(String nickName) {
@@ -132,10 +134,10 @@ class ControlDesk extends Thread {
      */
 
     public void assignLane() {
-        Iterator<Lane> it = lanes.iterator();
+        Iterator<LaneOriginal> it = lanes.iterator();
 
         while (it.hasNext() && !partyQueue.isEmpty()) {
-            Lane curLane = it.next();
+            LaneOriginal curLane = it.next();
 
             if (!curLane.isPartyAssigned()) {
                 System.out.println("ok... assigning this party");
@@ -175,14 +177,14 @@ class ControlDesk extends Thread {
         Queue<String> displayPartyQueue = new LinkedList<>();
         for (Party party : partyQueue) {
             ArrayList<Bowler> bowlers = party.getMembers();
-            String nextParty = bowlers.get(0).getNickName() + "'s Party";
+            String nextParty = bowlers.get(0).getNickName() + "'s temp.Party";
             displayPartyQueue.add(nextParty);
         }
         return displayPartyQueue;
     }
 
     /**
-     * Accessor for the number of lanes represented by the ControlDesk
+     * Accessor for the number of lanes represented by the temp.ControlDesk
      *
      * @return an int containing the number of lanes represented
      */
@@ -194,7 +196,7 @@ class ControlDesk extends Thread {
     /**
      * Allows objects to subscribe as observers
      *
-     * @param adding the ControlDeskObserver that will be subscribed
+     * @param adding the temp.ControlDeskObserver that will be subscribed
      */
 
     public void subscribe(ControlDeskObserver adding) {
@@ -204,7 +206,7 @@ class ControlDesk extends Thread {
     /**
      * Broadcast an event to subscribing objects.
      *
-     * @param event the ControlDeskEvent to broadcast
+     * @param event the temp.ControlDeskEvent to broadcast
      */
 
     public void publish(ControlDeskEvent event) {
@@ -219,7 +221,7 @@ class ControlDesk extends Thread {
      * @return a HashSet of Lanes
      */
 
-    public HashSet<Lane> getLanes() {
+    public HashSet<LaneOriginal> getLanes() {
         return lanes;
     }
 }

@@ -1,7 +1,9 @@
-/*
- *  constructs a prototype Lane View
+package temp;/*
+ *  constructs a prototype LaneState.Lane View
  *
  */
+
+import LaneState.LaneOriginal;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,13 +29,13 @@ public class LaneView implements LaneObserver, ActionListener {
     JPanel[] pins;
 
     JButton maintenance;
-    Lane lane;
+    LaneOriginal lane;
 
-    public LaneView(Lane lane, int laneNum) {
+    public LaneView(LaneOriginal lane, int laneNum) {
 
         this.lane = lane;
 
-        frame = new JFrame("Lane " + laneNum + ":");
+        frame = new JFrame("LaneState.Lane " + laneNum + ":");
         cPanel = frame.getContentPane();
         cPanel.setLayout(new BorderLayout());
 
@@ -99,7 +101,7 @@ public class LaneView implements LaneObserver, ActionListener {
 
         for (int i = 0; i != numBowlers; i++) {
             pins[i] = new JPanel();
-            pins[i].setBorder(BorderFactory.createTitledBorder(bowlers.get(i).getNick()));
+            pins[i].setBorder(BorderFactory.createTitledBorder(bowlers.get(i).getNickName()));
             pins[i].setLayout(new GridLayout(0, 10));
             for (int k = 0; k != 10; k++) {
                 scores[i][k] = new JPanel();
