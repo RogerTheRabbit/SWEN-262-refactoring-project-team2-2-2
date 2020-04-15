@@ -1,9 +1,6 @@
 package LaneState;
 
-import temp.LaneEvent;
-import temp.LaneObserver;
-import temp.Party;
-import temp.Pinsetter;
+import temp.*;
 
 public class Finished implements LaneStatus {
     private Lane lane;
@@ -95,6 +92,6 @@ public class Finished implements LaneStatus {
 
     @Override
     public boolean isGameFinished() {
-        return false;
+        return true;
     }
 }

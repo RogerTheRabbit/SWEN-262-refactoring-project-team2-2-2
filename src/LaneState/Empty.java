@@ -54,7 +54,7 @@ public class Empty implements LaneStatus {
 
     @Override
     public boolean isGameFinished() {
-        return false;
+        return true;
     }
     
     /**

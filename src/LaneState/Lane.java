@@ -140,29 +140,29 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class Lane extends Thread implements PinsetterObserver {
-    private Party party;
-    private final Pinsetter setter;
-    private final HashMap<Bowler, int[]> scores;
-    private final ArrayList<LaneObserver> subscribers;
+    protected Party party;
+    protected final Pinsetter setter;
+    protected final HashMap<Bowler, int[]> scores;
+    protected final ArrayList<LaneObserver> subscribers;
 
-    private boolean gameIsHalted;
+    protected boolean gameIsHalted;
 
-    private boolean gameFinished;
-    private Iterator<Bowler> bowlerIterator;
-    private int ball;
-    private int bowlIndex;
-    private int frameNumber;
-    private boolean tenthFrameStrike;
+    protected boolean gameFinished;
+    protected Iterator<Bowler> bowlerIterator;
+    protected int ball;
+    protected int bowlIndex;
+    protected int frameNumber;
+    protected boolean tenthFrameStrike;
 
-    private int[][] cumuliScores;
-    private boolean canThrowAgain;
+    protected int[][] cumuliScores;
+    protected boolean canThrowAgain;
 
-    private int[][] finalScores;
-    private int gameNumber;
+    protected int[][] finalScores;
+    protected int gameNumber;
 
-    private Bowler currentThrower; // = the thrower who just took a throw
+    protected Bowler currentThrower; // = the thrower who just took a throw
 
-    private LaneStatus laneStatus;
+    protected LaneStatus laneStatus;
 
     /**
      * LaneState.Lane()
@@ -191,6 +191,11 @@ public class Lane extends Thread implements PinsetterObserver {
     public void run() {
         try {
             while (true) {
+                try {
+                    sleep(10);
+                } catch (Exception ignored) {
+                }
+                laneStatus.run();
                 if (party != null && !gameFinished) { // we have a party on this lane,
                     // so next bower can take a throw
 

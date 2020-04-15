@@ -16,10 +16,6 @@ public class Maintenance implements LaneStatus {
 
     @Override
     public void run() {
-        try {
-            sleep(10);
-        } catch (Exception ignored) {
-        }
     }
 
     @Override

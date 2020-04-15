@@ -1,9 +1,8 @@
 package LaneState;
 
-import temp.LaneEvent;
-import temp.LaneObserver;
-import temp.Party;
-import temp.Pinsetter;
+import temp.*;
+
+import java.util.Date;
 
 import static java.lang.Thread.sleep;
 
@@ -27,7 +26,7 @@ public class Running implements LaneStatus {
                 ball++;
             }
 
-            if (frameNumber == 9) {
+            if (lane.frameNumber == 9) {
                 finalScores[bowlIndex][gameNumber] = cumuliScores[bowlIndex][9];
 
                 Date date = new Date();
@@ -50,10 +49,6 @@ public class Running implements LaneStatus {
                 gameFinished = true;
                 gameNumber++;
             }
-        }
-        try {
-            sleep(10);
-        } catch (Exception ignored) {
         }
     }
 
@@ -122,7 +117,7 @@ public class Running implements LaneStatus {
 
     @Override
     public void maintenanceCallToggle() {
-
+        lane.setStatus(new Maintenance(lane));
     }
 
     @Override
@@ -144,12 +139,12 @@ public class Running implements LaneStatus {
         int[] curScore;
         int index = ((frame - 1) * 2 + ball);
 
-        curScore = scores.get(currentBowler);
+        curScore = lane.scores.get(currentBowler);
 
         curScore[index - 1] = score;
-        scores.put(currentBowler, curScore);
+        lane.scores.put(currentBowler, curScore);
         getScore(currentBowler, frame);
-        publish(lanePublish());
+        publish(lane.lanePublish());
     }
 
     /**
