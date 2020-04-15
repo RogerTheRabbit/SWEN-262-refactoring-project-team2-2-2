@@ -6,7 +6,7 @@ package temp;
  * Window>Preferences>Java>Code Generation.
  */
 
-import LaneState.LaneOriginal;
+import LaneState.Lane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,13 +26,13 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 
     private final PinSetterView psv;
     private final LaneView lv;
-    private final LaneOriginal lane;
+    private final Lane lane;
     int laneNum;
 
     boolean laneShowing;
     boolean psShowing;
 
-    public LaneStatusView(LaneOriginal lane, int laneNum) {
+    public LaneStatusView(Lane lane, int laneNum) {
 
         this.lane = lane;
         this.laneNum = laneNum;
