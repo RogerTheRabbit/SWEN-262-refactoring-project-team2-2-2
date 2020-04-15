@@ -4,15 +4,16 @@ import temp.LaneEvent;
 import temp.LaneObserver;
 import temp.Party;
 import temp.Pinsetter;
+import temp.PinsetterEvent;
 
 public interface LaneStatus {
-    public void run();
-    public void receivePinsetterEvent();
-    public void assignParty(Party theParty);
-    public boolean isPartyAssigned();
-    public void subscribe(LaneObserver adding);
-    public void publish(LaneEvent event);
-    public Pinsetter getPinsetter();
-    public void maintenanceCallToggle();
-    public boolean isGameFinished();
+    void run();
+    void receivePinsetterEvent(PinsetterEvent pinsetterEvent);
+    void assignParty(Party theParty);
+    boolean isPartyAssigned();
+    void subscribe(LaneObserver adding);
+    void publish(LaneEvent event);
+    Pinsetter getPinsetter();
+    void maintenanceCallToggle();
+    boolean isGameFinished();
 }
