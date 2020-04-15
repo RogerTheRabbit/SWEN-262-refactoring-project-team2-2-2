@@ -302,7 +302,7 @@ public class Lane extends Thread implements PinsetterObserver {
      *                       post: the event has been acted upon if desired
      */
     public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
-        receivePinsetterEvent(pinsetterEvent);
+        laneStatus.receivePinsetterEvent(pinsetterEvent);
         publish(lanePublish());
         
         // TODO: SHOULD THIS BE IN ALL LANESTATUS'S SINCE THERE ARE NO PREREQUISITES?

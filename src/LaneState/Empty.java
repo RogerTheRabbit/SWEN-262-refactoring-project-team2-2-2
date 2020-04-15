@@ -30,7 +30,7 @@ public class Empty implements LaneStatus {
         lane.finalScores = new int[partySize][128]; // Hardcoding a max of 128 games, bite me.
         lane.gameNumber = 0;
 
-        lane.resetScores();
+        resetScores();
         lane.setStatus(new Running(lane));
     }
 
@@ -46,24 +46,12 @@ public class Empty implements LaneStatus {
 
     @Override
     public void maintenanceCallToggle() {
-        lane.setStatus(new Running(lane));
+
     }
 
     @Override
     public boolean isGameFinished() {
         return true;
-    }
-
-    /**
-     * resetBowlerIterator()
-     * <p>
-     * sets the current bower iterator back to the first bowler
-     * <p>
-     * pre: the party as been assigned
-     * post: the iterator points to the first bowler in the party
-     */
-    private void resetBowlerIterator() {
-        lane.bowlerIterator = lane.party.getMembers().iterator();
     }
 
     /**
