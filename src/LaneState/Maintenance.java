@@ -5,6 +5,8 @@ import temp.LaneObserver;
 import temp.Party;
 import temp.Pinsetter;
 
+import static java.lang.Thread.sleep;
+
 public class Maintenance implements LaneStatus {
     private Lane lane;
 
@@ -14,7 +16,10 @@ public class Maintenance implements LaneStatus {
 
     @Override
     public void run() {
-
+        try {
+            sleep(10);
+        } catch (Exception ignored) {
+        }
     }
 
     @Override
@@ -49,7 +54,7 @@ public class Maintenance implements LaneStatus {
 
     @Override
     public void maintenanceCallToggle() {
-
+        lane.setStatus(new Running(lane));
     }
 
     @Override

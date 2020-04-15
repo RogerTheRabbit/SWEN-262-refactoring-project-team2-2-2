@@ -29,7 +29,7 @@ public class Empty implements LaneStatus {
 
     @Override
     public boolean isPartyAssigned() {
-        return false;
+        return false;  // Empty means there is no part assigned.
     }
 
     @Override
@@ -55,5 +55,39 @@ public class Empty implements LaneStatus {
     @Override
     public boolean isGameFinished() {
         return false;
+    }
+    
+    /**
+     * resetBowlerIterator()
+     * <p>
+     * sets the current bower iterator back to the first bowler
+     * <p>
+     * pre: the party as been assigned
+     * post: the iterator points to the first bowler in the party
+     */
+    private void resetBowlerIterator() {
+        bowlerIterator = party.getMembers().iterator();
+    }
+
+    /**
+     * resetScores()
+     * <p>
+     * resets the scoring mechanism, must be called before scoring starts
+     * <p>
+     * pre: the party has been assigned
+     * post: scoring system is initialized
+     */
+    private void resetScores() {
+
+        for (Bowler o : party.getMembers()) {
+            int[] toPut = new int[25];
+            for (int i = 0; i != 25; i++) {
+                toPut[i] = -1;
+            }
+            scores.put(o, toPut);
+        }
+
+        gameFinished = false;
+        frameNumber = 0;
     }
 }
