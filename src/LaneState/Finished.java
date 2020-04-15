@@ -74,11 +74,6 @@ public class Finished implements LaneStatus {
     }
 
     @Override
-    public void subscribe(LaneObserver adding) {
-
-    }
-
-    @Override
     public Pinsetter getPinsetter() {
         return null;
     }

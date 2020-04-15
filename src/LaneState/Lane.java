@@ -140,7 +140,6 @@ import java.util.Iterator;
 public class Lane extends Thread implements PinsetterObserver {
     private LaneStatus laneStatus;
 
-    // Ye Olden Fields
     protected Party party;
     protected final Pinsetter setter;
     protected ScoreMediator scores;
@@ -303,7 +302,7 @@ public class Lane extends Thread implements PinsetterObserver {
      *                       post: the event has been acted upon if desired
      */
     public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
-        laneStatus.receivePinsetterEvent(pinsetterEvent);
+        receivePinsetterEvent(pinsetterEvent);
         publish(lanePublish());
         
         // TODO: SHOULD THIS BE IN ALL LANESTATUS'S SINCE THERE ARE NO PREREQUISITES?

@@ -37,16 +37,15 @@ package temp;
  *
  */
 
-/**
- * Class that represents control desk
- */
-
 import LaneState.Lane;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Class that represents control desk
+ */
 class ControlDesk extends Thread {
 
     /**
@@ -148,7 +147,6 @@ class ControlDesk extends Thread {
         }
         publish(new ControlDeskEvent(getPartyQueue()));
     }
-
 
 
     /**
