@@ -162,6 +162,8 @@ public class Lane extends Thread implements PinsetterObserver {
 
     private Bowler currentThrower; // = the thrower who just took a throw
 
+    private LaneStatus laneStatus;
+
     /**
      * LaneState.Lane()
      * <p>
@@ -591,5 +593,9 @@ public class Lane extends Thread implements PinsetterObserver {
     public void unPauseGame() {
         gameIsHalted = false;
         publish(lanePublish());
+    }
+
+    public void setStatus(LaneStatus status){
+        laneStatus = status;
     }
 }
