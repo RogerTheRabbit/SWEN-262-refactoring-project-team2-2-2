@@ -1,8 +1,11 @@
 package LaneState;
 
+import temp.Bowler;
 import temp.Party;
 import temp.Pinsetter;
 import temp.PinsetterEvent;
+
+import java.util.ArrayList;
 
 public class Empty implements LaneStatus {
     private final Lane lane;
@@ -28,6 +31,10 @@ public class Empty implements LaneStatus {
         int partySize = lane.party.getMembers().size();
         lane.cumuliScores = new int[partySize][10];
         lane.finalScores = new int[partySize][128]; // Hardcoding a max of 128 games, bite me.
+        ArrayList<Bowler> bowlers = theParty.getMembers();
+        for(int i = 0; i < bowlers.size(); i++){
+            lane.scores.addPlayer(bowlers.get(i));
+        }
         lane.gameNumber = 0;
 
         resetScores();
