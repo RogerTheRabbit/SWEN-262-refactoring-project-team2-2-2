@@ -1,4 +1,6 @@
-package temp;/* temp.BowlerFile.java
+package temp;
+
+/* temp.BowlerFile.java
  *
  *  Version:
  *  		$Id$

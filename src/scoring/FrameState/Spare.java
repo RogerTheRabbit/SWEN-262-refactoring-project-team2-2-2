@@ -30,10 +30,7 @@ public class Spare implements FrameStatus {
      */
     @Override
     public int getScore() {
-        if(scores[2] != -1){
-            return 10 + (2 * scores[2]);
-        }
-        return 10;
+        return 10 + scores[2];
     }
 
     /**
@@ -45,6 +42,6 @@ public class Spare implements FrameStatus {
     @Override
     public void addBall(int ball) {
         scores[2] = ball;
-        frame.setStatus(new PointsFinished(frame, scores));
+        frame.setStatus(new PointsFinished(frame, scores, this.getScore()));
     }
 }

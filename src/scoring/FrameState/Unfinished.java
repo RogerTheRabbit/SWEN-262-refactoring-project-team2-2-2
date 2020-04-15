@@ -59,7 +59,7 @@ public class Unfinished implements FrameStatus {
             if(this.getScore() == 10){
                 frame.setStatus(new Spare(frame, scores[0], scores[1]));
             }else{
-                frame.setStatus(new PointsFinished(frame, scores));
+                frame.setStatus(new PointsFinished(frame, scores, this.getScore()));
             }
         }
     }
