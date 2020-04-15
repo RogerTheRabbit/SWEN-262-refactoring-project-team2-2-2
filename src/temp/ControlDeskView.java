@@ -86,7 +86,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
         laneStatusPanel.setLayout(new GridLayout(numLanes, 1));
         laneStatusPanel.setBorder(new TitledBorder("LaneState.Lane Status"));
 
-        HashSet lanes = controlDesk.getLanes();
+        HashSet<Lane> lanes = controlDesk.getLanes();
         int laneCount = 0;
 
         for (Object lane : lanes) {
@@ -104,10 +104,10 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
         partyPanel.setLayout(new FlowLayout());
         partyPanel.setBorder(new TitledBorder("temp.Party Queue"));
 
-        Vector empty = new Vector();
+        Vector<String> empty = new Vector<>();
         empty.add("(Empty)");
 
-        partyList = new JList(empty);
+        partyList = new JList<>(empty);
         partyList.setFixedCellWidth(120);
         partyList.setVisibleRowCount(10);
         JScrollPane partyPane = new JScrollPane(partyList);
@@ -176,7 +176,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
      */
 
     public void receiveControlDeskEvent(ControlDeskEvent ce) {
-        Vector party = new Vector();
+        Vector<String> party = new Vector<>();
         party.addAll(ce.getPartyQueue());
         partyList.setListData(party);
     }
