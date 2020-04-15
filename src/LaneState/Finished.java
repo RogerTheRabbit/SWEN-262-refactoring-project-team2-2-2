@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Finished implements LaneStatus {
-    private Lane lane;
+    private final Lane lane;
 
     public Finished(Lane lane) {
         this.lane = lane;
@@ -58,14 +58,7 @@ public class Finished implements LaneStatus {
 
     @Override
     public void assignParty(Party theParty) {
-        party = theParty;
-        resetBowlerIterator();
-        int partySize = party.getMembers().size();
-        cumuliScores = new int[partySize][10];
-        finalScores = new int[partySize][128]; // Hardcoding a max of 128 games, bite me.
-        gameNumber = 0;
 
-        resetScores();
     }
 
     @Override

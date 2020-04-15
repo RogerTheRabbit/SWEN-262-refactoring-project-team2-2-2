@@ -1,11 +1,11 @@
 package LaneState;
 
-import temp.*;
-
-import static java.lang.Thread.sleep;
+import temp.Party;
+import temp.Pinsetter;
+import temp.PinsetterEvent;
 
 public class Maintenance implements LaneStatus {
-    private Lane lane;
+    private final Lane lane;
 
     public Maintenance(Lane lane) {
         this.lane = lane;
@@ -28,11 +28,6 @@ public class Maintenance implements LaneStatus {
     @Override
     public boolean isPartyAssigned() {
         return false;
-    }
-
-    @Override
-    public void subscribe(LaneObserver adding) {
-
     }
 
     @Override

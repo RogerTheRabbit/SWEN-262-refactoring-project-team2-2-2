@@ -2,6 +2,7 @@ package LaneState;
 
 import temp.Party;
 import temp.Pinsetter;
+import temp.PinsetterEvent;
 
 public class Empty implements LaneStatus {
     private final Lane lane;
@@ -16,8 +17,20 @@ public class Empty implements LaneStatus {
     }
 
     @Override
+    public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
+
+    }
+
+    @Override
     public void assignParty(Party theParty) {
         lane.party = theParty;
+        lane.resetBowlerIterator();
+        int partySize = lane.party.getMembers().size();
+        lane.cumuliScores = new int[partySize][10];
+        lane.finalScores = new int[partySize][128]; // Hardcoding a max of 128 games, bite me.
+        lane.gameNumber = 0;
+
+        lane.resetScores();
         lane.setStatus(new Running(lane));
     }
 
