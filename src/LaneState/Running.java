@@ -5,10 +5,13 @@ import temp.*;
 import java.util.Date;
 
 public class Running implements LaneStatus {
+    private boolean canThrowAgain;
+
     private final Lane lane;
 
     public Running(Lane lane) {
         this.lane = lane;
+        lane.gameIsHalted = false;
     }
 
     @Override
@@ -16,10 +19,10 @@ public class Running implements LaneStatus {
         if (lane.bowlerIterator.hasNext()) {
             lane.currentThrower = lane.bowlerIterator.next();
 
-            lane.canThrowAgain = true;
+            canThrowAgain = true;
             lane.tenthFrameStrike = false;
             lane.ball = 0;
-            while (lane.canThrowAgain) {
+            while (canThrowAgain) {
                 lane.setter.ballThrown(); // simulate the thrower's ball hitting
                 lane.ball++;
             }
@@ -69,21 +72,21 @@ public class Running implements LaneStatus {
                 }
 
                 if ((pinsetterEvent.totalPinsDown() != 10) && (pinsetterEvent.getThrowNumber() == 2 && !lane.tenthFrameStrike)) {
-                    lane.canThrowAgain = false;
+                    canThrowAgain = false;
                     // publish( lanePublish() );
                 }
 
                 if (pinsetterEvent.getThrowNumber() == 3) {
-                    lane.canThrowAgain = false;
+                    canThrowAgain = false;
                     // publish( lanePublish() );
                 }
             } else { // its not the 10th frame
 
                 if (pinsetterEvent.pinsDownOnThisThrow() == 10) { // threw a strike
-                    lane.canThrowAgain = false;
+                    canThrowAgain = false;
                     // publish( lanePublish() );
                 } else if (pinsetterEvent.getThrowNumber() == 2) {
-                    lane.canThrowAgain = false;
+                    canThrowAgain = false;
                     // publish( lanePublish() );
                 } else if (pinsetterEvent.getThrowNumber() == 3)
                     System.out.println("I'm here...");

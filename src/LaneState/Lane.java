@@ -155,7 +155,6 @@ public class Lane extends Thread implements PinsetterObserver {
     protected boolean tenthFrameStrike;
 
     protected int[][] cumuliScores;
-    protected boolean canThrowAgain;
 
     protected int[][] finalScores;
     protected int gameNumber;
@@ -304,43 +303,6 @@ public class Lane extends Thread implements PinsetterObserver {
     public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
         laneStatus.receivePinsetterEvent(pinsetterEvent);
         publish(lanePublish());
-        
-        // TODO: SHOULD THIS BE IN ALL LANESTATUS'S SINCE THERE ARE NO PREREQUISITES?
-        // Moved to Running.recievePinsetterEvent
-        // if (pinsetterEvent.pinsDownOnThisThrow() >= 0) { // this is a real throw
-        //     markScore(currentThrower, frameNumber + 1, pinsetterEvent.getThrowNumber(), pinsetterEvent.pinsDownOnThisThrow());
-
-        //     // next logic handles the ?: what conditions dont allow them another throw?
-        //     // handle the case of 10th frame first
-        //     if (frameNumber == 9) {
-        //         if (pinsetterEvent.totalPinsDown() == 10) {
-        //             setter.resetPins();
-        //             if (pinsetterEvent.getThrowNumber() == 1) {
-        //                 tenthFrameStrike = true;
-        //             }
-        //         }
-
-        //         if ((pinsetterEvent.totalPinsDown() != 10) && (pinsetterEvent.getThrowNumber() == 2 && !tenthFrameStrike)) {
-        //             canThrowAgain = false;
-        //             // publish( lanePublish() );
-        //         }
-
-        //         if (pinsetterEvent.getThrowNumber() == 3) {
-        //             canThrowAgain = false;
-        //             // publish( lanePublish() );
-        //         }
-        //     } else { // its not the 10th frame
-
-        //         if (pinsetterEvent.pinsDownOnThisThrow() == 10) { // threw a strike
-        //             canThrowAgain = false;
-        //             // publish( lanePublish() );
-        //         } else if (pinsetterEvent.getThrowNumber() == 2) {
-        //             canThrowAgain = false;
-        //             // publish( lanePublish() );
-        //         } else if (pinsetterEvent.getThrowNumber() == 3)
-        //             System.out.println("I'm here...");
-        //     }
-        // }
     }
 
      /**

@@ -9,6 +9,7 @@ public class Maintenance implements LaneStatus {
 
     public Maintenance(Lane lane) {
         this.lane = lane;
+        lane.gameIsHalted = true;
     }
 
     @Override
