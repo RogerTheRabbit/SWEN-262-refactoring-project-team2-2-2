@@ -9,8 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Vector;
 
 /**
  * To change this generated comment edit the template variable "typecomment":
@@ -50,7 +48,7 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
             bowlerNames.add(bowler.getNickName());
         }
 
-        memberList = new JList(bowlerNames.toArray());
+        memberList = new JList<>(bowlerNames.toArray());
         memberList.setFixedCellWidth(120);
         memberList.setVisibleRowCount(5);
         memberList.addListSelectionListener(this);
@@ -64,8 +62,6 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
         // Button Panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2, 1));
-
-        Insets buttonMargin = new Insets(4, 4, 4, 4);
 
         printButton = new JButton("Print Report");
         JPanel printButtonPanel = new JPanel();

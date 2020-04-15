@@ -32,7 +32,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  * Constructor for GUI used to Add Parties to the waiting party queue.
@@ -75,7 +74,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
         String[] emptyArray = new String[empty.size()];
         emptyArray = empty.toArray(emptyArray);
-        partyList = new JList(emptyArray);
+        partyList = new JList<>(emptyArray);
         partyList.setFixedCellWidth(120);
         partyList.setVisibleRowCount(5);
         partyList.addListSelectionListener(this);
@@ -96,7 +95,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
         }
         String[] bowlerArray = new String[bowlerdb.size()];
         bowlerArray = bowlerdb.toArray(bowlerArray);
-        allBowlers = new JList(bowlerArray);
+        allBowlers = new JList<>(bowlerArray);
         allBowlers.setVisibleRowCount(8);
         allBowlers.setFixedCellWidth(120);
         JScrollPane bowlerPane = new JScrollPane(allBowlers);
@@ -107,8 +106,6 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
         // Button Panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4, 1));
-
-        Insets buttonMargin = new Insets(4, 4, 4, 4);
 
         addPatron = new JButton("Add to Party");
         JPanel addPatronPanel = new JPanel();
