@@ -38,11 +38,6 @@ public class Empty implements LaneStatus {
     }
 
     @Override
-    public void publish(LaneEvent event) {
-
-    }
-
-    @Override
     public Pinsetter getPinsetter() {
         return null;
     }

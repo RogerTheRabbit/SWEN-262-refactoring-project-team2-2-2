@@ -135,13 +135,10 @@ import scoring.FrameMediator.ScoreMediator;
 import temp.*;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-
 import java.util.Iterator;
 
 public class Lane extends Thread implements PinsetterObserver {
-    private LaneStatus currentState;
+    private LaneStatus laneStatus;
 
     // Ye Olden Fields
     protected Party party;
@@ -166,8 +163,6 @@ public class Lane extends Thread implements PinsetterObserver {
 
     protected Bowler currentThrower; // = the thrower who just took a throw
 
-    protected LaneStatus laneStatus;
-
     /**
      * LaneState.Lane()
      * <p>
@@ -190,7 +185,7 @@ public class Lane extends Thread implements PinsetterObserver {
     }
 
     void setCurrentState(LaneStatus laneStatus) {
-        currentState = laneStatus;
+        this.laneStatus = laneStatus;
     }
 
     /**
@@ -218,7 +213,6 @@ public class Lane extends Thread implements PinsetterObserver {
                     //     } catch (Exception ignored) {
                     //     }
                     // }
-
 
 
                     // Moved to Running.run()
@@ -258,7 +252,7 @@ public class Lane extends Thread implements PinsetterObserver {
                     //     }
                     // }
                 } else if (party != null) {
-                    
+
                     // Moved to Finished.run()
                     // EndGamePrompt endGamePrompt = new EndGamePrompt((party.getMembers().get(0)).getNickName() + "'s temp.Party");
                     // int result = endGamePrompt.getResult();
@@ -318,8 +312,8 @@ public class Lane extends Thread implements PinsetterObserver {
      *                       post: the event has been acted upon if desired
      */
     public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
-        
-        
+
+
         // TODO: SHOULD THIS BE IN ALL LANESTATUS'S SINCE THERE ARE NO PREREQUISITES?
         // Moved to Running.recievePinsetterEvent
         // if (pinsetterEvent.pinsDownOnThisThrow() >= 0) { // this is a real throw
@@ -357,7 +351,7 @@ public class Lane extends Thread implements PinsetterObserver {
         //     }
         // }
     }
-    
+
     // Moved to Empty
     // /**
     //  * resetBowlerIterator()
@@ -405,7 +399,7 @@ public class Lane extends Thread implements PinsetterObserver {
      *                 post: the party has been assigned to the lane
      */
     public void assignParty(Party theParty) {
-         laneStatus.assignParty(theParty);
+        laneStatus.assignParty(theParty);
     }
 
     // Moved to Running
@@ -442,26 +436,27 @@ public class Lane extends Thread implements PinsetterObserver {
     }
 
     // Moved to Running
-     /**
-      * Method that calculates a bowlers score
-      *
-      * @param currentBowler The bowler that is currently up
-      * @param frame         The frame the current bowler is on
-      */
-     private void getScore(Bowler currentBowler, int frame) {
-         cumuliScores[bowlIndex] = scores.getFramePoints(currentBowler);
-     }
 
-     /**
-      * isPartyAssigned()
-      * <p>
-      * checks if a party is assigned to this lane
-      *
-      * @return true if party assigned, false otherwise
-      */
-     public boolean isPartyAssigned() {
-         return laneStatus.isPartyAssigned();
-     }
+    /**
+     * Method that calculates a bowlers score
+     *
+     * @param currentBowler The bowler that is currently up
+     * @param frame         The frame the current bowler is on
+     */
+    private void getScore(Bowler currentBowler, int frame) {
+        cumuliScores[bowlIndex] = scores.getFramePoints(currentBowler);
+    }
+
+    /**
+     * isPartyAssigned()
+     * <p>
+     * checks if a party is assigned to this lane
+     *
+     * @return true if party assigned, false otherwise
+     */
+    public boolean isPartyAssigned() {
+        return laneStatus.isPartyAssigned();
+    }
 
     /**
      * subscribe
@@ -498,11 +493,11 @@ public class Lane extends Thread implements PinsetterObserver {
         return setter;
     }
 
-    public void maintenanceCallToggle(){
+    public void maintenanceCallToggle() {
         laneStatus.maintenanceCallToggle();
     }
 
-    public void setStatus(LaneStatus status){
+    public void setStatus(LaneStatus status) {
         laneStatus = status;
     }
 }

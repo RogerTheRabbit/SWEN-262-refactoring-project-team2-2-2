@@ -76,11 +76,6 @@ public class Finished implements LaneStatus {
     }
 
     @Override
-    public void publish(LaneEvent event) {
-
-    }
-
-    @Override
     public Pinsetter getPinsetter() {
         return null;
     }
