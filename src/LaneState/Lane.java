@@ -131,6 +131,7 @@ package LaneState;
  *
  */
 
+import scoring.FrameMediator.ScoreMediator;
 import temp.*;
 
 import java.util.ArrayList;
@@ -145,7 +146,7 @@ public class Lane extends Thread implements PinsetterObserver {
     // Ye Olden Fields
     protected Party party;
     protected final Pinsetter setter;
-    protected final HashMap<Bowler, int[]> scores;
+    protected ScoreMediator scores;
     protected final ArrayList<LaneObserver> subscribers;
 
     protected boolean gameIsHalted;
@@ -174,7 +175,7 @@ public class Lane extends Thread implements PinsetterObserver {
      */
     public Lane() {
         setter = new Pinsetter();
-        scores = new HashMap<>();
+        scores = new ScoreMediator();
         subscribers = new ArrayList<>();
 
         gameIsHalted = false;
@@ -182,6 +183,8 @@ public class Lane extends Thread implements PinsetterObserver {
         gameNumber = 0;
 
         setter.subscribe(this);
+
+        laneStatus = new Empty(this);
 
         this.start();
     }
@@ -402,14 +405,7 @@ public class Lane extends Thread implements PinsetterObserver {
      *                 post: the party has been assigned to the lane
      */
     public void assignParty(Party theParty) {
-        // Moved to Finished.assignParty()
-        // party = theParty;
-        // resetBowlerIterator();
-        // int partySize = party.getMembers().size();
-        // cumuliScores = new int[partySize][10];
-        // finalScores = new int[partySize][128]; // Hardcoding a max of 128 games, bite me.
-        // gameNumber = 0;
-        // resetScores();
+         laneStatus.assignParty(theParty);
     }
 
     // Moved to Running
@@ -446,124 +442,26 @@ public class Lane extends Thread implements PinsetterObserver {
     }
 
     // Moved to Running
-    // /**
-    //  * Method that calculates a bowlers score
-    //  *
-    //  * @param currentBowler The bowler that is currently up
-    //  * @param frame         The frame the current bowler is on
-    //  */
-    // private void getScore(Bowler currentBowler, int frame) {
-    //     int[] curScore;
-    //     int strikeballs;
-    //     curScore = scores.get(currentBowler);
-    //     for (int i = 0; i != 10; i++) {
-    //         cumuliScores[bowlIndex][i] = 0;
-    //     }
-    //     int current = 2 * (frame - 1) + ball - 1;
-    //     // Iterate through each ball until the current one.
-    //     for (int i = 0; i != current + 2; i++) {
-    //         // Spare:
-    //         if (i % 2 == 1 && curScore[i - 1] + curScore[i] == 10 && i < current - 1 && i < 19) {
-    //             // This ball was a the second of a spare.
-    //             // Also, we're not on the current ball.
-    //             // Add the next ball to the ith one in cumul.
-    //             cumuliScores[bowlIndex][(i / 2)] += curScore[i + 1] + curScore[i];
-    //         } else if (i < current && i % 2 == 0 && curScore[i] == 10 && i < 18) {
-    //             strikeballs = 0;
-    //             // This ball is the first ball, and was a strike.
-    //             // If we can get 2 balls after it, good add them to cumul.
-    //             if (curScore[i + 2] != -1) {
-    //                 strikeballs = 1;
-    //                 if (curScore[i + 3] != -1) {
-    //                     // Still got em.
-    //                     strikeballs = 2;
-    //                 } else if (curScore[i + 4] != -1) {
-    //                     // Ok, got it.
-    //                     strikeballs = 2;
-    //                 }
-    //             }
-    //             if (strikeballs == 2) {
-    //                 // Add up the strike.
-    //                 // Add the next two balls to the current cumulScore.
-    //                 cumuliScores[bowlIndex][i / 2] += 10;
-    //                 if (curScore[i + 1] != -1) {
-    //                     cumuliScores[bowlIndex][i / 2] += curScore[i + 1] + cumuliScores[bowlIndex][(i / 2) - 1];
-    //                     if (curScore[i + 2] != -1) {
-    //                         if (curScore[i + 2] != -2) {
-    //                             cumuliScores[bowlIndex][(i / 2)] += curScore[i + 2];
-    //                         }
-    //                     } else {
-    //                         if (curScore[i + 3] != -2) {
-    //                             cumuliScores[bowlIndex][(i / 2)] += curScore[i + 3];
-    //                         }
-    //                     }
-    //                 } else {
-    //                     if (i / 2 > 0) {
-    //                         cumuliScores[bowlIndex][i / 2] += curScore[i + 2] + cumuliScores[bowlIndex][(i / 2) - 1];
-    //                     } else {
-    //                         cumuliScores[bowlIndex][i / 2] += curScore[i + 2];
-    //                     }
-    //                     if (curScore[i + 3] != -1) {
-    //                         if (curScore[i + 3] != -2) {
-    //                             cumuliScores[bowlIndex][(i / 2)] += curScore[i + 3];
-    //                         }
-    //                     } else {
-    //                         cumuliScores[bowlIndex][(i / 2)] += curScore[i + 4];
-    //                     }
-    //                 }
-    //             } else {
-    //                 break;
-    //             }
-    //         } else {
-    //             // We're dealing with a normal throw, add it and be on our way.
-    //             if (i % 2 == 0 && i < 18) {
-    //                 if (i / 2 == 0) {
-    //                     // First frame, first ball. Set his cumul score to the first ball
-    //                     if (curScore[i] != -2) {
-    //                         cumuliScores[bowlIndex][i / 2] += curScore[i];
-    //                     }
-    //                 } else {
-    //                     // add his last frame's cumul to this ball, make it this frame's cumul.
-    //                     if (curScore[i] != -2) {
-    //                         cumuliScores[bowlIndex][i / 2] += cumuliScores[bowlIndex][i / 2 - 1] + curScore[i];
-    //                     } else {
-    //                         cumuliScores[bowlIndex][i / 2] += cumuliScores[bowlIndex][i / 2 - 1];
-    //                     }
-    //                 }
-    //             } else if (i < 18) {
-    //                 if (curScore[i] != -1 && i > 2) {
-    //                     if (curScore[i] != -2) {
-    //                         cumuliScores[bowlIndex][i / 2] += curScore[i];
-    //                     }
-    //                 }
-    //             }
-    //             if (i / 2 == 9) {
-    //                 if (i == 18) {
-    //                     cumuliScores[bowlIndex][9] += cumuliScores[bowlIndex][8];
-    //                 }
-    //                 if (curScore[i] != -2) {
-    //                     cumuliScores[bowlIndex][9] += curScore[i];
-    //                 }
-    //             } else if (i / 2 == 10) {
-    //                 if (curScore[i] != -2) {
-    //                     cumuliScores[bowlIndex][9] += curScore[i];
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+     /**
+      * Method that calculates a bowlers score
+      *
+      * @param currentBowler The bowler that is currently up
+      * @param frame         The frame the current bowler is on
+      */
+     private void getScore(Bowler currentBowler, int frame) {
+         cumuliScores[bowlIndex] = scores.getFramePoints(currentBowler);
+     }
 
-    // Not needed
-    // /**
-    //  * isPartyAssigned()
-    //  * <p>
-    //  * checks if a party is assigned to this lane
-    //  *
-    //  * @return true if party assigned, false otherwise
-    //  */
-    // public boolean isPartyAssigned() {
-    //     return party != null;
-    // }
+     /**
+      * isPartyAssigned()
+      * <p>
+      * checks if a party is assigned to this lane
+      *
+      * @return true if party assigned, false otherwise
+      */
+     public boolean isPartyAssigned() {
+         return laneStatus.isPartyAssigned();
+     }
 
     /**
      * subscribe
@@ -584,7 +482,6 @@ public class Lane extends Thread implements PinsetterObserver {
      *
      * @param event Event that is to be published
      */
-
     public void publish(LaneEvent event) {
         for (LaneObserver subscriber : subscribers) {
             subscriber.receiveLaneEvent(event);
@@ -601,22 +498,9 @@ public class Lane extends Thread implements PinsetterObserver {
         return setter;
     }
 
-    // Going to be replaced by maintenanceCallToggle
-    // /**
-    //  * Pause the execution of this game
-    //  */
-    // public void pauseGame() {
-    //     gameIsHalted = true;
-    //     publish(lanePublish());
-    // }
-
-    // /**
-    //  * Resume the execution of this game
-    //  */
-    // public void unPauseGame() {
-    //     gameIsHalted = false;
-    //     publish(lanePublish());
-    // }
+    public void maintenanceCallToggle(){
+        laneStatus.maintenanceCallToggle();
+    }
 
     public void setStatus(LaneStatus status){
         laneStatus = status;
