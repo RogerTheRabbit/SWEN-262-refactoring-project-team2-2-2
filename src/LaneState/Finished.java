@@ -24,7 +24,7 @@ public class Finished implements LaneStatus {
         if (result == 1) { // yes, want to play again
             lane.resetScores();
             lane.resetBowlerIterator();
-
+            lane.setStatus(new Running(lane));
         } else if (result == 2) {// no, don't want to play another game
             ArrayList<String> printVector;
             Bowler bowler = lane.party.getMembers().get(0);
@@ -48,6 +48,7 @@ public class Finished implements LaneStatus {
                 }
 
             }
+            lane.setStatus(new Empty(lane));
         }
     }
 
