@@ -140,6 +140,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class Lane extends Thread implements PinsetterObserver {
+    private LaneStatus currentState;
+
+    // Ye Olden Fields
     protected Party party;
     protected final Pinsetter setter;
     protected final HashMap<Bowler, int[]> scores;
@@ -183,12 +186,18 @@ public class Lane extends Thread implements PinsetterObserver {
         this.start();
     }
 
+    void setCurrentState(LaneStatus laneStatus) {
+        currentState = laneStatus;
+    }
+
     /**
      * run()
      * <p>
      * entry point for execution of this lane
      */
     public void run() {
+        laneStatus.run();
+
         try {
             while (true) {
                 try {
