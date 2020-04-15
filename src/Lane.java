@@ -216,7 +216,7 @@ public class Lane extends Thread implements PinsetterObserver {
                             Date date = new Date();
                             String dateString = "" + date.getHours() + ":" + date.getMinutes() + " " + date.getMonth()
                                     + "/" + date.getDay() + "/" + (date.getYear() + 1900);
-                            Score score = new Score(currentThrower.getNick(), dateString,
+                            Score score = new Score(currentThrower.getNickName(), dateString,
                                     Integer.toString(cumuliScores[bowlIndex][9]));
                             score.addScoreToFile();
 
@@ -265,8 +265,8 @@ public class Lane extends Thread implements PinsetterObserver {
                             ScoreReport scoreReport = new ScoreReport(thisBowler, finalScores[myIndex++], gameNumber);
                             scoreReport.sendEmail(thisBowler.getEmail());
                             for (String nickNames : printVector) {
-                                if (thisBowler.getNick().equals(nickNames)) {
-                                    System.out.println("Printing " + thisBowler.getNick());
+                                if (thisBowler.getNickName().equals(nickNames)) {
+                                    System.out.println("Printing " + thisBowler.getNickName());
                                     scoreReport.sendPrintout();
                                 }
                             }

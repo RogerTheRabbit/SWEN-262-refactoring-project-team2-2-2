@@ -47,7 +47,7 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
 
         ArrayList<String> bowlerNames = new ArrayList<>();
         for (Bowler bowler : party.getMembers()) {
-            bowlerNames.add(bowler.getNick());
+            bowlerNames.add(bowler.getNickName());
         }
 
         memberList = new JList(bowlerNames.toArray());
