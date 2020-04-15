@@ -192,7 +192,6 @@ public class Lane extends Thread implements PinsetterObserver {
      * entry point for execution of this lane
      */
     public void run() {
-        laneStatus.run();
 
         try {
             while (true) {
