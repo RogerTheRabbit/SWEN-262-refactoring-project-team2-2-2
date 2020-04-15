@@ -1,7 +1,6 @@
 package LaneState;
 
 import temp.Party;
-import temp.Pinsetter;
 import temp.PinsetterEvent;
 
 public class Maintenance implements LaneStatus {
@@ -28,10 +27,7 @@ public class Maintenance implements LaneStatus {
 
     @Override
     public boolean isPartyAssigned() {
-        if(lane.party != null) {
-            return true;
-        }
-        return false;
+        return lane.party != null;
     }
 
     @Override

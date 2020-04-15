@@ -182,8 +182,8 @@ public class Lane extends Thread implements PinsetterObserver {
         this.start();
     }
 
-    void setCurrentState(LaneStatus laneStatus) {
-        this.laneStatus = laneStatus;
+    public void setStatus(LaneStatus status) {
+        laneStatus = status;
     }
 
     /**
@@ -426,9 +426,5 @@ public class Lane extends Thread implements PinsetterObserver {
 
     public void maintenanceCallToggle() {
         laneStatus.maintenanceCallToggle();
-    }
-
-    public void setStatus(LaneStatus status) {
-        laneStatus = status;
     }
 }

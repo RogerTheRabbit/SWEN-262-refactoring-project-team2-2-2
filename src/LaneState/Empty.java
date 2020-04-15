@@ -2,10 +2,7 @@ package LaneState;
 
 import temp.Bowler;
 import temp.Party;
-import temp.Pinsetter;
 import temp.PinsetterEvent;
-
-import java.util.ArrayList;
 
 public class Empty implements LaneStatus {
     private final Lane lane;
