@@ -55,7 +55,9 @@ public class ScoreMediator {
             int[] frameThrows = bowlerFrames[i].getThrows();
             allThrows[2 * i] = frameThrows[0];
             allThrows[(2 * i) + 1] = frameThrows[1];
-
+            if(i == 9){
+                allThrows[20] = frameThrows[2];
+            }
         }
         return allThrows;
     }

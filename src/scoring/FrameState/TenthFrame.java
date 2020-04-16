@@ -41,17 +41,18 @@ public class TenthFrame implements FrameStatus {
      */
     @Override
     public void addThrow(int ballThrown) {
-        if(thirdThrow){
-            scores[2] = ballThrown;
-            frame.setFinished();
-        }
-        else if(scores[0] == -1){
+
+        if(scores[0] == -1){
             scores[0] = ballThrown;
+
         }else if(scores[1] == -1){
             scores[1] = ballThrown;
-            if(this.getScore() == 10){
+            if(this.getScore() >= 10){
                 this.thirdThrow = true;
             }
+        }else if(thirdThrow){
+            scores[2] = ballThrown;
+            frame.setFinished();
         }
     }
 

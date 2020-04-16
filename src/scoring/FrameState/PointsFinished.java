@@ -48,7 +48,11 @@ public class PointsFinished implements FrameStatus {
     public int[] getThrows(){
         int[] ballThrows = new int[2];
         ballThrows[0] = scores[0];
-        ballThrows[1] = scores[1];
+        if(scores[0] == 10) {
+            ballThrows[1] = -1;
+        }else{
+            ballThrows[1] = scores[1];
+        }
         return ballThrows;
     }
 }

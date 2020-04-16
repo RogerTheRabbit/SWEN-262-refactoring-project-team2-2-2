@@ -57,6 +57,7 @@ public class Strike implements FrameStatus {
     public int[] getThrows() {
         int[] score = new int[2];
         score[0] = 10;
+        score[1] = -1;
         return score;
     }
 }

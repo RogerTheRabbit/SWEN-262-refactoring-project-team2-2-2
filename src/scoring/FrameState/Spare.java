@@ -30,7 +30,11 @@ public class Spare implements FrameStatus {
      */
     @Override
     public int getScore() {
-        return 10 + scores[2];
+        if(scores[2] == -1){
+            return 10;
+        }else{
+            return scores[2] + 10;
+        }
     }
 
     /**

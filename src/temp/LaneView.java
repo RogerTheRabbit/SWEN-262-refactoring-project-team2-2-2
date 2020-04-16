@@ -157,10 +157,10 @@ public class LaneView implements LaneObserver, ActionListener {
             }
             
             int[][] laneEventScores = laneEvent.getCumuliScore();
-            int k = -1;
-            for (Bowler bowler: laneEvent.getParty().getMembers()) {
-                k++;
-                for (int i = 0; i <= laneEvent.getFrameNum() - 1; i++) {
+            ArrayList<Bowler> bowlers = laneEvent.getParty().getMembers();
+            for (int k = 0; k <= laneEvent.getIndex(); k++) {
+                Bowler bowler = bowlers.get(k);
+                for (int i = 0; i < laneEvent.getFrameNum(); i++) {
                     if (laneEventScores[k][i] != 0) {
                         scoreLabel[k][i].setText((Integer.valueOf(laneEventScores[k][i])).toString());
                     }

@@ -61,8 +61,7 @@ public class Running implements LaneStatus {
     @Override
     public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
         if (pinsetterEvent.pinsDownOnThisThrow() >= 0) { // this is a real throw
-            markScore(lane.currentThrower, lane.frameNumber + 1, pinsetterEvent.getThrowNumber(), pinsetterEvent.pinsDownOnThisThrow());
-
+            markScore(lane.currentThrower, pinsetterEvent.getThrowNumber(), pinsetterEvent.pinsDownOnThisThrow());
             // next logic handles the ?: what conditions dont allow them another throw?
             // handle the case of 10th frame first
             if (lane.frameNumber == 9) {
@@ -115,12 +114,11 @@ public class Running implements LaneStatus {
      *
      * @param currentBowler The current bowler
      * @param frame         The frame that bowler is on
-     * @param ball          The ball the bowler is on
      * @param score         The bowler's score
      */
-    private void markScore(Bowler currentBowler, int frame, int ball, int score) {
+    private void markScore(Bowler currentBowler, int frame, int score) {
         lane.scores.addThrow(currentBowler, score);
-        getScore(currentBowler, frame);
+        getScore(currentBowler);
         lane.publish(lane.lanePublish());
     }
 
@@ -128,9 +126,8 @@ public class Running implements LaneStatus {
      * Method that calculates a bowlers score
      *
      * @param currentBowler The bowler that is currently up
-     * @param frame         The frame the current bowler is on
      */
-    private void getScore(Bowler currentBowler, int frame) {
+    private void getScore(Bowler currentBowler) {
         lane.cumuliScores[lane.bowlIndex] = lane.scores.getFramePoints(currentBowler);
     }
 }
