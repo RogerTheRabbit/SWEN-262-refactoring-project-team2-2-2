@@ -12,7 +12,7 @@ public class TenthFrame implements FrameStatus {
     public TenthFrame(Frame frame){
         this.frame = frame;
         this.scores = new int[3];
-        for(int i = 0; i < scores.length; i++){
+        for(int i = 0; i < 3; i++){
             scores[i] = -1;
         }
         this.thirdThrow = false;
@@ -59,9 +59,7 @@ public class TenthFrame implements FrameStatus {
     public int[] getThrows() {
         int[] score = new int[3];
         for (int i = 0; i < 3; i++) {
-            //if (scores[i] != -1) {
-                score[i] = scores[i];
-            //}
+            score[i] = scores[i];
         }
         return score;
     }

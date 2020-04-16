@@ -155,7 +155,7 @@ public class LaneView implements LaneObserver, ActionListener {
                 frame.pack();
 
             }
-            // TODO The frame state/mediator will be used here
+            
             int[][] laneEventScores = laneEvent.getCumuliScore();
             int k = -1;
             for (Bowler bowler: laneEvent.getParty().getMembers()) {

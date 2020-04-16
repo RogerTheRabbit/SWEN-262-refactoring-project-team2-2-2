@@ -49,9 +49,7 @@ public class Spare implements FrameStatus {
     public int[] getThrows() {
         int[] score = new int[2];
         for (int i = 0; i < 2; i++) {
-            //if (scores[i] != -1) {
-                score[i] = scores[i];
-            //}
+            score[i] = scores[i];
         }
         return score;
     }
