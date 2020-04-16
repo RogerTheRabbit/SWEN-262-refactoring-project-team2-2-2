@@ -68,7 +68,13 @@ public class ScoreMediator {
         int total = 0;
         for(int i = 0; i < 10; i++){
             total += bowlerFrames[i].getScore();
+            //comment out this if statement to fix bug from before the refactoring
+            if(i == 0){
+                int[] theThrows = bowlerFrames[i].getThrows();
+                total -= theThrows[1];
+            }
             framePoints[i] = total;
+
         }
         return framePoints;
     }
