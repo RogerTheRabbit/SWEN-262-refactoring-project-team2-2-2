@@ -1,11 +1,15 @@
-package temp;
+package GUI;
 
 /*
  *  constructs a prototype LaneState.Lane View
  *
  */
 
+import FileWriting.Bowler;
 import LaneState.Lane;
+import Observers.LaneObserver.LaneEvent;
+import Observers.LaneObserver.LaneObserver;
+import temp.Party;
 
 import javax.swing.*;
 import java.awt.*;

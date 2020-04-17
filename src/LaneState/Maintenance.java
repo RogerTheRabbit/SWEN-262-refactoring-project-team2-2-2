@@ -1,7 +1,7 @@
 package LaneState;
 
 import temp.Party;
-import temp.PinsetterEvent;
+import Observers.PinsetterObserver.PinsetterEvent;
 
 /**
  * Represents the state of a lane when it is under maintenance

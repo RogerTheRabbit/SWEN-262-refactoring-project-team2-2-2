@@ -1,4 +1,4 @@
-package temp;
+package GUI;
 /**
  * To change this generated comment edit the template variable "typecomment":
  * Window>Preferences>Java>Templates.
@@ -7,6 +7,11 @@ package temp;
  */
 
 import LaneState.Lane;
+import Observers.LaneObserver.LaneEvent;
+import Observers.LaneObserver.LaneObserver;
+import Observers.PinsetterObserver.Pinsetter;
+import Observers.PinsetterObserver.PinsetterEvent;
+import Observers.PinsetterObserver.PinsetterObserver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,7 +73,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
         viewLane.addActionListener(this);
         viewLanePanel.add(viewLane);
 
-        viewPinSetter = new JButton("Pinsetter");
+        viewPinSetter = new JButton("Observers.PinsetterObserver.Pinsetter");
         JPanel viewPinSetterPanel = new JPanel();
         viewPinSetterPanel.setLayout(new FlowLayout());
         viewPinSetter.addActionListener(this);

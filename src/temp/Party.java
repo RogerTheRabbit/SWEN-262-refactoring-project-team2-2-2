@@ -1,6 +1,4 @@
-package temp;
-
-/*
+package temp;/*
  * temp.Party.java
  *
  * Version:
@@ -15,13 +13,15 @@ package temp;
  *   *** empty log message ***
  *
  *   Revision 1.1  2003/01/12 19:09:12  ???
- *   Adding temp.Party, LaneState.Lane, temp.Bowler, and Alley.
+ *   Adding temp.Party, LaneState.Lane, FileWriting.Bowler, and Alley.
  *
  */
 
 /**
  * Container that holds bowlers
  */
+
+import FileWriting.Bowler;
 
 import java.util.ArrayList;
 

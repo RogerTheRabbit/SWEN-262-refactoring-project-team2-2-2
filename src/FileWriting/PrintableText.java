@@ -1,5 +1,4 @@
-package temp;
-/**
+package FileWriting; /**
  *
  */
 

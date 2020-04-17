@@ -1,6 +1,6 @@
-package temp;
+package GUI;
 
-/* temp.ControlDeskView.java
+/* GUI.ControlDeskView.java
  *
  *  Version:
  *			$Id$
@@ -12,6 +12,11 @@ package temp;
 
 
 import LaneState.Lane;
+import Observers.ControlDeskObserver.ControlDesk;
+import Observers.ControlDeskObserver.ControlDeskEvent;
+import Observers.ControlDeskObserver.ControlDeskObserver;
+import Observers.PinsetterObserver.Pinsetter;
+import Observers.PinsetterObserver.PinsetterObserver;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -62,7 +67,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
         controlsPanel.setLayout(new GridLayout(3, 1));
         controlsPanel.setBorder(new TitledBorder("Controls"));
 
-        addParty = new JButton("Add Party");
+        addParty = new JButton("Add temp.Party");
         JPanel addPartyPanel = new JPanel();
         addPartyPanel.setLayout(new FlowLayout());
         addParty.addActionListener(this);
@@ -95,7 +100,8 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
             Lane curLane = (Lane) lane;
             LaneStatusView laneStat = new LaneStatusView(curLane, (laneCount + 1));
             curLane.subscribe(laneStat);
-            curLane.getPinsetter().subscribe(laneStat);
+            Pinsetter pins = curLane.getPinsetter();
+            pins.subscribe(laneStat);
             JPanel lanePanel = laneStat.showLane();
             lanePanel.setBorder(new TitledBorder("Lane" + ++laneCount));
             laneStatusPanel.add(lanePanel);
@@ -104,7 +110,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
         // temp.Party Queue Panel
         JPanel partyPanel = new JPanel();
         partyPanel.setLayout(new FlowLayout());
-        partyPanel.setBorder(new TitledBorder("Party Queue"));
+        partyPanel.setBorder(new TitledBorder("temp.Party Queue"));
 
         Vector<String> empty = new Vector<>();
         empty.add("(Empty)");
@@ -164,7 +170,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
     /**
      * Receive a new party from andPartyView.
      *
-     * @param addPartyView the temp.AddPartyView that is providing a new party
+     * @param addPartyView the GUI.AddPartyView that is providing a new party
      */
 
     public void updateAddParty(AddPartyView addPartyView) {
@@ -174,7 +180,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
     /**
      * Receive a broadcast from a temp.ControlDesk
      *
-     * @param ce the temp.ControlDeskEvent that triggered the handler
+     * @param ce the Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent that triggered the handler
      */
 
     public void receiveControlDeskEvent(ControlDeskEvent ce) {

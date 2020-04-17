@@ -1,9 +1,9 @@
-package temp;
+package Observers.LaneObserver;
 
 /*  $Id$
  *
  *  Revisions:
- *    $Log: temp.LaneEvent.java,v $
+ *    $Log: Observers.LaneObserver.LaneEvent.java,v $
  *    Revision 1.6  2003/02/16 22:59:34  ???
  *    added mechnanical problem flag
  *
@@ -25,9 +25,9 @@ package temp;
  *
  */
 
+import FileWriting.Bowler;
 import scoring.FrameMediator.ScoreMediator;
-
-import java.util.HashMap;
+import temp.Party;
 
 public class LaneEvent {
 

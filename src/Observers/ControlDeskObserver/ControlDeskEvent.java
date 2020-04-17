@@ -1,6 +1,6 @@
-package temp;
+package Observers.ControlDeskObserver;
 
-/* temp.ControlDeskEvent.java
+/* Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent.java
  *
  *  Version:
  *  		$Id$
@@ -22,7 +22,7 @@ public class ControlDeskEvent {
     private Queue<String> partyQueue;
 
     /**
-     * Constructor for the temp.ControlDeskEvent
+     * Constructor for the Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent
      *
      * @param partyQueue a Vector of Strings containing the names of the parties in
      *                   the wait queue

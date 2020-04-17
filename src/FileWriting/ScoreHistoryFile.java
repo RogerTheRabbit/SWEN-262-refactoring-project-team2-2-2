@@ -1,4 +1,4 @@
-package temp;
+package FileWriting;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -7,10 +7,10 @@ import java.util.ArrayList;
  */
 public class ScoreHistoryFile {
 
-    private static String SCOREHISTORY_DAT = "SCOREHISTORY.DAT";
+    private static String SCOREHISTORY_DAT = "src/FileWriting/Files/SCOREHISTORY.DAT";
 
     /**
-     * Adds a score to the temp.Score History File
+     * Adds a score to the FileWriting.Score History File
      * @param data: The score to be added
      * @throws IOException If something goes wrong with the file reading or writing.
      */
@@ -36,7 +36,7 @@ public class ScoreHistoryFile {
         while ((data = in.readLine()) != null) {
             // File format is nick\tfname\te-mail
             String[] scoredata = data.split("\t");
-            // "Nick: scoredata[0] Date: scoredata[1] temp.Score: scoredata[2]
+            // "Nick: scoredata[0] Date: scoredata[1] FileWriting.Score: scoredata[2]
             if (nick.equals(scoredata[0])) {
                 scores.add(new Score(scoredata[0], scoredata[1], scoredata[2]));
             }

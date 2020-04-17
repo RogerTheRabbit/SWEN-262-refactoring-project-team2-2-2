@@ -1,7 +1,7 @@
 package scoring.FrameMediator;
 
+import FileWriting.Bowler;
 import scoring.FrameState.Frame;
-import temp.Bowler;
 
 import java.util.HashMap;
 

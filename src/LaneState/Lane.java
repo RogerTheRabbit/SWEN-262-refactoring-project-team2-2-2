@@ -16,7 +16,7 @@ package LaneState;
  *   Works beautifully.
  *
  *   Revision 1.48  2003/02/20 04:10:58  ???
- *   temp.Score reporting code should be good.
+ *   FileWriting.Score reporting code should be good.
  *
  *   Revision 1.47  2003/02/17 00:25:28  ???
  *   Added disbale controls for View objects.
@@ -46,7 +46,7 @@ package LaneState;
  *   added mechnanical problem flag
  *
  *   Revision 1.36  2003/02/16 21:31:04  ???
- *   temp.Score logging.
+ *   FileWriting.Score logging.
  *
  *   Revision 1.35  2003/02/09 21:38:00  ???
  *   Added lots of comments
@@ -70,7 +70,7 @@ package LaneState;
  *   fix on pinsetter hack
  *
  *   Revision 1.28  2003/02/02 23:49:48  ???
- *   temp.Pinsetter generates an event when all pins are reset
+ *   Observers.PinsetterObserver.Pinsetter generates an event when all pins are reset
  *
  *   Revision 1.27  2003/02/02 23:26:32  ???
  *   ControlDesk now runs its own thread and polls for free lanes to assign queue members to
@@ -94,7 +94,7 @@ package LaneState;
  *   added conditions for the party choosing to play another game
  *
  *   Revision 1.20  2003/02/02 21:51:54  ???
- *   temp.LaneEvent may very well be observer method.
+ *   Observers.LaneObserver.LaneEvent may very well be observer method.
  *
  *   Revision 1.19  2003/02/02 20:28:59  ???
  *   fixed sleep thread bug in lane
@@ -122,7 +122,7 @@ package LaneState;
  *
  *   Revision 1.11  2003/01/26 22:34:44  ???
  *   Total rewrite of lane and pinsetter for R2's observer model
- *   Added LaneState.Lane/temp.Pinsetter Observer
+ *   Added LaneState.Lane/Observers.PinsetterObserver.Pinsetter Observer
  *   Rewrite of scoring algorythm in lane
  *
  *   Revision 1.10  2003/01/26 20:44:05  ???
@@ -131,8 +131,14 @@ package LaneState;
  *
  */
 
+import FileWriting.Bowler;
+import Observers.LaneObserver.LaneEvent;
+import Observers.LaneObserver.LaneObserver;
+import Observers.PinsetterObserver.Pinsetter;
+import Observers.PinsetterObserver.PinsetterEvent;
+import Observers.PinsetterObserver.PinsetterObserver;
 import scoring.FrameMediator.ScoreMediator;
-import temp.*;
+import temp.Party;
 
 import java.util.ArrayList;
 import java.util.Iterator;

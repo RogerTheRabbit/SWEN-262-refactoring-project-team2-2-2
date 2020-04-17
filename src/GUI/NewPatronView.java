@@ -1,14 +1,14 @@
-package temp;
+package GUI;
 
-/* temp.AddPartyView.java
+/* GUI.AddPartyView.java
  *
  *  Version
  *  $Id$
  *
  *  Revisions:
- * 		$Log: temp.NewPatronView.java,v $
+ * 		$Log: GUI.NewPatronView.java,v $
  * 		Revision 1.3  2003/02/02 16:29:52  ???
- * 		Added temp.ControlDeskEvent and temp.ControlDeskObserver. Updated Queue to allow access to Vector so that contents could be viewed without destroying. Implemented observer model for most of temp.ControlDesk.
+ * 		Added Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent and Observers.ControlDeskObserver.ControlDeskObserver. Updated Queue to allow access to Vector so that contents could be viewed without destroying. Implemented observer model for most of temp.ControlDesk.
  *
  *
  */

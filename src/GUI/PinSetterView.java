@@ -1,7 +1,7 @@
-package temp;
+package GUI;
 
 /*
- * temp.PinSetterView/.java
+ * GUI.PinSetterView/.java
  *
  * Version:
  *   $Id$
@@ -13,6 +13,9 @@ package temp;
 /**
  * This class creates a GUI to represent the Pins.
  */
+
+import Observers.PinsetterObserver.PinsetterEvent;
+import Observers.PinsetterObserver.PinsetterObserver;
 
 import javax.swing.*;
 import java.awt.*;

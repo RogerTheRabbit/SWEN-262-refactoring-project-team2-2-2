@@ -1,8 +1,8 @@
 package LaneState;
 
-import temp.Bowler;
+import FileWriting.Bowler;
 import temp.Party;
-import temp.PinsetterEvent;
+import Observers.PinsetterObserver.PinsetterEvent;
 
 /**
  * Represents the state of lane that is not being used.

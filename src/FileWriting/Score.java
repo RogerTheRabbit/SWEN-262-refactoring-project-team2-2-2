@@ -1,8 +1,10 @@
-package temp;
+package FileWriting;
+
+import FileWriting.ScoreHistoryFile;
 
 /**
  * Class meant to hold scores and write those scores to the
- * temp.ScoreHistoryFile
+ * FileWriting.ScoreHistoryFile
  */
 
 public class Score {
@@ -12,7 +14,7 @@ public class Score {
     private String score;
 
     /**
-     * Constructor for temp.Score
+     * Constructor for FileWriting.Score
      * @param nickName: The players nickname
      * @param date: The date the score occurred
      * @param score: The score achieved

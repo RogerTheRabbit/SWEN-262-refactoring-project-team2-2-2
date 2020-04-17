@@ -1,40 +1,41 @@
-package temp;
+package FileWriting;
 
-/* temp.BowlerFile.java
+/* FileWriting.BowlerFile.java
  *
  *  Version:
  *  		$Id$
  *
  *  Revisions:
- * 		$Log: temp.BowlerFile.java,v $
+ * 		$Log: FileWriting.BowlerFile.java,v $
  * 		Revision 1.5  2003/02/02 17:36:45  ???
  * 		Updated comments to match javadoc format.
  *
  * 		Revision 1.4  2003/02/02 16:29:52  ???
- * 		Added temp.ControlDeskEvent and temp.ControlDeskObserver. Updated Queue to allow access to Vector so that contents could be viewed without destroying. Implemented observer model for most of temp.ControlDesk.
+ * 		Added Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent and Observers.ControlDeskObserver.ControlDeskObserver. Updated Queue to allow access to Vector so that contents could be viewed without destroying. Implemented observer model for most of temp.ControlDesk.
  *
  *
  */
 
 /**
- * Class for interfacing with temp.Bowler database
+ * Class for interfacing with FileWriting.Bowler database
  */
+
 
 import java.io.*;
 import java.util.ArrayList;
 
-class BowlerFile {
+public class BowlerFile {
 
     /** The location of the bowelr database */
-    private static String BOWLER_DAT = "BOWLERS.DAT";
+    private static String BOWLER_DAT = "src/FileWriting/Files/BOWLERS.DAT";
 
     /**
-     * Retrieves bowler information from the database and returns a temp.Bowler objects
+     * Retrieves bowler information from the database and returns a FileWriting.Bowler objects
      * with populated fields.
      *
      * @param nickName the nickName of the bolwer to retrieve
      *
-     * @return a temp.Bowler object
+     * @return a FileWriting.Bowler object
      *
      */
 
@@ -57,11 +58,11 @@ class BowlerFile {
     }
 
     /**
-     * Stores a temp.Bowler in the database
+     * Stores a FileWriting.Bowler in the database
      *
-     * @param nickName the NickName of the temp.Bowler
-     * @param fullName the FullName of the temp.Bowler
-     * @param email    the E-mail Address of the temp.Bowler
+     * @param nickName the NickName of the FileWriting.Bowler
+     * @param fullName the FullName of the FileWriting.Bowler
+     * @param email    the E-mail Address of the FileWriting.Bowler
      *
      */
 

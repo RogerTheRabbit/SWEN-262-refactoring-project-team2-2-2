@@ -1,7 +1,7 @@
 package LaneState;
 
 import temp.Party;
-import temp.PinsetterEvent;
+import Observers.PinsetterObserver.PinsetterEvent;
 
 /**
  * Interface that represents the functionality that every

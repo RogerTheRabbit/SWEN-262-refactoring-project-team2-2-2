@@ -1,13 +1,11 @@
-package temp;
-
-/*
- * temp.Bowler.java
+package FileWriting;/*
+ * FileWriting.Bowler.java
  *
  * Version:
  *     $Id$
  *
  * Revisions:
- *     $Log: temp.Bowler.java,v $
+ *     $Log: FileWriting.Bowler.java,v $
  *     Revision 1.3  2003/01/15 02:57:40  ???
  *     Added accessors and and equals() method
  *
@@ -15,7 +13,7 @@ package temp;
  *     *** empty log message ***
  *
  *     Revision 1.1  2003/01/12 19:09:12  ???
- *     Adding temp.Party, LaneState.Lane, temp.Bowler, and Alley.
+ *     Adding temp.Party, LaneState.Lane, FileWriting.Bowler, and Alley.
  *
  */
 
