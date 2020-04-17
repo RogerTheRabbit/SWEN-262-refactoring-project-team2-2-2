@@ -6,7 +6,6 @@ package temp;
  */
 
 import LaneState.Lane;
-import scoring.FrameMediator.ScoreMediator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -125,7 +124,6 @@ public class LaneView implements LaneObserver, ActionListener {
     public void receiveLaneEvent(LaneEvent laneEvent) {
         if (lane.isPartyAssigned()) {
             while (!initDone) {
-                // System.out.println("chillin' here.");
                 try {
                     Thread.sleep(1);
                 } catch (Exception ignored) {
@@ -157,25 +155,24 @@ public class LaneView implements LaneObserver, ActionListener {
             
             int[][] laneEventScores = laneEvent.getCumuliScore();
             ArrayList<Bowler> bowlers = laneEvent.getParty().getMembers();
-            for (int k = 0; k <= laneEvent.getIndex(); k++) {
-                Bowler bowler = bowlers.get(k);
-                for (int i = 0; i < laneEvent.getFrameNum(); i++) {
-                    if (laneEventScores[k][i] != 0) {
-                        scoreLabel[k][i].setText((Integer.valueOf(laneEventScores[k][i])).toString());
-                    }
+            int k = laneEvent.getIndex();
+            Bowler bowler = bowlers.get(k);
+            for (int i = 0; i < laneEvent.getFrameNum(); i++) {
+                if (laneEventScores[k][i] != 0) {
+                    scoreLabel[k][i].setText((Integer.valueOf(laneEventScores[k][i])).toString());
                 }
-                for (int i = 0; i < 21; i++) {
-                    int[] currentRow = laneEvent.getScore().getAllThrows(bowler);
-                    if (currentRow[i] != -1) {
-                        if (currentRow[i] == 10 && (i % 2 == 0 || i == 19)) {
-                            ballLabel[k][i].setText("X");
-                        } else if (i > 0 && currentRow[i] + currentRow[i - 1] == 10 && i % 2 == 1) {
-                            ballLabel[k][i].setText("/");
-                        } else if (currentRow[i] == -2) {
-                            ballLabel[k][i].setText("F");
-                        } else {
-                            ballLabel[k][i].setText((Integer.valueOf(currentRow[i])).toString());
-                        }
+            }
+            for (int i = 0; i < 21; i++) {
+                int[] currentRow = laneEvent.getScore().getAllThrows(bowler);
+                if (currentRow[i] != -1) {
+                    if (currentRow[i] == 10 && (i % 2 == 0 || i == 19)) {
+                        ballLabel[k][i].setText("X");
+                    } else if (i > 0 && currentRow[i] + currentRow[i - 1] == 10 && i % 2 == 1) {
+                        ballLabel[k][i].setText("/");
+                    } else if (currentRow[i] == -2) {
+                        ballLabel[k][i].setText("F");
+                    } else {
+                        ballLabel[k][i].setText((Integer.valueOf(currentRow[i])).toString());
                     }
                 }
             }
