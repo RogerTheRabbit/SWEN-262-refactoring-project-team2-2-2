@@ -33,7 +33,12 @@ public class Strike implements FrameStatus {
     @Override
     public int getScore() {
         int totalScores = 10;
-        totalScores += scores[1] + scores[2];
+        if(scores[1] != -1){
+            totalScores += scores[1];
+        }
+        if(scores[2] != -1){
+            totalScores += scores[2];
+        }
         return totalScores;
     }
 

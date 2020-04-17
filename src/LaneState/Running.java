@@ -62,32 +62,11 @@ public class Running implements LaneStatus {
     public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
         if (pinsetterEvent.pinsDownOnThisThrow() >= 0) { // this is a real throw
             markScore(lane.currentThrower, pinsetterEvent.getThrowNumber(), pinsetterEvent.pinsDownOnThisThrow());
-            // next logic handles the ?: what conditions dont allow them another throw?
-            // handle the case of 10th frame first
-            if (lane.frameNumber == 9) {
-                if (pinsetterEvent.totalPinsDown() == 10) {
-                    lane.setter.resetPins();
-                    if (pinsetterEvent.getThrowNumber() == 1) {
-                        lane.tenthFrameStrike = true;
-                    }
-                }
-
-                if ((pinsetterEvent.totalPinsDown() != 10) && (pinsetterEvent.getThrowNumber() == 2 && !lane.tenthFrameStrike)) {
-                    lane.canThrowAgain = false;
-                }
-
-                if (pinsetterEvent.getThrowNumber() == 3) {
-                    lane.canThrowAgain = false;
-                }
-            } else { // its not the 10th frame
-
-                if (pinsetterEvent.pinsDownOnThisThrow() == 10) { // threw a strike
-                    lane.canThrowAgain = false;
-                } else if (pinsetterEvent.getThrowNumber() == 2) {
-                    lane.canThrowAgain = false;
-                } else if (pinsetterEvent.getThrowNumber() == 3)
-                    System.out.println("I'm here...");
+            if(pinsetterEvent.totalPinsDown() == 10){
+                lane.setter.reset();
             }
+            lane.canThrowAgain = lane.scores.canThrowAgain(lane.currentThrower, lane.frameNumber);
+
         }
     }
 

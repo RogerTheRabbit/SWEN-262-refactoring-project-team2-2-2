@@ -49,6 +49,8 @@ public class TenthFrame implements FrameStatus {
             scores[1] = ballThrown;
             if(this.getScore() >= 10){
                 this.thirdThrow = true;
+            }else{
+                frame.setFinished();
             }
         }else if(thirdThrow){
             scores[2] = ballThrown;

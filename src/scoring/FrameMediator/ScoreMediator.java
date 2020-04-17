@@ -21,9 +21,9 @@ public class ScoreMediator {
         this.frames.put(bowler, newScores);
     }
 
-    public boolean canThrowAgain(Bowler bowler){
-        Frame lastFrame = frames.get(bowler)[9];
-        return !lastFrame.getFinished();
+    public boolean canThrowAgain(Bowler bowler, int frame){
+        Frame currentFrame = this.frames.get(bowler)[frame];
+        return !currentFrame.getFinished();
     }
 
     public void resetGame(){
@@ -68,13 +68,7 @@ public class ScoreMediator {
         int total = 0;
         for(int i = 0; i < 10; i++){
             total += bowlerFrames[i].getScore();
-            //comment out this if statement to fix bug from before the refactoring
-            if(i == 0){
-                int[] theThrows = bowlerFrames[i].getThrows();
-                total -= theThrows[1];
-            }
             framePoints[i] = total;
-
         }
         return framePoints;
     }
