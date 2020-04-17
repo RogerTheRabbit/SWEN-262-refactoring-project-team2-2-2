@@ -4,6 +4,9 @@ import temp.Bowler;
 import temp.Party;
 import temp.PinsetterEvent;
 
+/**
+ * Represents the state of lane that is not being used.
+ */
 public class Empty implements LaneStatus {
     private final Lane lane;
 
@@ -11,16 +14,27 @@ public class Empty implements LaneStatus {
         this.lane = lane;
     }
 
+    /**
+     * When a Lane is unused, it does nothing in the run.
+     */
     @Override
     public void run() {
 
     }
 
+    /**
+     * When a Lane is unused, it does nothing in the receivePinsetterEvent().
+     * Pins can't be knocked over when the lane is not being used and therefore
+     * the pins do not need to be reset.
+     */
     @Override
     public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
 
     }
 
+    /**
+     * Assigns a party to the lane, sets up the lane and switches the state to Running.
+     */
     @Override
     public void assignParty(Party theParty) {
         lane.party = theParty;
@@ -37,11 +51,18 @@ public class Empty implements LaneStatus {
         lane.setStatus(new Running(lane));
     }
 
+    /**
+     * If a lane is empty, by definition it does not have a party assigned.
+     */
     @Override
     public boolean isPartyAssigned() {
         return false;  // Empty means there is no party assigned.
     }
 
+    /**
+     * When a Lane is unused, it does nothing in the maintenanceCallToggle(). In general
+     * this class should not be called when no one is using the lane.
+     */
     @Override
     public void maintenanceCallToggle() {
 
