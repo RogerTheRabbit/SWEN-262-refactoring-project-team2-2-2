@@ -25,23 +25,18 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
     private final JButton viewPinSetter;
     private final JButton maintenance;
 
-    private final PinSetterView psv;
     private final LaneView lv;
     private final Lane lane;
-    int laneNum;
 
-    boolean laneShowing;
-    boolean psShowing;
+    private boolean laneShowing;
 
-    public LaneStatusView(Lane lane, int laneNum) {
+    LaneStatusView(Lane lane, int laneNum) {
 
         this.lane = lane;
-        this.laneNum = laneNum;
 
         laneShowing = false;
-        psShowing = false;
 
-        psv = new PinSetterView(laneNum);
+        PinSetterView psv = new PinSetterView(laneNum);
         Pinsetter ps = lane.getPinsetter();
         ps.subscribe(psv);
 
@@ -99,7 +94,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
      * 
      * @return the JPanel that represents the status
      */
-    public JPanel showLane() {
+    JPanel showLane() {
         return jp;
     }
 
@@ -110,24 +105,12 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
     public void actionPerformed(ActionEvent e) {
         if (lane.isPartyAssigned()) {
             if (e.getSource().equals(viewPinSetter)) {
-                if (!psShowing) {
-                    psv.show();
-                    psShowing = true;
-                } else {
-                    psv.hide();
-                    psShowing = false;
-                }
+                toggleShowing();
             }
         }
         if (e.getSource().equals(viewLane)) {
             if (lane.isPartyAssigned()) {
-                if (!laneShowing) {
-                    lv.show();
-                    laneShowing = true;
-                } else {
-                    lv.hide();
-                    laneShowing = false;
-                }
+                toggleShowing();
             }
         }
         if (e.getSource().equals(maintenance)) {
@@ -138,10 +121,20 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
         }
     }
 
+    private void toggleShowing() {
+        if (!laneShowing) {
+            lv.show();
+            laneShowing = true;
+        } else {
+            lv.hide();
+            laneShowing = false;
+        }
+    }
+
     /**
      * Receives and handles lane events.
      * 
-     * @param laneEvent the event to receive
+     * @param le the event to receive
      */
     public void receiveLaneEvent(LaneEvent le) {
         curBowler.setText(le.getCurrentBowler().getNickName());
@@ -158,9 +151,9 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
     }
 
     /**
-     * recievePinsetterEvent()
+     * receivePinsetterEvent()
      * <p>
-     * defines the method for an object torecieve a pinsetter event
+     * defines the method for an object to receive a pinsetter event
      */
     public void receivePinsetterEvent(PinsetterEvent pe) {
         pinsDown.setText((Integer.valueOf(pe.totalPinsDown())).toString());

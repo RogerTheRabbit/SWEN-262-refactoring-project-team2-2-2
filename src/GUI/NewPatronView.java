@@ -35,7 +35,7 @@ public class NewPatronView implements ActionListener {
 
     private AddPartyView addParty;
 
-    public NewPatronView(AddPartyView v) {
+    NewPatronView(AddPartyView v) {
 
         addParty = v;
         done = false;

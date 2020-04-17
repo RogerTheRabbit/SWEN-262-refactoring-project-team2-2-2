@@ -39,7 +39,7 @@ public class PinSetterView implements PinsetterObserver {
 
     private JFrame frame;
 
-    public PinSetterView(int laneNum) {
+    PinSetterView(int laneNum) {
 
         frame = new JFrame("Lane " + laneNum + ":");
 
