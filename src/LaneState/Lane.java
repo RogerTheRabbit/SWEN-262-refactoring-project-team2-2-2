@@ -137,6 +137,9 @@ import temp.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Represents a bowling lane. Manages games being played.
+ */
 public class Lane extends Thread implements PinsetterObserver {
     private LaneStatus laneStatus;
 
@@ -321,10 +324,20 @@ public class Lane extends Thread implements PinsetterObserver {
         return setter;
     }
 
+    /**
+     * Toggles the maintenance status of the lane between in maintenance and running
+     * 
+     * Always sets to true to handle threading issue.
+     */
     public void maintenanceCallToggle() {
         gameIsHalted = true;
     }
 
+    /**
+     * Sets the state of the lane between Empty, Finished, Running, & Maintenance
+     * 
+     * @param status the state to change to.
+     */
     public void setStatus(LaneStatus status) {
         laneStatus = status;
     }

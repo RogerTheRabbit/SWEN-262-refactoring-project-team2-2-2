@@ -1,9 +1,12 @@
 package LaneState;
 
 import temp.Party;
-import temp.Pinsetter;
 import temp.PinsetterEvent;
 
+/**
+ * Interface that represents the functionality that every
+ * state a lane can be in must implement.
+ */
 public interface LaneStatus {
     void run();
     void receivePinsetterEvent(PinsetterEvent pinsetterEvent);

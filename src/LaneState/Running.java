@@ -7,6 +7,9 @@ import temp.Score;
 
 import java.util.Date;
 
+/**
+ * Represents the lane state when it is running.
+ */
 public class Running implements LaneStatus {
 
     private final Lane lane;
@@ -16,6 +19,9 @@ public class Running implements LaneStatus {
         lane.gameIsHalted = false;
     }
 
+    /**
+     * Handles running the lane when it is being used by bowlers. 
+     */
     @Override
     public void run() {
         if (lane.bowlerIterator.hasNext()) {
@@ -58,6 +64,9 @@ public class Running implements LaneStatus {
         }
     }
 
+    /**
+     * Handles receiving a pinsetter event.
+     */
     @Override
     public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
         if (pinsetterEvent.pinsDownOnThisThrow() >= 0) { // this is a real throw
@@ -70,17 +79,29 @@ public class Running implements LaneStatus {
         }
     }
 
+    /**
+     * When the lane is running, that means a party is using the lane.
+     * Therefore, new parties can not be assigned to the lane.
+     */
     @Override
     public void assignParty(Party theParty) {
 
     }
 
+    /**
+     * When the lane is running, that means a party is  using the lane.
+     * 
+     * @return true | By definition, when in the running state, a party is assigned to the lane.
+     */
     @Override
     public boolean isPartyAssigned() {
         return true; // Can only be running if party is assigned.
     }
 
 
+    /**
+     * Toggles the state to be in maintenance.
+     */
     @Override
     public void maintenanceCallToggle() {
         lane.setStatus(new Maintenance(lane));
