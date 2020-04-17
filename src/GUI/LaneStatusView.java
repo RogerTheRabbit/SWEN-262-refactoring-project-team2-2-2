@@ -125,7 +125,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
             }
         }
         if (e.getSource().equals(maintenance)) {
-            if (lane.isPartyAssigned()) {
+            if (lane.isPartyAssigned() && lane.isHalted()) {
                 lane.maintenanceCallToggle();
                 maintenance.setBackground(Color.GREEN);
             }
