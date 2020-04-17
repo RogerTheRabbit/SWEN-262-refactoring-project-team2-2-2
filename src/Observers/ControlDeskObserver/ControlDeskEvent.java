@@ -10,12 +10,11 @@ package Observers.ControlDeskObserver;
  *
  */
 
+import java.util.Queue;
+
 /**
  * Class that represents control desk event
  */
-
-import java.util.Queue;
-
 public class ControlDeskEvent {
 
     /** A representation of the wait queue, containing party names */
@@ -29,7 +28,7 @@ public class ControlDeskEvent {
      *
      */
 
-    public ControlDeskEvent(Queue<String> partyQueue) {
+    ControlDeskEvent(Queue<String> partyQueue) {
         this.partyQueue = partyQueue;
     }
 

@@ -22,7 +22,6 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
 
     private JFrame win;
     private JButton printButton, finished;
-    private JList memberList;
     private ArrayList<String> retVal;
 
     private int result;
@@ -50,7 +49,7 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
             bowlerNames.add(bowler.getNickName());
         }
 
-        memberList = new JList<>(bowlerNames.toArray());
+        JList memberList = new JList<>(bowlerNames.toArray());
         memberList.setFixedCellWidth(120);
         memberList.setVisibleRowCount(5);
         memberList.addListSelectionListener(this);

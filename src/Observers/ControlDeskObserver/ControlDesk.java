@@ -152,7 +152,7 @@ public class ControlDesk extends Thread {
 
 
     /**
-     * Creates a party from a Vector of nickNAmes and adds them to the wait queue.
+     * Creates a party from a Vector of nickNames and adds them to the wait queue.
      *
      * @param partyNicks A Vector of NickNames
      */
@@ -172,10 +172,10 @@ public class ControlDesk extends Thread {
      * Returns a Vector of party names to be displayed in the GUI representation of
      * the wait queue.
      *
-     * @return a Vecotr of Strings
+     * @return a Queue of Strings
      */
 
-    public Queue<String> getPartyQueue() {
+    private Queue<String> getPartyQueue() {
         Queue<String> displayPartyQueue = new LinkedList<>();
         for (Party party : partyQueue) {
             ArrayList<Bowler> bowlers = party.getMembers();
@@ -211,7 +211,7 @@ public class ControlDesk extends Thread {
      * @param event the Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent to broadcast
      */
 
-    public void publish(ControlDeskEvent event) {
+    private void publish(ControlDeskEvent event) {
         for (ControlDeskObserver subscriber : subscribers) {
             subscriber.receiveControlDeskEvent(event);
         }

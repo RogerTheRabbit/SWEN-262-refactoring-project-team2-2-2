@@ -18,14 +18,13 @@ package LaneState;
  *
  */
 
-/**
- * Container that holds bowlers
- */
-
 import FileWriting.Bowler;
 
 import java.util.ArrayList;
 
+/**
+ * Container that holds bowlers
+ */
 public class Party {
 
     /** Vector of bowlers in this party */

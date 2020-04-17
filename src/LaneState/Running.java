@@ -13,7 +13,7 @@ public class Running implements LaneStatus {
 
     private final Lane lane;
 
-    public Running(Lane lane) {
+    Running(Lane lane) {
         this.lane = lane;
         lane.gameIsHalted = false;
     }

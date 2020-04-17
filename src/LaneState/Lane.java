@@ -149,26 +149,26 @@ public class Lane extends Thread implements PinsetterObserver {
     private LaneStatus laneStatus;
 
     protected Party party;
-    protected final Pinsetter setter;
+    final Pinsetter setter;
     protected ScoreMediator scores;
-    protected final ArrayList<LaneObserver> subscribers;
+    private final ArrayList<LaneObserver> subscribers;
 
-    protected boolean gameIsHalted;
+    boolean gameIsHalted;
 
-    protected boolean gameFinished;
-    protected Iterator<Bowler> bowlerIterator;
+    boolean gameFinished;
+    Iterator<Bowler> bowlerIterator;
     protected int ball;
-    protected int bowlIndex;
-    protected int frameNumber;
-    protected boolean tenthFrameStrike;
+    int bowlIndex;
+    int frameNumber;
+    boolean tenthFrameStrike;
 
-    protected int[][] cumuliScores;
-    protected boolean canThrowAgain;
+    int[][] cumuliScores;
+    boolean canThrowAgain;
 
-    protected int[][] finalScores;
-    protected int gameNumber;
+    int[][] finalScores;
+    int gameNumber;
 
-    protected Bowler currentThrower; // = the thrower who just took a throw
+    Bowler currentThrower; // = the thrower who just took a throw
 
     /**
      * LaneState.Lane()
@@ -239,7 +239,7 @@ public class Lane extends Thread implements PinsetterObserver {
       * pre: the party as been assigned
       * post: the iterator points to the first bowler in the party
       */
-     protected void resetBowlerIterator() {
+     void resetBowlerIterator() {
          bowlerIterator = party.getMembers().iterator();
      }
 
@@ -251,7 +251,7 @@ public class Lane extends Thread implements PinsetterObserver {
       * pre: the party has been assigned
       * post: scoring system is initialized
       */
-     protected void resetScores() {
+     void resetScores() {
          scores.resetGame();
          gameFinished = false;
          frameNumber = 0;
@@ -278,7 +278,7 @@ public class Lane extends Thread implements PinsetterObserver {
      *
      * @return The new lane event
      */
-    protected LaneEvent lanePublish() {
+    LaneEvent lanePublish() {
         return new LaneEvent(party, bowlIndex, currentThrower, cumuliScores, scores, frameNumber + 1,
                 ball, gameIsHalted);
     }
@@ -313,7 +313,7 @@ public class Lane extends Thread implements PinsetterObserver {
      *
      * @param event Event that is to be published
      */
-    public void publish(LaneEvent event) {
+    void publish(LaneEvent event) {
         for (LaneObserver subscriber : subscribers) {
             subscriber.receiveLaneEvent(event);
         }
@@ -343,7 +343,7 @@ public class Lane extends Thread implements PinsetterObserver {
      * 
      * @param status the state to change to.
      */
-    public void setStatus(LaneStatus status) {
+    void setStatus(LaneStatus status) {
         laneStatus = status;
     }
 }

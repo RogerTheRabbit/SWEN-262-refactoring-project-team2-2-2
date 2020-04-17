@@ -16,7 +16,7 @@ import java.util.Iterator;
 public class Finished implements LaneStatus {
     private final Lane lane;
 
-    public Finished(Lane lane) {
+    Finished(Lane lane) {
         this.lane = lane;
     }
 
@@ -29,7 +29,7 @@ public class Finished implements LaneStatus {
     public void run() {
         EndGamePrompt endGamePrompt = new EndGamePrompt((lane.party.getMembers().get(0)).getNickName() + "'s LaneState.Party");
         int result = endGamePrompt.getResult();
-        endGamePrompt.distroy();
+        endGamePrompt.destroy();
 
         System.out.println("result was: " + result);
 
@@ -81,7 +81,7 @@ public class Finished implements LaneStatus {
      * When a game is Finished, there is still a party in the lane
      * and therefore a new party can't be assigned to the lane.
      *
-     * @param theParty
+     * @param theParty the party to assign
      */
     @Override
     public void assignParty(Party theParty) {

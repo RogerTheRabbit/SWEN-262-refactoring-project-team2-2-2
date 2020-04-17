@@ -1,7 +1,5 @@
 package FileWriting;
 
-import FileWriting.ScoreHistoryFile;
-
 /**
  * Class meant to hold scores and write those scores to the
  * FileWriting.ScoreHistoryFile
