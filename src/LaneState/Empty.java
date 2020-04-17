@@ -25,7 +25,9 @@ public class Empty implements LaneStatus {
     /**
      * When a Lane is unused, it does nothing in the receivePinsetterEvent().
      * Pins can't be knocked over when the lane is not being used and therefore
-     * the pins do not need to be reset.
+     * the pinsetter events can be ignored.
+     * 
+     * @param pinsetterEvent Represents pins changing.
      */
     @Override
     public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
@@ -34,6 +36,8 @@ public class Empty implements LaneStatus {
 
     /**
      * Assigns a party to the lane, sets up the lane and switches the state to Running.
+     * 
+     * @param theParty the party to be assigned
      */
     @Override
     public void assignParty(Party theParty) {
@@ -53,6 +57,8 @@ public class Empty implements LaneStatus {
 
     /**
      * If a lane is empty, by definition it does not have a party assigned.
+     * 
+     * @return false if no party is assigned true otherwise.
      */
     @Override
     public boolean isPartyAssigned() {
@@ -60,7 +66,7 @@ public class Empty implements LaneStatus {
     }
 
     /**
-     * When a Lane is unused, it does nothing in the maintenanceCallToggle(). In general
+     * When a Lane is unused, it does nothing in the maintenanceCallToggle(). In general,
      * this class should not be called when no one is using the lane.
      */
     @Override
