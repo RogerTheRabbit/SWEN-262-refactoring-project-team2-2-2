@@ -346,4 +346,8 @@ public class Lane extends Thread implements PinsetterObserver {
     void setStatus(LaneStatus status) {
         laneStatus = status;
     }
+
+    public boolean isHalted(){
+        return laneStatus instanceof Maintenance;
+    }
 }

@@ -101,6 +101,10 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
         return jp;
     }
 
+    /**
+     * Invoked when an action occurs.
+     * @param e the event to be processed
+     */
     public void actionPerformed(ActionEvent e) {
         if (lane.isPartyAssigned()) {
             if (e.getSource().equals(viewPinSetter)) {
@@ -125,7 +129,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
             }
         }
         if (e.getSource().equals(maintenance)) {
-            if (lane.isPartyAssigned()) {
+            if (lane.isPartyAssigned() && lane.isHalted()) {
                 lane.maintenanceCallToggle();
                 maintenance.setBackground(Color.GREEN);
             }
