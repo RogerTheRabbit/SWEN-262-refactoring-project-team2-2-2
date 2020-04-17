@@ -138,7 +138,6 @@ import Observers.PinsetterObserver.Pinsetter;
 import Observers.PinsetterObserver.PinsetterEvent;
 import Observers.PinsetterObserver.PinsetterObserver;
 import scoring.FrameMediator.ScoreMediator;
-import temp.Party;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -264,7 +263,7 @@ public class Lane extends Thread implements PinsetterObserver {
      * <p>
      * assigns a party to this lane
      *
-     * @param theParty temp.Party to be assigned
+     * @param theParty LaneState.Party to be assigned
      *                 pre: none
      *                 post: the party has been assigned to the lane
      */

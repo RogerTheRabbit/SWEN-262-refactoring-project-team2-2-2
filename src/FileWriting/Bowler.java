@@ -13,7 +13,7 @@ package FileWriting;/*
  *     *** empty log message ***
  *
  *     Revision 1.1  2003/01/12 19:09:12  ???
- *     Adding temp.Party, LaneState.Lane, FileWriting.Bowler, and Alley.
+ *     Adding LaneState.Party, LaneState.Lane, FileWriting.Bowler, and Alley.
  *
  */
 

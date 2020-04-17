@@ -1,5 +1,3 @@
-package temp;
-
 import GUI.ControlDeskView;
 import Observers.ControlDeskObserver.ControlDesk;
 

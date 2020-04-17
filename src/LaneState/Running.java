@@ -1,11 +1,8 @@
 package LaneState;
 
 import FileWriting.Bowler;
-import Observers.PinsetterObserver.Pinsetter;
-import temp.Party;
 import Observers.PinsetterObserver.PinsetterEvent;
 import FileWriting.Score;
-import FileWriting.Bowler;
 
 import java.util.Date;
 

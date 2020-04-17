@@ -1,7 +1,6 @@
 package LaneState;
 
 import FileWriting.Bowler;
-import temp.Party;
 import Observers.PinsetterObserver.PinsetterEvent;
 
 /**

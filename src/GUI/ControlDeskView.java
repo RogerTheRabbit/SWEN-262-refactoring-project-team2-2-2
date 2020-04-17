@@ -16,7 +16,6 @@ import Observers.ControlDeskObserver.ControlDesk;
 import Observers.ControlDeskObserver.ControlDeskEvent;
 import Observers.ControlDeskObserver.ControlDeskObserver;
 import Observers.PinsetterObserver.Pinsetter;
-import Observers.PinsetterObserver.PinsetterObserver;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -47,7 +46,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
     private final ControlDesk controlDesk;
 
     /**
-     * Displays a GUI representation of the temp.ControlDesk
+     * Displays a GUI representation of the prompts.ControlDesk
      */
     public ControlDeskView(ControlDesk controlDesk, int maxMembers) {
 
@@ -67,7 +66,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
         controlsPanel.setLayout(new GridLayout(3, 1));
         controlsPanel.setBorder(new TitledBorder("Controls"));
 
-        addParty = new JButton("Add temp.Party");
+        addParty = new JButton("Add Party");
         JPanel addPartyPanel = new JPanel();
         addPartyPanel.setLayout(new FlowLayout());
         addParty.addActionListener(this);
@@ -107,10 +106,10 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
             laneStatusPanel.add(lanePanel);
         }
 
-        // temp.Party Queue Panel
+        // LaneState.Party Queue Panel
         JPanel partyPanel = new JPanel();
         partyPanel.setLayout(new FlowLayout());
-        partyPanel.setBorder(new TitledBorder("temp.Party Queue"));
+        partyPanel.setBorder(new TitledBorder("Party Queue"));
 
         Vector<String> empty = new Vector<>();
         empty.add("(Empty)");
@@ -178,7 +177,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
     }
 
     /**
-     * Receive a broadcast from a temp.ControlDesk
+     * Receive a broadcast from a prompts.ControlDesk
      *
      * @param ce the Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent that triggered the handler
      */

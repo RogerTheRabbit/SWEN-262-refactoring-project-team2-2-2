@@ -26,8 +26,8 @@ package Observers.LaneObserver;
  */
 
 import FileWriting.Bowler;
+import LaneState.Party;
 import scoring.FrameMediator.ScoreMediator;
-import temp.Party;
 
 public class LaneEvent {
 

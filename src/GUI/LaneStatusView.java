@@ -23,7 +23,6 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
     private final JPanel jp;
 
     private final JLabel curBowler;
-    private final JLabel foul;
     private final JLabel pinsDown;
     private final JButton viewLane;
     private final JButton viewPinSetter;
@@ -56,8 +55,6 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
         jp.setLayout(new FlowLayout());
         JLabel cLabel = new JLabel("Now Bowling: ");
         curBowler = new JLabel("(no one)");
-        JLabel fLabel = new JLabel("Foul: ");
-        foul = new JLabel(" ");
         JLabel pdLabel = new JLabel("Pins Down: ");
         pinsDown = new JLabel("0");
 
@@ -65,15 +62,13 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
 
-        Insets buttonMargin = new Insets(4, 4, 4, 4);
-
         viewLane = new JButton("View Lane");
         JPanel viewLanePanel = new JPanel();
         viewLanePanel.setLayout(new FlowLayout());
         viewLane.addActionListener(this);
         viewLanePanel.add(viewLane);
 
-        viewPinSetter = new JButton("Observers.PinsetterObserver.Pinsetter");
+        viewPinSetter = new JButton("Pinsetter");
         JPanel viewPinSetterPanel = new JPanel();
         viewPinSetterPanel.setLayout(new FlowLayout());
         viewPinSetter.addActionListener(this);
@@ -95,8 +90,6 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 
         jp.add(cLabel);
         jp.add(curBowler);
-        // jp.add( fLabel );
-        // jp.add( foul );
         jp.add(pdLabel);
         jp.add(pinsDown);
 
@@ -155,6 +148,5 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 
     public void receivePinsetterEvent(PinsetterEvent pe) {
         pinsDown.setText((Integer.valueOf(pe.totalPinsDown())).toString());
-        // foul.setText( ( new Boolean(pe.isFoulCommited()) ).toString() );
     }
 }

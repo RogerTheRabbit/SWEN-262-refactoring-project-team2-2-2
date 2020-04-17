@@ -9,7 +9,7 @@ import FileWriting.Bowler;
 import LaneState.Lane;
 import Observers.LaneObserver.LaneEvent;
 import Observers.LaneObserver.LaneObserver;
-import temp.Party;
+import LaneState.Party;
 
 import javax.swing.*;
 import java.awt.*;

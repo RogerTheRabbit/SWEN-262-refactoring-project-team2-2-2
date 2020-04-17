@@ -1,6 +1,7 @@
-package temp;
+package prompts;
 
 import FileWriting.Bowler;
+import LaneState.Party;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -42,7 +43,7 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
         // Member Panel
         JPanel partyPanel = new JPanel();
         partyPanel.setLayout(new FlowLayout());
-        partyPanel.setBorder(new TitledBorder("temp.Party Members"));
+        partyPanel.setBorder(new TitledBorder("LaneState.Party Members"));
 
         ArrayList<String> bowlerNames = new ArrayList<>();
         for (Bowler bowler : party.getMembers()) {

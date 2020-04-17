@@ -11,7 +11,7 @@ package FileWriting;
  * 		Updated comments to match javadoc format.
  *
  * 		Revision 1.4  2003/02/02 16:29:52  ???
- * 		Added Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent and Observers.ControlDeskObserver.ControlDeskObserver. Updated Queue to allow access to Vector so that contents could be viewed without destroying. Implemented observer model for most of temp.ControlDesk.
+ * 		Added Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent and Observers.ControlDeskObserver.ControlDeskObserver. Updated Queue to allow access to Vector so that contents could be viewed without destroying. Implemented observer model for most of prompts.ControlDesk.
  *
  *
  */
