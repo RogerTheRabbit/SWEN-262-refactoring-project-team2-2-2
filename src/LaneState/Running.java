@@ -29,7 +29,7 @@ public class Running implements LaneStatus {
             lane.tenthFrameStrike = false;
             lane.ball = 0;
             while (lane.canThrowAgain) {
-                lane.setter.ballThrown(); // simulate the thrower's ball hitting
+                lane.SETTER.ballThrown(); // simulate the thrower's ball hitting
                 lane.ball++;
             }
 
@@ -45,7 +45,7 @@ public class Running implements LaneStatus {
 
             }
 
-            lane.setter.reset();
+            lane.SETTER.reset();
             lane.bowlIndex++;
 
         } else {
@@ -70,7 +70,7 @@ public class Running implements LaneStatus {
         if (pinsetterEvent.pinsDownOnThisThrow() >= 0) { // this is a real throw
             markScore(lane.currentThrower, pinsetterEvent.getThrowNumber(), pinsetterEvent.pinsDownOnThisThrow());
             if(pinsetterEvent.totalPinsDown() == 10){
-                lane.setter.reset();
+                lane.SETTER.reset();
             }
             lane.canThrowAgain = lane.scores.canThrowAgain(lane.currentThrower, lane.frameNumber);
 

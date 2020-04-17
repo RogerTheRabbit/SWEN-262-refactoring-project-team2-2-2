@@ -149,9 +149,9 @@ public class Lane extends Thread implements PinsetterObserver {
     private LaneStatus laneStatus;
 
     protected Party party;
-    final Pinsetter setter;
+    final Pinsetter SETTER;
     protected ScoreMediator scores;
-    private final ArrayList<LaneObserver> subscribers;
+    private final ArrayList<LaneObserver> SUBSCRIBERS;
 
     boolean maintenanceCall;
 
@@ -176,15 +176,15 @@ public class Lane extends Thread implements PinsetterObserver {
      * Constructs a new lane and starts its thread
      */
     public Lane() {
-        setter = new Pinsetter();
+        SETTER = new Pinsetter();
         scores = new ScoreMediator();
-        subscribers = new ArrayList<>();
+        SUBSCRIBERS = new ArrayList<>();
 
         maintenanceCall = false;
 
         gameNumber = 0;
 
-        setter.subscribe(this);
+        SETTER.subscribe(this);
 
         laneStatus = new Empty(this);
 
@@ -303,18 +303,18 @@ public class Lane extends Thread implements PinsetterObserver {
      */
 
     public void subscribe(LaneObserver adding) {
-        subscribers.add(adding);
+        SUBSCRIBERS.add(adding);
     }
 
     /**
      * publish
      * <p>
-     * Method that publishes an event to subscribers
+     * Method that publishes an event to SUBSCRIBERS
      *
      * @param event Event that is to be published
      */
     void publish(LaneEvent event) {
-        for (LaneObserver subscriber : subscribers) {
+        for (LaneObserver subscriber : SUBSCRIBERS) {
             subscriber.receiveLaneEvent(event);
         }
     }
@@ -326,7 +326,7 @@ public class Lane extends Thread implements PinsetterObserver {
      */
 
     public Pinsetter getPinsetter() {
-        return setter;
+        return SETTER;
     }
 
     /**
