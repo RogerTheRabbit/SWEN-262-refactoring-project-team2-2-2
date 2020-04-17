@@ -10,7 +10,6 @@ public class Maintenance implements LaneStatus {
 
     Maintenance(Lane lane) {
         this.lane = lane;
-        lane.gameIsHalted = true;
     }
 
     /**

@@ -15,7 +15,6 @@ public class Running implements LaneStatus {
 
     Running(Lane lane) {
         this.lane = lane;
-        lane.gameIsHalted = false;
     }
 
     /**

@@ -153,7 +153,7 @@ public class Lane extends Thread implements PinsetterObserver {
     protected ScoreMediator scores;
     private final ArrayList<LaneObserver> subscribers;
 
-    boolean gameIsHalted;
+    boolean maintenanceCall;
 
     boolean gameFinished;
     Iterator<Bowler> bowlerIterator;
@@ -180,7 +180,7 @@ public class Lane extends Thread implements PinsetterObserver {
         scores = new ScoreMediator();
         subscribers = new ArrayList<>();
 
-        gameIsHalted = false;
+        maintenanceCall = false;
 
         gameNumber = 0;
 
@@ -202,9 +202,9 @@ public class Lane extends Thread implements PinsetterObserver {
             while (true) {
                 laneStatus.run();
 
-                if(gameIsHalted){
+                if(maintenanceCall){
                     laneStatus.maintenanceCallToggle();
-                    gameIsHalted = false;
+                    maintenanceCall = false;
                 }
 
                 try { sleep(10); } catch (Exception ignored) {
@@ -280,7 +280,7 @@ public class Lane extends Thread implements PinsetterObserver {
      */
     LaneEvent lanePublish() {
         return new LaneEvent(party, bowlIndex, currentThrower, cumuliScores, scores, frameNumber + 1,
-                ball, gameIsHalted);
+                ball, maintenanceCall);
     }
 
     /**
@@ -335,7 +335,7 @@ public class Lane extends Thread implements PinsetterObserver {
      * Always sets to true to handle threading issue.
      */
     public void maintenanceCallToggle() {
-        gameIsHalted = true;
+        maintenanceCall = true;
     }
 
     /**
