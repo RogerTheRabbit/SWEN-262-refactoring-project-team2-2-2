@@ -13,16 +13,16 @@ package GUI;
  *
  */
 
-/**
- * Class for GUI components need to add a patron
- */
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/**
+ * Class for GUI components need to add a patron
+ */
 public class NewPatronView implements ActionListener {
 
     private JFrame win;
@@ -133,18 +133,38 @@ public class NewPatronView implements ActionListener {
 
     }
 
+    /**
+     * Getter for done
+     * 
+     * @return true if done, false otherwise
+     */
     public boolean done() {
         return done;
     }
 
+    /**
+     * Getter for the nickname
+     * 
+     * @return the nickname of the new patron
+     */
     public String getNick() {
         return nick;
     }
 
+    /**
+     * Getter for full
+     * 
+     * @return true if full, false otherwise
+     */
     public String getFull() {
         return full;
     }
 
+    /**
+     * Getter for the email
+     * 
+     * @return the email of the new patron
+     */
     public String getEmail() {
         return email;
     }

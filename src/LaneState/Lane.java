@@ -347,6 +347,11 @@ public class Lane extends Thread implements PinsetterObserver {
         laneStatus = status;
     }
 
+    /**
+     * Getter for if the lane is halted
+     * 
+     * @return true if halted, false otherwise
+     */
     public boolean isHalted(){
         return laneStatus instanceof Maintenance;
     }

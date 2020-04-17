@@ -10,10 +10,6 @@ package GUI;
  *   $Log$
  */
 
-/**
- * This class creates a GUI to represent the Pins.
- */
-
 import Observers.PinsetterObserver.PinsetterEvent;
 import Observers.PinsetterObserver.PinsetterObserver;
 
@@ -21,6 +17,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * This class creates a GUI to represent the Pins.
+ */
 public class PinSetterView implements PinsetterObserver {
 
     private ArrayList<JLabel> labelList = new ArrayList<>();

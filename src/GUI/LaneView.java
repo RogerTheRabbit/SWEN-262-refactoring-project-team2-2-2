@@ -19,6 +19,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for displaying and handling the 
+ * lane and it's events
+ */
 public class LaneView implements LaneObserver, ActionListener {
 
     private boolean initDone = true;
@@ -63,6 +67,12 @@ public class LaneView implements LaneObserver, ActionListener {
         frame.dispose();
     }
 
+    /**
+     * Creates a new frame for the party
+     * 
+     * @param party party to make frame for
+     * @return a new JPanel representing the new frame
+     */
     private JPanel makeFrame(Party party) {
 
         initDone = false;
@@ -125,6 +135,11 @@ public class LaneView implements LaneObserver, ActionListener {
         return panel;
     }
 
+    /**
+     * Receives and handles lane events.
+     * 
+     * @param laneEvent the event to receive
+     */
     public void receiveLaneEvent(LaneEvent laneEvent) {
         if (lane.isPartyAssigned()) {
             while (!initDone) {

@@ -1,8 +1,7 @@
 package FileWriting;
 
 /**
- * Class meant to hold scores and write those scores to the
- * FileWriting.ScoreHistoryFile
+ * Class meant to hold scores and write those scores to the ScoreHistoryFile
  */
 
 public class Score {
@@ -12,7 +11,7 @@ public class Score {
     private String score;
 
     /**
-     * Constructor for FileWriting.Score
+     * Constructor for Score
      * @param nickName: The players nickname
      * @param date: The date the score occurred
      * @param score: The score achieved

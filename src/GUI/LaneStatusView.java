@@ -1,10 +1,4 @@
 package GUI;
-/**
- * To change this generated comment edit the template variable "typecomment":
- * Window>Preferences>Java>Templates.
- * To enable and disable the creation of type comments go to
- * Window>Preferences>Java>Code Generation.
- */
 
 import LaneState.Lane;
 import Observers.LaneObserver.LaneEvent;
@@ -18,6 +12,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ *  Responsible for displaying the status of the bowling alleys.
+ */
 public class LaneStatusView implements ActionListener, LaneObserver, PinsetterObserver {
 
     private final JPanel jp;
@@ -97,6 +94,11 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 
     }
 
+    /**
+     * Getter for the created JPanel
+     * 
+     * @return the JPanel that represents the status
+     */
     public JPanel showLane() {
         return jp;
     }
@@ -136,6 +138,11 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
         }
     }
 
+    /**
+     * Receives and handles lane events.
+     * 
+     * @param laneEvent the event to receive
+     */
     public void receiveLaneEvent(LaneEvent le) {
         curBowler.setText(le.getCurrentBowler().getNickName());
         if (le.isMechanicalProblem()) {
@@ -150,6 +157,11 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
         }
     }
 
+    /**
+     * recievePinsetterEvent()
+     * <p>
+     * defines the method for an object torecieve a pinsetter event
+     */
     public void receivePinsetterEvent(PinsetterEvent pe) {
         pinsDown.setText((Integer.valueOf(pe.totalPinsDown())).toString());
     }

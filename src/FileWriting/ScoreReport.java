@@ -1,7 +1,4 @@
 package FileWriting;
-/**
- * SMTP implementation based on code by R�al Gagnon mailto:real@rgagnon.com
- */
 
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
@@ -13,6 +10,11 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * This class is responsible for creating and sending score reports.
+ * 
+ * SMTP implementation based on code by R�al Gagnon mailto:real@rgagnon.com
+ */
 public class ScoreReport {
 
     private String content;
@@ -51,6 +53,11 @@ public class ScoreReport {
 
     }
 
+    /**
+     * Sends email of score report to recipient
+     * 
+     * @param recipient the email address to email the report to
+     */
     public void sendEmail(String recipient) {
         try {
             Socket s = new Socket("osfmail.rit.edu", 25);
@@ -77,6 +84,9 @@ public class ScoreReport {
         }
     }
 
+    /**
+     * Prints the score report
+     */
     public void sendPrintout() {
         PrinterJob job = PrinterJob.getPrinterJob();
 
@@ -94,6 +104,16 @@ public class ScoreReport {
 
     }
 
+    /**
+     * Adds a newline character to a string and sends it 
+     * to a given out. Also reads a line from the input
+     * but who knows why, it serves no purpose here and
+     * where it's called.
+     * 
+     * @param in where to read a line from
+     * @param out where to write the out the string
+     * @param s the string to add a newline and send
+     */
     public void sendln(BufferedReader in, BufferedWriter out, String s) {
         try {
             out.write(s + "\r\n");
@@ -104,6 +124,13 @@ public class ScoreReport {
         }
     }
 
+    /**
+     * Adds a newline character to a string and sends it 
+     * to a given out.
+     * 
+     * @param out where to write the out the string
+     * @param s the string to add a newline and send
+     */
     public void sendln(BufferedWriter out, String s) {
         try {
             out.write(s + "\r\n");
