@@ -112,6 +112,10 @@ public class NewPatronView implements ActionListener {
 
     }
 
+    /**
+     * Invoked when an action occurs.
+     * @param e the event to be processed
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(abort)) {
             done = true;

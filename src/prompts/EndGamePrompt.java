@@ -1,15 +1,14 @@
-package prompts; /**
- * To change this generated comment edit the template variable "typecomment":
- * Window>Preferences>Java>Templates.
- * To enable and disable the creation of type comments go to
- * Window>Preferences>Java>Code Generation.
- */
+package prompts;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class is responsible for asking the player if they want to play
+ * another game.
+ */
 public class EndGamePrompt implements ActionListener {
 
     private JFrame win;
@@ -72,6 +71,10 @@ public class EndGamePrompt implements ActionListener {
 
     }
 
+    /**
+     * Invoked when an action occurs.
+     * @param e the event to be processed
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(yesButton)) {
             result = 1;
@@ -82,6 +85,11 @@ public class EndGamePrompt implements ActionListener {
 
     }
 
+    /**
+     * Returns the result of the prompt.
+     * 
+     * @return Returns 1 if finished, 0 otherwise.
+     */
     public int getResult() {
         while (result == 0) {
             try {
@@ -93,6 +101,9 @@ public class EndGamePrompt implements ActionListener {
         return result;
     }
 
+    /**
+     * Hides the window
+     */
     public void destroy() {
         win.hide();
     }
