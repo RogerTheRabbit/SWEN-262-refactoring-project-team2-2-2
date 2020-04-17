@@ -1,6 +1,10 @@
 import GUI.ControlDeskView;
 import Observers.ControlDeskObserver.ControlDesk;
 
+/**
+ * The entry point for the application. Responsible for initializing some 
+ * parameters and starting the system.
+ */
 public class Drive {
 
     public static void main(String[] args) {
