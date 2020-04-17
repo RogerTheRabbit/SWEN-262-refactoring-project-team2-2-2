@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public class Party {
 
     /** Vector of bowlers in this party */
-    private ArrayList<Bowler> myBowlers;
+    private final ArrayList<Bowler> myBowlers;
 
     /**
      * Constructor for a prompts.Party
