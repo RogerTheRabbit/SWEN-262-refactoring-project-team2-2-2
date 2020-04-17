@@ -49,6 +49,10 @@ public class Spare implements FrameStatus {
         frame.setStatus(new PointsFinished(frame, scores, this.getScore()));
     }
 
+    /**
+     * Returns the throws done in a frame.
+     * @return Throws in int array form
+     */
     @Override
     public int[] getThrows() {
         int[] score = new int[2];

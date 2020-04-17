@@ -17,5 +17,10 @@ public interface FrameStatus {
      */
     void addThrow(int ballThrown);
 
+    /**
+     * Returns the throws done in a frame.
+     * 
+     * @return Throws in int array form
+     */
     int[] getThrows();
 }

@@ -1,7 +1,9 @@
 package scoring.FrameState;
 
 /**
- * Possibly not needed, we'll see...
+ * This class represents the tenth frame and handles the different way
+ * scores are handled in the 10th frame vs other frames.
+ * @author Trey Pachucki ttp2542@g.rit.edu
  */
 public class TenthFrame implements FrameStatus {
 
@@ -58,6 +60,10 @@ public class TenthFrame implements FrameStatus {
         }
     }
 
+    /**
+     * Returns the throws done in a frame.
+     * @return Throws in int array form
+     */
     @Override
     public int[] getThrows() {
         int[] score = new int[3];

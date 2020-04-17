@@ -47,14 +47,25 @@ public class Frame {
         this.status = status;
     }
 
+    /**
+     * Setter for if the frame is finished or not.
+     */
     protected void setFinished(){
         this.isFinished = true;
     }
 
+    /**
+     * Getter for isFinished
+     * @return returns true if frame is finished, false otherwise.
+     */
     public boolean getFinished(){
         return this.isFinished;
     }
 
+    /**
+     * Returns the throws done in a frame.
+     * @return Throws in int array form
+     */
     public int[] getThrows(){
         return status.getThrows();
     }

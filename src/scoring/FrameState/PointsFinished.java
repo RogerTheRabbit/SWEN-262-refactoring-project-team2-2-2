@@ -44,6 +44,10 @@ public class PointsFinished implements FrameStatus {
         //does nothing, the scores are finalized
     }
 
+    /**
+     * Returns the throws done in a frame.
+     * @return Throws in int array form
+     */
     @Override
     public int[] getThrows(){
         int[] ballThrows = new int[2];
