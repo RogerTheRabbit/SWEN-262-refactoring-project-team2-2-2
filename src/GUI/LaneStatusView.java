@@ -121,6 +121,9 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
         }
     }
 
+    /**
+     * This toggles whether or not the lane is showing
+     */
     private void toggleShowing() {
         if (!laneShowing) {
             lv.show();
