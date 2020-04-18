@@ -68,7 +68,7 @@ public class Running implements LaneStatus {
     @Override
     public void receivePinsetterEvent(PinsetterEvent pinsetterEvent) {
         if (pinsetterEvent.pinsDownOnThisThrow() >= 0) { // this is a real throw
-            markScore(lane.currentThrower, pinsetterEvent.getThrowNumber(), pinsetterEvent.pinsDownOnThisThrow());
+            markScore(lane.currentThrower, pinsetterEvent.pinsDownOnThisThrow());
             if(pinsetterEvent.totalPinsDown() == 10){
                 lane.SETTER.reset();
             }
@@ -111,21 +111,12 @@ public class Running implements LaneStatus {
      * Method that marks a bowlers score on the board.
      *
      * @param currentBowler The current bowler
-     * @param frame         The frame that bowler is on
      * @param score         The bowler's score
      */
-    private void markScore(Bowler currentBowler, int frame, int score) {
+    private void markScore(Bowler currentBowler, int score) {
         lane.scores.addThrow(currentBowler, score);
-        getScore(currentBowler);
+        lane.cumuliScores[lane.bowlIndex] = lane.scores.getFramePoints(currentBowler);
         lane.publish(lane.lanePublish());
     }
 
-    /**
-     * Method that calculates a bowlers score
-     *
-     * @param currentBowler The bowler that is currently up
-     */
-    private void getScore(Bowler currentBowler) {
-        lane.cumuliScores[lane.bowlIndex] = lane.scores.getFramePoints(currentBowler);
-    }
 }

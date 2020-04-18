@@ -18,7 +18,7 @@ public class ScoreMediator {
     /**
      * Adds a player to the lane to start keeping track
      * of their bowling scores.
-     * 
+     *
      * @param bowler the bowler to be added
      */
     public void addPlayer(Bowler bowler){
@@ -32,7 +32,7 @@ public class ScoreMediator {
 
     /**
      * Returns if a player can throw again for a given frame.
-     * 
+     *
      * @param bowler Bowler to check
      * @param frame Frame to check
      * @return true if bowler can throw again false otherwise
@@ -53,7 +53,7 @@ public class ScoreMediator {
 
     /**
      * Handles a throw made by a bowler
-     * 
+     *
      * @param bowler Bowler that made throw
      * @param ballThrown Ball that they threw
      */
@@ -74,28 +74,8 @@ public class ScoreMediator {
     }
 
     /**
-     * Returns all of the throws that the bowler made.
-     * 
-     * @param bowler Bowler to get throws for
-     * @return Throws made by the bowler
-     */
-    public int[] getAllThrows(Bowler bowler){
-        Frame[] bowlerFrames = frames.get(bowler);
-        int[] allThrows = new int[21];
-        for(int i = 0; i < 10; i ++){
-            int[] frameThrows = bowlerFrames[i].getThrows();
-            allThrows[2 * i] = frameThrows[0];
-            allThrows[(2 * i) + 1] = frameThrows[1];
-            if(i == 9){
-                allThrows[20] = frameThrows[2];
-            }
-        }
-        return allThrows;
-    }
-
-    /**
      * Gets an array of all the points for each frame.
-     * 
+     *
      * @param bowler Bowler to get frame points for
      * @return An array where each value is the score for that frame.
      */
