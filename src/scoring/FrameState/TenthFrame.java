@@ -48,14 +48,18 @@ public class TenthFrame implements FrameStatus {
             scores[0] = ballThrown;
 
         }else if(scores[1] == -1){
-            scores[1] = ballThrown;
-            if(this.getScore() >= 10){
-                this.thirdThrow = true;
-            }else{
-                frame.setFinished();
-            }
+            secondThrow(ballThrown);
         }else if(thirdThrow){
             scores[2] = ballThrown;
+            frame.setFinished();
+        }
+    }
+
+    private void secondThrow(int ballThrown){
+        scores[1] = ballThrown;
+        if(this.getScore() >= 10){
+            this.thirdThrow = true;
+        }else{
             frame.setFinished();
         }
     }
@@ -80,6 +84,18 @@ public class TenthFrame implements FrameStatus {
      */
     @Override
     public String[] getStrings(){
+        String[] scoreString = scoreStringInit();
+
+        if(scores[0] == 10){
+            scoreString[0] = "X";
+        }else if(scores[0] + scores[1] == 10){
+            scoreString[1] = "/";
+        }
+
+        return scoreString;
+    }
+
+    public String[] scoreStringInit(){
         String[] scoreString = new String[3];
         for(int i = 0; i < 3; i++){
             if(scores[i] != -1){
@@ -88,13 +104,6 @@ public class TenthFrame implements FrameStatus {
                 scoreString[i] = "";
             }
         }
-
-        if(scores[0] == 10){
-            scoreString[0] = "X";
-        }else if(scores[0] + scores[1] == 10){
-            scoreString[1] = "/";
-        }
-
         return scoreString;
     }
 }
