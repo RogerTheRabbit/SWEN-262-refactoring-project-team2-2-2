@@ -172,15 +172,17 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
         if (e.getSource().equals(addPatron)) {
             handleAddPatron();
         }
-        if (e.getSource().equals(removePatron)) {
+        else if (e.getSource().equals(removePatron)) {
             handleRemovePatron();
         }
-        if (e.getSource().equals(finished)) {
+        else if (e.getSource().equals(finished)) {
             handleFinished();
         }
-
     }
 
+    /**
+     * Helper function that helps adding the new patron.
+     */
     private void handleAddPatron(){
         if (selectedNick != null && party.size() < maxSize) {
             if (party.contains(selectedNick)) {
@@ -194,6 +196,9 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
         }
     }
 
+    /**
+     * Helper function that helps remove a patron.
+     */
     private void handleRemovePatron(){
         if (selectedMember != null) {
             party.remove(selectedMember);
@@ -203,6 +208,9 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
         }
     }
 
+    /**
+     * Helper function that helps finish adding/removing new patrons.
+     */
     private void handleFinished(){
         if (party != null && party.size() > 0) {
             controlDesk.updateAddParty(this);
