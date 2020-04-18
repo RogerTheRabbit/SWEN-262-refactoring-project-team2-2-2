@@ -170,33 +170,44 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
      */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(addPatron)) {
-            if (selectedNick != null && party.size() < maxSize) {
-                if (party.contains(selectedNick)) {
-                    System.err.println("Member already in Party");
-                } else {
-                    party.add(selectedNick);
-                    String[] partyArray = new String[party.size()];
-                    partyArray = party.toArray(partyArray);
-                    partyList.setListData(partyArray);
-                }
-            }
+            handleAddPatron();
         }
         if (e.getSource().equals(removePatron)) {
-            if (selectedMember != null) {
-                party.remove(selectedMember);
+            handleRemovePatron();
+        }
+        if (e.getSource().equals(finished)) {
+            handleFinished();
+        }
+
+    }
+
+    private void handleAddPatron(){
+        if (selectedNick != null && party.size() < maxSize) {
+            if (party.contains(selectedNick)) {
+                System.err.println("Member already in Party");
+            } else {
+                party.add(selectedNick);
                 String[] partyArray = new String[party.size()];
                 partyArray = party.toArray(partyArray);
                 partyList.setListData(partyArray);
             }
         }
+    }
 
-        if (e.getSource().equals(finished)) {
-            if (party != null && party.size() > 0) {
-                controlDesk.updateAddParty(this);
-            }
-            win.hide();
+    private void handleRemovePatron(){
+        if (selectedMember != null) {
+            party.remove(selectedMember);
+            String[] partyArray = new String[party.size()];
+            partyArray = party.toArray(partyArray);
+            partyList.setListData(partyArray);
         }
+    }
 
+    private void handleFinished(){
+        if (party != null && party.size() > 0) {
+            controlDesk.updateAddParty(this);
+        }
+        win.hide();
     }
 
     /**
