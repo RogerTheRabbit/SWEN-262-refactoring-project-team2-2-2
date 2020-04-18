@@ -1,11 +1,12 @@
-package temp;/*
- * temp.Party.java
+package LaneState;
+/*
+ * prompts.Party.java
  *
  * Version:
  *   $Id$
  *
  * Revisions:
- *   $Log: temp.Party.java,v $
+ *   $Log: prompts.Party.java,v $
  *   Revision 1.3  2003/02/09 21:21:31  ???
  *   Added lots of comments
  *
@@ -13,25 +14,24 @@ package temp;/*
  *   *** empty log message ***
  *
  *   Revision 1.1  2003/01/12 19:09:12  ???
- *   Adding temp.Party, LaneState.Lane, FileWriting.Bowler, and Alley.
+ *   Adding prompts.Party, LaneState.Lane, FileWriting.Bowler, and Alley.
  *
- */
-
-/**
- * Container that holds bowlers
  */
 
 import FileWriting.Bowler;
 
 import java.util.ArrayList;
 
+/**
+ * Container that holds bowlers
+ */
 public class Party {
 
     /** Vector of bowlers in this party */
-    private ArrayList<Bowler> myBowlers;
+    private final ArrayList<Bowler> myBowlers;
 
     /**
-     * Constructor for a temp.Party
+     * Constructor for a prompts.Party
      *
      * @param bowlers Vector of bowlers that are in this party
      */

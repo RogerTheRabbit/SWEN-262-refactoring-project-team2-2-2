@@ -11,7 +11,7 @@ package Observers.ControlDeskObserver;
  * 		Observers.ControlDeskObserver.ControlDesk now runs its own thread and polls for free lanes to assign queue members to
  *
  * 		Revision 1.12  2003/02/02 20:46:13  ???
- * 		Added " 's temp.Party" to party names.
+ * 		Added " 's LaneState.Party" to party names.
  *
  * 		Revision 1.11  2003/02/02 20:43:25  ???
  * 		misc cleanup
@@ -39,9 +39,7 @@ package Observers.ControlDeskObserver;
 
 import FileWriting.*;
 import LaneState.Lane;
-import Observers.ControlDeskObserver.ControlDeskObserver;
-import Observers.ControlDeskObserver.ControlDeskEvent;
-import temp.Party;
+import LaneState.Party;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -154,7 +152,7 @@ public class ControlDesk extends Thread {
 
 
     /**
-     * Creates a party from a Vector of nickNAmes and adds them to the wait queue.
+     * Creates a party from a Vector of nickNames and adds them to the wait queue.
      *
      * @param partyNicks A Vector of NickNames
      */
@@ -174,14 +172,14 @@ public class ControlDesk extends Thread {
      * Returns a Vector of party names to be displayed in the GUI representation of
      * the wait queue.
      *
-     * @return a Vecotr of Strings
+     * @return a Queue of Strings
      */
 
-    public Queue<String> getPartyQueue() {
+    private Queue<String> getPartyQueue() {
         Queue<String> displayPartyQueue = new LinkedList<>();
         for (Party party : partyQueue) {
             ArrayList<Bowler> bowlers = party.getMembers();
-            String nextParty = bowlers.get(0).getNickName() + "'s temp.Party";
+            String nextParty = bowlers.get(0).getNickName() + "'s LaneState.Party";
             displayPartyQueue.add(nextParty);
         }
         return displayPartyQueue;
@@ -213,7 +211,7 @@ public class ControlDesk extends Thread {
      * @param event the Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent to broadcast
      */
 
-    public void publish(ControlDeskEvent event) {
+    private void publish(ControlDeskEvent event) {
         for (ControlDeskObserver subscriber : subscribers) {
             subscriber.receiveControlDeskEvent(event);
         }

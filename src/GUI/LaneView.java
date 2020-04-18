@@ -9,7 +9,7 @@ import FileWriting.Bowler;
 import LaneState.Lane;
 import Observers.LaneObserver.LaneEvent;
 import Observers.LaneObserver.LaneObserver;
-import temp.Party;
+import LaneState.Party;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,25 +19,24 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for displaying and handling the 
+ * lane and it's events
+ */
 public class LaneView implements LaneObserver, ActionListener {
 
     private boolean initDone = true;
 
-    JFrame frame;
-    Container cPanel;
-    ArrayList<Bowler> bowlers;
+    private JFrame frame;
+    private Container cPanel;
 
-    JPanel[][] balls;
-    JLabel[][] ballLabel;
-    JPanel[][] scores;
-    JLabel[][] scoreLabel;
-    JPanel[][] ballGrid;
-    JPanel[] pins;
+    private JLabel[][] ballLabel;
+    private JLabel[][] scoreLabel;
 
-    JButton maintenance;
-    Lane lane;
+    private JButton maintenance;
+    private Lane lane;
 
-    public LaneView(Lane lane, int laneNum) {
+    LaneView(Lane lane, int laneNum) {
 
         this.lane = lane;
 
@@ -55,30 +54,42 @@ public class LaneView implements LaneObserver, ActionListener {
 
     }
 
-    public void show() {
+    /**
+     * Show the laneview
+     */
+    void show() {
         frame.setVisible(true);
     }
 
-    public void hide() {
+    /**
+     * Hide the laneview
+     */
+    void hide() {
         frame.dispose();
     }
 
+    /**
+     * Creates a new frame for the party
+     * 
+     * @param party party to make frame for
+     * @return a new JPanel representing the new frame
+     */
     private JPanel makeFrame(Party party) {
 
         initDone = false;
-        bowlers = party.getMembers();
+        ArrayList<Bowler> bowlers = party.getMembers();
         int numBowlers = bowlers.size();
 
         JPanel panel = new JPanel();
 
         panel.setLayout(new GridLayout(0, 1));
 
-        balls = new JPanel[numBowlers][23];
+        JPanel[][] balls = new JPanel[numBowlers][23];
         ballLabel = new JLabel[numBowlers][23];
-        scores = new JPanel[numBowlers][10];
+        JPanel[][] scores = new JPanel[numBowlers][10];
         scoreLabel = new JLabel[numBowlers][10];
-        ballGrid = new JPanel[numBowlers][10];
-        pins = new JPanel[numBowlers];
+        JPanel[][] ballGrid = new JPanel[numBowlers][10];
+        JPanel[] pins = new JPanel[numBowlers];
 
         for (int i = 0; i < numBowlers; i++) {
             for (int j = 0; j != 23; j++) {
@@ -125,6 +136,11 @@ public class LaneView implements LaneObserver, ActionListener {
         return panel;
     }
 
+    /**
+     * Receives and handles lane events.
+     * 
+     * @param laneEvent the event to receive
+     */
     public void receiveLaneEvent(LaneEvent laneEvent) {
         if (lane.isPartyAssigned()) {
             while (!initDone) {
@@ -183,9 +199,15 @@ public class LaneView implements LaneObserver, ActionListener {
         }
     }
 
+    /**
+     * Invoked when an action occurs.
+     * @param e the event to be processed
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(maintenance)) {
-            lane.maintenanceCallToggle();
+            if (!lane.isHalted()){
+                lane.maintenanceCallToggle();
+            }
         }
     }
 }

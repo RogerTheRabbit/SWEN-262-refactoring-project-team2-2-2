@@ -11,31 +11,30 @@ package FileWriting;
  * 		Updated comments to match javadoc format.
  *
  * 		Revision 1.4  2003/02/02 16:29:52  ???
- * 		Added Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent and Observers.ControlDeskObserver.ControlDeskObserver. Updated Queue to allow access to Vector so that contents could be viewed without destroying. Implemented observer model for most of temp.ControlDesk.
+ * 		Added Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent and Observers.ControlDeskObserver.ControlDeskObserver. Updated Queue to allow access to Vector so that contents could be viewed without destroying. Implemented observer model for most of prompts.ControlDesk.
  *
  *
  */
-
-/**
- * Class for interfacing with FileWriting.Bowler database
- */
-
 
 import java.io.*;
 import java.util.ArrayList;
 
+
+/**
+ * Class for interfacing with Bowler database
+ */
 public class BowlerFile {
 
-    /** The location of the bowelr database */
+    /** The location of the bowler database */
     private static String BOWLER_DAT = "src/FileWriting/Files/BOWLERS.DAT";
 
     /**
-     * Retrieves bowler information from the database and returns a FileWriting.Bowler objects
+     * Retrieves bowler information from the database and returns a Bowler objects
      * with populated fields.
      *
      * @param nickName the nickName of the bolwer to retrieve
      *
-     * @return a FileWriting.Bowler object
+     * @return a Bowler object
      *
      */
 
@@ -58,11 +57,11 @@ public class BowlerFile {
     }
 
     /**
-     * Stores a FileWriting.Bowler in the database
+     * Stores a Bowler in the database
      *
-     * @param nickName the NickName of the FileWriting.Bowler
-     * @param fullName the FullName of the FileWriting.Bowler
-     * @param email    the E-mail Address of the FileWriting.Bowler
+     * @param nickName the NickName of the Bowler
+     * @param fullName the FullName of the Bowler
+     * @param email    the E-mail Address of the Bowler
      *
      */
 
@@ -80,7 +79,7 @@ public class BowlerFile {
     /**
      * Retrieves a list of nicknames in the bowler database
      *
-     * @return a Vector of Strings
+     * @return a ArrayList of Strings
      *
      */
 

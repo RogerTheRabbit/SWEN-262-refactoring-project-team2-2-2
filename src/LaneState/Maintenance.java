@@ -1,6 +1,5 @@
 package LaneState;
 
-import temp.Party;
 import Observers.PinsetterObserver.PinsetterEvent;
 
 /**
@@ -9,9 +8,8 @@ import Observers.PinsetterObserver.PinsetterEvent;
 public class Maintenance implements LaneStatus {
     private final Lane lane;
 
-    public Maintenance(Lane lane) {
+    Maintenance(Lane lane) {
         this.lane = lane;
-        lane.gameIsHalted = true;
     }
 
     /**

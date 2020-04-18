@@ -3,9 +3,8 @@ package LaneState;
 import FileWriting.Bowler;
 import FileWriting.ScoreReport;
 import Observers.PinsetterObserver.PinsetterEvent;
-import temp.EndGamePrompt;
-import temp.EndGameReport;
-import temp.Party;
+import prompts.EndGamePrompt;
+import prompts.EndGameReport;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,7 +16,7 @@ import java.util.Iterator;
 public class Finished implements LaneStatus {
     private final Lane lane;
 
-    public Finished(Lane lane) {
+    Finished(Lane lane) {
         this.lane = lane;
     }
 
@@ -28,9 +27,9 @@ public class Finished implements LaneStatus {
      */
     @Override
     public void run() {
-        EndGamePrompt endGamePrompt = new EndGamePrompt((lane.party.getMembers().get(0)).getNickName() + "'s temp.Party");
+        EndGamePrompt endGamePrompt = new EndGamePrompt((lane.party.getMembers().get(0)).getNickName() + "'s Party");
         int result = endGamePrompt.getResult();
-        endGamePrompt.distroy();
+        endGamePrompt.destroy();
 
         System.out.println("result was: " + result);
 
@@ -42,7 +41,7 @@ public class Finished implements LaneStatus {
         } else if (result == 2) {// no, don't want to play another game
             ArrayList<String> printVector;
             Bowler bowler = lane.party.getMembers().get(0);
-            EndGameReport endGameReport = new EndGameReport(bowler.getNickName() + "'s temp.Party", lane.party);
+            EndGameReport endGameReport = new EndGameReport(bowler.getNickName() + "'s Party", lane.party);
             printVector = endGameReport.getResult();
             Iterator<Bowler> scoreIt = lane.party.getMembers().iterator();
             lane.party = null;
@@ -82,7 +81,7 @@ public class Finished implements LaneStatus {
      * When a game is Finished, there is still a party in the lane
      * and therefore a new party can't be assigned to the lane.
      *
-     * @param theParty
+     * @param theParty the party to assign
      */
     @Override
     public void assignParty(Party theParty) {

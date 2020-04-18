@@ -1,4 +1,3 @@
-*.DAT
 out/*
 .idea/*
 *.iml

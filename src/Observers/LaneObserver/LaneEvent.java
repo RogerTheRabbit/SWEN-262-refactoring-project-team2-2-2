@@ -26,9 +26,12 @@ package Observers.LaneObserver;
  */
 
 import FileWriting.Bowler;
+import LaneState.Party;
 import scoring.FrameMediator.ScoreMediator;
-import temp.Party;
 
+/**
+ * This class represents a lane event and stores all of it's parameters.
+ */
 public class LaneEvent {
 
     private final Party party;
@@ -52,34 +55,74 @@ public class LaneEvent {
         this.mechanicalProblem = mechanicalProblem;
     }
 
+    /**
+     * Getter for if there is a mechanical problem
+     * 
+     * @return true if there is a mechanical problem, false otherwise.
+     */
     public boolean isMechanicalProblem() {
         return mechanicalProblem;
     }
 
+    /**
+     * Getter for the frame number
+     * 
+     * @return the number of the frame
+     */
     public int getFrameNum() {
         return frameNum;
     }
 
+    /**
+     * Getter for the score
+     * 
+     * @return the score
+     */
     public ScoreMediator getScore() {
         return score;
     }
 
+    /**
+     * Getter for the index
+     * 
+     * @return the index
+     */
     public int getIndex() {
         return index;
     }
 
+    /**
+     * Getter for the ball number.
+     * 
+     * @return the ball number
+     */
     public int getBallNum() {
         return ballNum;
     }
 
+    /**
+     * Getter for the cumulative score
+     * 
+     * @return the cumulative score
+     */
     public int[][] getCumuliScore() {
         return cumuliScore;
     }
 
+    /**
+     * Getter for the party
+     * 
+     * @return the party
+     */
     public Party getParty() {
         return party;
     }
 
+    /**
+     * Getter for the current bowler
+     * 
+     * @return the current bowler
+     */
     public Bowler getCurrentBowler() {
         return currentBowler;
     }

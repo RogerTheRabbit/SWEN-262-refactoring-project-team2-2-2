@@ -1,6 +1,7 @@
-package temp;
+package prompts;
 
 import FileWriting.Bowler;
+import LaneState.Party;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -12,22 +13,25 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * To change this generated comment edit the template variable "typecomment":
- * Window>Preferences>Java>Templates.
- * To enable and disable the creation of type comments go to
- * Window>Preferences>Java>Code Generation.
+ * This class is responsible for asking the player if they want
+ * to receive a report.
  */
 public class EndGameReport implements ActionListener, ListSelectionListener {
 
     private JFrame win;
     private JButton printButton, finished;
-    private JList memberList;
     private ArrayList<String> retVal;
 
     private int result;
 
     private String selectedMember;
 
+    /**
+     * Constructor
+     * 
+     * @param partyName Name of party  to make report for
+     * @param party Party to make report for
+     */
     public EndGameReport(String partyName, Party party) {
 
         result = 0;
@@ -42,24 +46,22 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
         // Member Panel
         JPanel partyPanel = new JPanel();
         partyPanel.setLayout(new FlowLayout());
-        partyPanel.setBorder(new TitledBorder("temp.Party Members"));
+        partyPanel.setBorder(new TitledBorder("Party Members"));
 
         ArrayList<String> bowlerNames = new ArrayList<>();
         for (Bowler bowler : party.getMembers()) {
             bowlerNames.add(bowler.getNickName());
         }
 
-        memberList = new JList<>(bowlerNames.toArray());
+        JList memberList = new JList<>(bowlerNames.toArray());
         memberList.setFixedCellWidth(120);
         memberList.setVisibleRowCount(5);
         memberList.addListSelectionListener(this);
         JScrollPane partyPane = new JScrollPane(memberList);
-        // partyPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         partyPanel.add(partyPane);
 
         partyPanel.add(memberList);
 
-        // Button Panel
         // Button Panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2, 1));
@@ -95,6 +97,10 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
 
     }
 
+    /**
+     * Invoked when an action occurs.
+     * @param e the event to be processed
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(printButton)) {
             // Add selected to the vector.
@@ -107,10 +113,19 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
 
     }
 
+  /**
+   * Called whenever the value of the selection changes.
+   * @param e the event that characterizes the change.
+   */
     public void valueChanged(ListSelectionEvent e) {
         selectedMember = ((String) ((JList) e.getSource()).getSelectedValue());
     }
 
+    /**
+     * Returns the result of the report.
+     * 
+     * @return Returns 1 if finished, 0 otherwise.
+     */
     public ArrayList<String> getResult() {
         while (result == 0) {
             try {
@@ -122,6 +137,11 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
         return retVal;
     }
 
+    /**
+     * Main entry-point for starting the EndGameReport.
+     * 
+     * @param args not used
+     */
     public static void main(String[] args) {
         ArrayList<Bowler> bowlers = new ArrayList<>();
         for (int i = 0; i < 4; i++) {

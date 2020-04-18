@@ -9,6 +9,9 @@ import java.awt.geom.Point2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 
+/**
+ * Responsible for printing text.
+ */
 public class PrintableText implements Printable {
     String text;
     int POINTS_PER_INCH;
@@ -18,6 +21,13 @@ public class PrintableText implements Printable {
         text = t;
     }
 
+    /**
+     * Prints a graphic onto a page at index
+     * 
+     * @param g graphic to print to page
+     * @param pageFormat the format of the page
+     * @param pageIndex the page to print on
+     */
     public int print(Graphics g, PageFormat pageFormat, int pageIndex) {
         if (pageIndex > 0) {
             return NO_SUCH_PAGE;

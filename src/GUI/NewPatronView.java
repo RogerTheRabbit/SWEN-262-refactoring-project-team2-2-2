@@ -8,13 +8,9 @@ package GUI;
  *  Revisions:
  * 		$Log: GUI.NewPatronView.java,v $
  * 		Revision 1.3  2003/02/02 16:29:52  ???
- * 		Added Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent and Observers.ControlDeskObserver.ControlDeskObserver. Updated Queue to allow access to Vector so that contents could be viewed without destroying. Implemented observer model for most of temp.ControlDesk.
+ * 		Added Observers.ControlDeskObserver.ControlDeskObserver.ControlDeskEvent and Observers.ControlDeskObserver.ControlDeskObserver. Updated Queue to allow access to Vector so that contents could be viewed without destroying. Implemented observer model for most of prompts.ControlDesk.
  *
  *
- */
-
-/**
- * Class for GUI components need to add a patron
  */
 
 import javax.swing.*;
@@ -23,6 +19,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/**
+ * Class for GUI components need to add a patron
+ */
 public class NewPatronView implements ActionListener {
 
     private JFrame win;
@@ -35,7 +35,7 @@ public class NewPatronView implements ActionListener {
 
     private AddPartyView addParty;
 
-    public NewPatronView(AddPartyView v) {
+    NewPatronView(AddPartyView v) {
 
         addParty = v;
         done = false;
@@ -112,6 +112,10 @@ public class NewPatronView implements ActionListener {
 
     }
 
+    /**
+     * Invoked when an action occurs.
+     * @param e the event to be processed
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(abort)) {
             done = true;
@@ -129,18 +133,38 @@ public class NewPatronView implements ActionListener {
 
     }
 
+    /**
+     * Getter for done
+     * 
+     * @return true if done, false otherwise
+     */
     public boolean done() {
         return done;
     }
 
+    /**
+     * Getter for the nickname
+     * 
+     * @return the nickname of the new patron
+     */
     public String getNick() {
         return nick;
     }
 
+    /**
+     * Getter for full
+     * 
+     * @return true if full, false otherwise
+     */
     public String getFull() {
         return full;
     }
 
+    /**
+     * Getter for the email
+     * 
+     * @return the email of the new patron
+     */
     public String getEmail() {
         return email;
     }

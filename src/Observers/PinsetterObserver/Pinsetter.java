@@ -65,9 +65,6 @@ package Observers.PinsetterObserver;/*
  *
  */
 
-import Observers.PinsetterObserver.PinsetterEvent;
-import Observers.PinsetterObserver.PinsetterObserver;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -190,7 +187,7 @@ public class Pinsetter {
      * pre: none
      * post: pins array is reset to all pins up
      */
-    public void resetPins() {
+    private void resetPins() {
         for (int i = 0; i <= 9; i++) {
             pins[i] = true;
         }

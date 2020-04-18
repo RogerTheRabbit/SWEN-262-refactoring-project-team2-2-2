@@ -1,7 +1,6 @@
 package LaneState;
 
 import FileWriting.Bowler;
-import temp.Party;
 import Observers.PinsetterObserver.PinsetterEvent;
 
 /**
@@ -10,7 +9,7 @@ import Observers.PinsetterObserver.PinsetterEvent;
 public class Empty implements LaneStatus {
     private final Lane lane;
 
-    public Empty(Lane lane) {
+    Empty(Lane lane) {
         this.lane = lane;
     }
 
