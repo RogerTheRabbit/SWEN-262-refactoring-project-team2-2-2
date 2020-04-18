@@ -72,4 +72,29 @@ public class TenthFrame implements FrameStatus {
         }
         return score;
     }
+
+    /**
+     * This function returns a String array representation of the balls thrown
+     * for a specific frame.
+     * @return The String array
+     */
+    @Override
+    public String[] getStrings(){
+        String[] scoreString = new String[3];
+        for(int i = 0; i < 3; i++){
+            if(scores[i] != -1){
+                scoreString[i] = Integer.toString(scores[i]);
+            }else{
+                scoreString[i] = "";
+            }
+        }
+
+        if(scores[0] == 10){
+            scoreString[0] = "X";
+        }else if(scores[0] + scores[1] == 10){
+            scoreString[1] = "/";
+        }
+
+        return scoreString;
+    }
 }

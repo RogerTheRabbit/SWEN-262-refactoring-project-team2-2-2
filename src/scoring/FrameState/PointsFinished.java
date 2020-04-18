@@ -59,4 +59,26 @@ public class PointsFinished implements FrameStatus {
         }
         return ballThrows;
     }
+
+    /**
+     * This function returns a String array representation of the balls thrown
+     * for a specific frame.
+     * @return The String array
+     */
+    @Override
+    public String[] getStrings(){
+        String[] scoreString = new String[2];
+        if(scores[0] == 10){
+            scoreString[0] = "X";
+            scoreString[1] = "";
+        }else if(scores[0] + scores[1] == 10){
+            scoreString[0] = Integer.toString(scores[0]);
+            scoreString[1] = "/";
+        }else{
+            scoreString[0] = Integer.toString(scores[0]);
+            scoreString[1] = Integer.toString(scores[1]);
+        }
+        return scoreString;
+    }
+
 }

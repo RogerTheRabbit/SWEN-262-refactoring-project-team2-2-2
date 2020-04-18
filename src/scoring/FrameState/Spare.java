@@ -61,4 +61,17 @@ public class Spare implements FrameStatus {
         }
         return score;
     }
+
+    /**
+     * This function returns a String array representation of the balls thrown
+     * for a specific frame.
+     * @return The String array
+     */
+    @Override
+    public String[] getStrings(){
+        String[] scoreString = new String[2];
+        scoreString[0] = Integer.toString(scores[0]);
+        scoreString[1] = "/";
+        return scoreString;
+    }
 }

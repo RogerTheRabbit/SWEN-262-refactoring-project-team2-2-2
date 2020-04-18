@@ -109,4 +109,25 @@ public class ScoreMediator {
         }
         return framePoints;
     }
+
+    /**
+     * This returns the score strings for 1 bowler
+     * @param bowler: The bowler who's store string is being gotten
+     * @return The score string
+     */
+    public String[] getScoreString(Bowler bowler){
+        Frame[] bowlerFrames = frames.get(bowler);
+        String[] scoreString = new String[21];
+        for(int i = 0; i < bowlerFrames.length; i++){
+            String[] currentStrings = bowlerFrames[i].getStrings();
+            scoreString[2 * i] = currentStrings[0];
+            scoreString[(2 * i) + 1] = currentStrings[1];
+            //Add the last value on the 10th frame
+            if(i == bowlerFrames.length - 1){
+                scoreString[20] = currentStrings[2];
+            }
+        }
+
+        return scoreString;
+    }
 }

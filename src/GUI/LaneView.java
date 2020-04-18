@@ -177,24 +177,13 @@ public class LaneView implements LaneObserver, ActionListener {
             ArrayList<Bowler> bowlers = laneEvent.getParty().getMembers();
             int k = laneEvent.getIndex();
             Bowler bowler = bowlers.get(k);
+            String[] scoreStrings = laneEvent.getScore().getScoreString(bowler);
             for (int i = 0; i < laneEvent.getFrameNum(); i++) {
-                if (laneEventScores[k][i] != 0) {
-                    scoreLabel[k][i].setText((Integer.valueOf(laneEventScores[k][i])).toString());
-                }
+                scoreLabel[k][i].setText((Integer.toString(laneEventScores[k][i])));
+
             }
             for (int i = 0; i < 21; i++) {
-                int[] currentRow = laneEvent.getScore().getAllThrows(bowler);
-                if (currentRow[i] != -1) {
-                    if (currentRow[i] == 10 && (i % 2 == 0 || i == 19)) {
-                        ballLabel[k][i].setText("X");
-                    } else if (i > 0 && currentRow[i] + currentRow[i - 1] == 10 && i % 2 == 1) {
-                        ballLabel[k][i].setText("/");
-                    } else if (currentRow[i] == -2) {
-                        ballLabel[k][i].setText("F");
-                    } else {
-                        ballLabel[k][i].setText((Integer.valueOf(currentRow[i])).toString());
-                    }
-                }
+                ballLabel[k][i].setText(scoreStrings[i]);
             }
         }
     }

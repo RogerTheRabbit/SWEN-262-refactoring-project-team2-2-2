@@ -69,4 +69,16 @@ public class Strike implements FrameStatus {
         score[1] = -1;
         return score;
     }
+    /**
+     * This function returns a String array representation of the balls thrown
+     * for a specific frame.
+     * @return The String array
+     */
+    @Override
+    public String[] getStrings(){
+        String[] scoreString = new String[2];
+        scoreString[0] = "X";
+        scoreString[1] = "";
+        return scoreString;
+    }
 }

@@ -23,4 +23,11 @@ public interface FrameStatus {
      * @return Throws in int array form
      */
     int[] getThrows();
+
+    /**
+     * This function returns a String array representation of the balls thrown
+     * for a specific frame.
+     * @return The String array
+     */
+    String[] getStrings();
 }

@@ -79,4 +79,22 @@ public class Unfinished implements FrameStatus {
         }
         return score;
     }
+
+    /**
+     * This function returns a String array representation of the balls thrown
+     * for a specific frame.
+     * @return The String array
+     */
+    @Override
+    public String[] getStrings(){
+        String[] scoreString = new String[2];
+        for(int i = 0; i < 2; i++){
+            if(scores[i] != -1){
+                scoreString[i] = Integer.toString(scores[i]);
+            }else{
+                scoreString[i] = "";
+            }
+        }
+        return scoreString;
+    }
 }

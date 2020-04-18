@@ -69,4 +69,13 @@ public class Frame {
     public int[] getThrows(){
         return status.getThrows();
     }
+
+    /**
+     * This function returns a String array representation of the balls thrown
+     * for a specific frame.
+     * @return The String array
+     */
+    public String[] getStrings(){
+        return status.getStrings();
+    }
 }
