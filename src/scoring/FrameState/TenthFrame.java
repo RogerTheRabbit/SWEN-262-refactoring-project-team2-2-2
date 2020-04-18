@@ -43,10 +43,8 @@ public class TenthFrame implements FrameStatus {
      */
     @Override
     public void addThrow(int ballThrown) {
-
         if(scores[0] == -1){
             scores[0] = ballThrown;
-
         }else if(scores[1] == -1){
             secondThrow(ballThrown);
         }else if(thirdThrow){
@@ -55,6 +53,12 @@ public class TenthFrame implements FrameStatus {
         }
     }
 
+    /**
+     * Helper function to handle the second throw in 
+     * the tenth frame
+     * 
+     * @param ballThrown the ball to handle
+     */
     private void secondThrow(int ballThrown){
         scores[1] = ballThrown;
         if(this.getScore() >= 10){
@@ -78,8 +82,8 @@ public class TenthFrame implements FrameStatus {
     }
 
     /**
-     * This function returns a String array representation of the balls thrown
-     * for a specific frame.
+     * This function returns a String array representation of the 
+     * balls thrown for a specific frame.
      * @return The String array
      */
     @Override
@@ -95,7 +99,12 @@ public class TenthFrame implements FrameStatus {
         return scoreString;
     }
 
-    public String[] scoreStringInit(){
+    /**
+     * Helper function that initializes array of scores to be 
+     * used in getStrings()
+     * @return an initialized string array with corresponding scores
+     */
+    private String[] scoreStringInit(){
         String[] scoreString = new String[3];
         for(int i = 0; i < 3; i++){
             if(scores[i] != -1){
