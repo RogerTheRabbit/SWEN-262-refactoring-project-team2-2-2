@@ -2,3 +2,4 @@ out/*
 .idea/*
 *.iml
 src/FileWriting/Files/SCOREHISTORY.DAT
+src/META-INF/MANIFEST.MF
