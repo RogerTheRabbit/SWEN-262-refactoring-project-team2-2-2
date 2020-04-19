@@ -1,4 +1,4 @@
-*.DAT
 out/*
 .idea/*
 *.iml
+src/FileWriting/Files/SCOREHISTORY.DAT
